@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Trend - 포커 트렌드 쇼츠 자동 제작 시스템</title>
+    <meta name="description" content="AI 기반 실시간 포커 트렌드 감지 및 쇼츠 콘텐츠 자동 생성 시스템">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Poker Trend - 포커 트렌드 쇼츠 자동 제작 시스템">
+    <meta property="og:description" content="AI 기반 실시간 포커 트렌드 감지 및 쇼츠 콘텐츠 자동 생성 시스템">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://garimto81.github.io/poker-trend/">
+    
+    <!-- Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 40px 20px;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .feature p {
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        
+        .cta-section {
+            margin-top: 50px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.5);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: #1890ff;
+            border-color: #1890ff;
+        }
+        
+        .btn-primary:hover {
+            background: #096dd9;
+            border-color: #096dd9;
+        }
+        
+        .status {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #52c41a;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .tech-stack {
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+        
+        .tech-item {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🎰</div>
+        <h1>Poker Trend</h1>
+        <p class="subtitle">
+            AI 기반 실시간 포커 트렌드 감지 및<br>
+            쇼츠 콘텐츠 자동 생성 시스템
+        </p>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>실시간 트렌드 감지</h3>
+                <p>YouTube, TikTok, Twitter, Reddit에서 포커 트렌드를 실시간으로 모니터링</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🤖</div>
+                <h3>AI 콘텐츠 생성</h3>
+                <p>GPT-4를 활용한 자동 스크립트 작성 및 영상 제작</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🚀</div>
+                <h3>멀티플랫폼 배포</h3>
+                <p>YouTube, TikTok, Instagram 동시 업로드 및 성과 분석</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>30분 자동화</h3>
+                <p>트렌드 감지부터 쇼츠 배포까지 완전 자동화</p>
+            </div>
+        </div>
+        
+        <div class="status">
+            <div class="loading"></div>
+            <strong>GitHub Actions 자동 배포 진행 중...</strong>
+            <p style="margin-top: 10px; opacity: 0.8;">
+                React 웹앱이 빌드되는 중입니다. 몇 분 후 자동으로 리다이렉트됩니다.
+            </p>
+        </div>
+        
+        <div class="cta-section">
+            <a href="https://github.com/garimto81/poker-trend" class="btn" target="_blank">
+                📦 GitHub 저장소
+            </a>
+            <a href="https://garimto81.github.io/poker-trend" class="btn btn-primary" id="webapp-link">
+                🎯 웹앱 접속하기
+            </a>
+        </div>
+        
+        <div class="tech-stack">
+            <h3 style="margin-bottom: 15px;">기술 스택</h3>
+            <span class="tech-item">React</span>
+            <span class="tech-item">TypeScript</span>
+            <span class="tech-item">Node.js</span>
+            <span class="tech-item">Python</span>
+            <span class="tech-item">Docker</span>
+            <span class="tech-item">GitHub Actions</span>
+        </div>
+    </div>
+    
+    <script>
+        // 웹앱이 준비되었는지 확인하고 자동 리다이렉트
+        function checkWebApp() {
+            fetch('https://garimto81.github.io/poker-trend/')
+                .then(response => {
+                    if (response.ok) {
+                        // 웹앱이 준비되면 3초 후 리다이렉트
+                        setTimeout(() => {
+                            window.location.href = 'https://garimto81.github.io/poker-trend/';
+                        }, 3000);
+                        
+                        // 상태 업데이트
+                        document.querySelector('.status').innerHTML = `
+                            <div style="color: #52c41a;">✅ 배포 완료!</div>
+                            <p style="margin-top: 10px;">3초 후 웹앱으로 이동합니다...</p>
+                        `;
+                    }
+                })
+                .catch(() => {
+                    // 아직 준비되지 않음, 30초 후 다시 시도
+                    setTimeout(checkWebApp, 30000);
+                });
+        }
+        
+        // 30초 후 첫 번째 체크 시작
+        setTimeout(checkWebApp, 30000);
+        
+        // 웹앱 링크 클릭 시 새 탭에서 열기
+        document.getElementById('webapp-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open('https://garimto81.github.io/poker-trend/', '_blank');
+        });
+    </script>
+</body>
+</html>
