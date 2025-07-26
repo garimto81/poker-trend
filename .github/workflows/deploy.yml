@@ -9,6 +9,10 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     
     steps:
     - name: Checkout code
@@ -30,16 +34,22 @@ jobs:
       run: |
         npm run build
         cp build/index.html build/404.html
+        echo "poker-trend.garimto81.com" > build/CNAME
       env:
         CI: false
         REACT_APP_API_URL: https://api.garimto81.com
         REACT_APP_WS_URL: wss://api.garimto81.com
         PUBLIC_URL: /poker-trend
         
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: ./frontend/build
+        
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./frontend/build
-        cname: poker-trend.garimto81.com
+      id: deployment
+      uses: actions/deploy-pages@v2
