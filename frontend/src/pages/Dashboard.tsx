@@ -1,5 +1,5 @@
-import React from 'react';
-import { Row, Col, Card, Statistic, Typography, Space, Badge, Timeline } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Card, Statistic, Typography, Space, Badge, Timeline, Button } from 'antd';
 import {
   TrendingUpOutlined,
   PlayCircleOutlined,
@@ -8,6 +8,7 @@ import {
   ClockCircleOutlined,
   CheckCircleOutlined,
   ExclamationCircleOutlined,
+  ReloadOutlined,
 } from '@ant-design/icons';
 import { Line, Doughnut, Bar } from 'react-chartjs-2';
 import {
@@ -22,6 +23,8 @@ import {
   ArcElement,
   BarElement,
 } from 'chart.js';
+import { mockApi, USE_MOCK_DATA } from '../services/mockApi';
+import { mockData } from '../services/mockApi';
 
 // Register Chart.js components
 ChartJS.register(
@@ -39,8 +42,29 @@ ChartJS.register(
 const { Title: PageTitle, Text } = Typography;
 
 const Dashboard: React.FC = () => {
+  const [dashboardData, setDashboardData] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    loadDashboardData();
+  }, []);
+
+  const loadDashboardData = async () => {
+    try {
+      setLoading(true);
+      if (USE_MOCK_DATA) {
+        const data = await mockApi.getDashboard();
+        setDashboardData(data);
+      }
+    } catch (error) {
+      console.error('Failed to load dashboard data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Mock data - 실제로는 API에서 가져올 데이터
-  const trendData = {
+  const trendData = dashboardData?.trendData || {
     labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
     datasets: [
       {
