@@ -5,6 +5,7 @@
 ## 🚀 주요 기능
 
 - **실시간 트렌드 감지**: YouTube, TikTok, Twitter, Reddit 등에서 포커 트렌드 모니터링
+- **일일 Slack 알림**: 매일 오전 10시 YouTube 포커 트렌드 분석 리포트 자동 전송
 - **AI 스크립트 생성**: GPT-4를 활용한 자동 스크립트 작성
 - **자동 영상 제작**: FFmpeg 기반 템플릿 영상 생성
 - **멀티플랫폼 배포**: YouTube, TikTok, Instagram 동시 업로드
@@ -129,6 +130,10 @@ npm start
 # YouTube Data API
 YOUTUBE_API_KEY=your_youtube_api_key
 
+# Slack Integration
+SLACK_BOT_TOKEN=xoxb-your-slack-bot-token
+SLACK_CHANNEL_ID=C1234567890
+
 # Twitter API v2
 TWITTER_BEARER_TOKEN=your_twitter_bearer_token
 
@@ -146,8 +151,10 @@ OPENAI_API_KEY=your_openai_api_key
 - [x] 프로젝트 구조 설정
 - [x] Docker 개발 환경
 - [x] 기본 서비스 틀
-- [ ] 데이터베이스 스키마
-- [ ] 기본 API 엔드포인트
+- [x] 데이터베이스 스키마
+- [x] YouTube 트렌드 분석 API
+- [x] Slack 일일 알림 시스템
+- [ ] 기본 API 엔드포인트 (진행중)
 
 ### Phase 2: 자동화 고도화 (예정)
 - [ ] AI 스크립트 생성

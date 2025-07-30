@@ -10,6 +10,9 @@ const { logger } = require('./utils/logger');
 const { connectDatabases } = require('./config/database');
 const { setupSocketIO } = require('./config/socket');
 
+// Import scheduler
+const youtubeTrendScheduler = require('./schedulers/youtubeTrendScheduler');
+
 // Routes
 const authRoutes = require('./routes/auth');
 const trendRoutes = require('./routes/trends');
@@ -56,6 +59,29 @@ app.use('/api/trends', trendRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/analytics', analyticsRoutes);
 
+// Scheduler endpoints
+app.get('/api/scheduler/status', (req, res) => {
+  const status = youtubeTrendScheduler.getStatus();
+  res.json(status);
+});
+
+app.post('/api/scheduler/run', async (req, res) => {
+  try {
+    // Run analysis immediately
+    youtubeTrendScheduler.runAnalysis('manual');
+    res.json({
+      success: true,
+      message: 'Analysis started',
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   logger.error('Error occurred:', {
@@ -88,6 +114,10 @@ async function startServer() {
   try {
     // Connect to databases
     await connectDatabases();
+    
+    // Start scheduler
+    youtubeTrendScheduler.start();
+    logger.info('YouTube Trend Scheduler started');
     
     // Start HTTP server
     const server = app.listen(PORT, () => {
