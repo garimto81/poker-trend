@@ -1,0 +1,19 @@
+# 포커 트렌드 분석기 필수 라이브러리
+
+# YouTube Data API
+google-api-python-client
+
+# Gemini AI
+google-generativeai
+
+# 데이터 처리 및 정량 분석
+pandas
+numpy
+scikit-learn
+
+# 스케줄링 및 알림
+schedule
+requests
+
+# 설정 관리
+python-dotenv
