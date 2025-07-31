@@ -39,18 +39,25 @@
 ## 🤖 자동 실행 (GitHub Actions)
 
 ### YouTube 트렌드 자동 분석
-매일 자동으로 YouTube 포커 트렌드를 분석하고 Slack으로 리포트를 전송합니다.
+매일 자동으로 YouTube 포커 트렌드를 분석하고 Slack Webhook으로 리포트를 전송합니다.
 
 - **실행 시간**: 매일 오전 10시 (한국 시간)
-- **분석 내용**: TOP 5 급상승 영상, 카테고리별 트렌드, 인기 채널
-- **알림 채널**: Slack
+- **분석 내용**: TOP 5 급상승 영상, 평균 조회수, 트렌드 분석
+- **알림 방식**: Slack Webhook
+
+### 필요한 GitHub Secrets
+```
+YOUTUBE_API_KEY     # YouTube Data API v3 키
+SLACK_WEBHOOK_URL   # Slack Incoming Webhook URL
+GEMINI_API_KEY      # Google Gemini API 키 (향후 사용 예정)
+```
 
 ### 설정 방법
-1. GitHub Secrets에 필요한 API 키 설정
-2. Slack Bot 설정 및 채널 추가
-3. GitHub Actions 활성화
+1. GitHub Settings → Secrets and variables → Actions
+2. 위 3개의 Secret 추가
+3. GitHub Actions에서 "YouTube Trends Webhook" workflow 실행
 
-자세한 설정 방법은 [GitHub Actions 설정 가이드](docs/github-actions-setup.md)를 참조하세요.
+자세한 내용은 [Webhook 설정 가이드](docs/webhook-setup.md)를 참조하세요.
 
 ## 📋 시작하기
 
