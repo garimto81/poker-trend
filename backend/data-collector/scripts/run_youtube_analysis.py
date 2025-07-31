@@ -16,13 +16,17 @@ from slack_sdk.errors import SlackApiError
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
+# 로깅 디렉토리 생성
+os.makedirs('scripts/logs', exist_ok=True)
+os.makedirs('scripts/reports', exist_ok=True)
+
 # 로깅 설정
 logging.basicConfig(
     level=logging.INFO if os.getenv('DEBUG_MODE') != 'true' else logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
         logging.StreamHandler(),
-        logging.FileHandler('logs/youtube_analysis.log', mode='a')
+        logging.FileHandler('scripts/logs/youtube_analysis.log', mode='a')
     ]
 )
 logger = logging.getLogger(__name__)
@@ -419,10 +423,6 @@ def main():
     """메인 실행 함수"""
     logger.info("Starting YouTube poker trend analysis...")
     
-    # 로그 디렉토리 생성
-    os.makedirs('logs', exist_ok=True)
-    os.makedirs('reports', exist_ok=True)
-    
     try:
         # YouTube 트렌드 분석
         analyzer = YouTubeTrendAnalyzer()
@@ -436,7 +436,7 @@ def main():
         analysis_result = analyzer.analyze_trends(videos)
         
         # 결과 저장
-        report_file = f"reports/trend_report_{datetime.now().strftime('%Y%m%d')}.json"
+        report_file = f"scripts/reports/trend_report_{datetime.now().strftime('%Y%m%d')}.json"
         with open(report_file, 'w', encoding='utf-8') as f:
             json.dump(analysis_result, f, ensure_ascii=False, indent=2)
         logger.info(f"Report saved to {report_file}")
