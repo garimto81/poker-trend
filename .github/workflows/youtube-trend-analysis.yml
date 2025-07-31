@@ -1,0 +1,95 @@
+name: YouTube Poker Trend Analysis
+
+on:
+  schedule:
+    # 매일 한국 시간 오전 10시 실행 (UTC 01:00)
+    - cron: '0 1 * * *'
+  
+  # 수동 실행 가능하도록 설정
+  workflow_dispatch:
+    inputs:
+      debug_mode:
+        description: 'Enable debug mode'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+jobs:
+  analyze-trends:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: Install Python dependencies
+      run: |
+        cd backend/data-collector
+        pip install -r requirements.txt
+    
+    - name: Setup environment
+      run: |
+        cd backend/data-collector/scripts
+        chmod +x setup.sh
+        ./setup.sh
+
+    - name: Run YouTube trend analysis
+      env:
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        DEBUG_MODE: ${{ github.event.inputs.debug_mode || 'false' }}
+      run: |
+        cd backend/data-collector
+        python scripts/run_youtube_analysis.py
+
+    - name: Upload analysis results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: trend-analysis-${{ github.run_number }}
+        path: |
+          backend/data-collector/logs/
+          backend/data-collector/reports/
+        retention-days: 7
+
+  notify-on-error:
+    runs-on: ubuntu-latest
+    needs: analyze-trends
+    if: failure()
+    steps:
+    - name: Send error notification to Slack
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        curl -X POST $SLACK_WEBHOOK_URL \
+          -H 'Content-Type: application/json' \
+          -d '{
+            "text": "⚠️ YouTube 트렌드 분석 실패",
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "⚠️ GitHub Actions 오류 알림"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Workflow:* YouTube Poker Trend Analysis\n*Run ID:* ${{ github.run_id }}\n*Time:* '$$(date -u +"%Y-%m-%d %H:%M:%S UTC")'\n\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Details>"
+                }
+              }
+            ]
+          }'

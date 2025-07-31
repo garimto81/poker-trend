@@ -18,6 +18,7 @@ requests==2.31.0
 google-api-python-client==2.110.0
 tweepy==4.14.0
 praw==7.7.1  # Reddit API
+slack-sdk==3.26.1  # Slack API
 
 # Data Processing
 pandas==2.1.4
