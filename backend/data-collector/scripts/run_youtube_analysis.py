@@ -16,6 +16,8 @@ from slack_sdk.errors import SlackApiError
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
+# pandas 의존성 제거 - 기본 Python 데이터 구조 사용
+
 # 로깅 디렉토리 생성
 os.makedirs('scripts/logs', exist_ok=True)
 os.makedirs('scripts/reports', exist_ok=True)
