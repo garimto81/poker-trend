@@ -72,24 +72,25 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       run: |
+        CURRENT_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
         curl -X POST $SLACK_WEBHOOK_URL \
           -H 'Content-Type: application/json' \
-          -d '{
-            "text": "⚠️ YouTube 트렌드 분석 실패",
-            "blocks": [
+          -d "{
+            \"text\": \"⚠️ YouTube 트렌드 분석 실패\",
+            \"blocks\": [
               {
-                "type": "header",
-                "text": {
-                  "type": "plain_text",
-                  "text": "⚠️ GitHub Actions 오류 알림"
+                \"type\": \"header\",
+                \"text\": {
+                  \"type\": \"plain_text\",
+                  \"text\": \"⚠️ GitHub Actions 오류 알림\"
                 }
               },
               {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "*Workflow:* YouTube Poker Trend Analysis\n*Run ID:* ${{ github.run_id }}\n*Time:* '$$(date -u +"%Y-%m-%d %H:%M:%S UTC")'\n\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Details>"
+                \"type\": \"section\",
+                \"text\": {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"*Workflow:* YouTube Poker Trend Analysis\\n*Run ID:* ${{ github.run_id }}\\n*Time:* ${CURRENT_TIME}\\n\\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Details>\"
                 }
               }
             ]
-          }'
+          }"
