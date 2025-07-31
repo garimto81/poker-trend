@@ -18,9 +18,14 @@ from googleapiclient.errors import HttpError
 
 # pandas 의존성 제거 - 기본 Python 데이터 구조 사용
 
+# 스크립트 디렉토리 경로 가져오기
+script_dir = os.path.dirname(os.path.abspath(__file__))
+logs_dir = os.path.join(script_dir, 'logs')
+reports_dir = os.path.join(script_dir, 'reports')
+
 # 로깅 디렉토리 생성
-os.makedirs('scripts/logs', exist_ok=True)
-os.makedirs('scripts/reports', exist_ok=True)
+os.makedirs(logs_dir, exist_ok=True)
+os.makedirs(reports_dir, exist_ok=True)
 
 # 로깅 설정
 logging.basicConfig(
@@ -28,7 +33,7 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
         logging.StreamHandler(),
-        logging.FileHandler('scripts/logs/youtube_analysis.log', mode='a')
+        logging.FileHandler(os.path.join(logs_dir, 'youtube_analysis.log'), mode='a')
     ]
 )
 logger = logging.getLogger(__name__)
@@ -40,10 +45,16 @@ REQUIRED_ENV_VARS = [
     'SLACK_CHANNEL_ID'
 ]
 
+missing_vars = []
 for var in REQUIRED_ENV_VARS:
     if not os.getenv(var):
+        missing_vars.append(var)
         logger.error(f"Missing required environment variable: {var}")
-        sys.exit(1)
+
+if missing_vars:
+    logger.error(f"Missing environment variables: {', '.join(missing_vars)}")
+    logger.error("Please set these variables in GitHub Secrets")
+    sys.exit(1)
 
 # API 클라이언트 초기화
 youtube = build('youtube', 'v3', developerKey=os.getenv('YOUTUBE_API_KEY'))
@@ -438,7 +449,7 @@ def main():
         analysis_result = analyzer.analyze_trends(videos)
         
         # 결과 저장
-        report_file = f"scripts/reports/trend_report_{datetime.now().strftime('%Y%m%d')}.json"
+        report_file = os.path.join(reports_dir, f"trend_report_{datetime.now().strftime('%Y%m%d')}.json")
         with open(report_file, 'w', encoding='utf-8') as f:
             json.dump(analysis_result, f, ensure_ascii=False, indent=2)
         logger.info(f"Report saved to {report_file}")
