@@ -1,0 +1,160 @@
+name: Poker Trend Analysis
+
+on:
+  schedule:
+    # 일간 분석: 매일 UTC 01:00 (한국시간 10:00)
+    - cron: '0 1 * * *'
+    # 주간 분석: 매주 월요일 UTC 01:00 (한국시간 10:00)  
+    - cron: '0 1 * * 1'
+    # 월간 분석: 매월 1일 UTC 01:00 (한국시간 10:00)
+    - cron: '0 1 1 * *'
+  
+  # 수동 실행 가능
+  workflow_dispatch:
+    inputs:
+      analysis_type:
+        description: 'Analysis Type'
+        required: true
+        default: 'daily'
+        type: choice
+        options:
+        - daily
+        - weekly  
+        - monthly
+        - all
+
+jobs:
+  daily-analysis:
+    if: github.event.schedule == '0 1 * * *' || (github.event_name == 'workflow_dispatch' && (github.event.inputs.analysis_type == 'daily' || github.event.inputs.analysis_type == 'all'))
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run Daily Analysis
+      env:
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "🌅 Starting Daily Poker Trend Analysis..."
+        python multi_keyword_analyzer_v2.py
+        
+    - name: Upload analysis logs
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: daily-analysis-logs-${{ github.run_number }}
+        path: |
+          *.log
+          *.json
+        retention-days: 30
+
+  weekly-analysis:
+    if: github.event.schedule == '0 1 * * 1' || (github.event_name == 'workflow_dispatch' && (github.event.inputs.analysis_type == 'weekly' || github.event.inputs.analysis_type == 'all'))
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run Weekly Analysis
+      env:
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "📊 Starting Weekly Poker Trend Analysis..."
+        python weekly_multi_keyword_analyzer.py
+        
+    - name: Upload analysis logs
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: weekly-analysis-logs-${{ github.run_number }}
+        path: |
+          *.log
+          *.json
+        retention-days: 30
+
+  monthly-analysis:
+    if: github.event.schedule == '0 1 1 * *' || (github.event_name == 'workflow_dispatch' && (github.event.inputs.analysis_type == 'monthly' || github.event.inputs.analysis_type == 'all'))
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run Monthly Analysis
+      env:
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "📈 Starting Monthly Poker Trend Analysis..."
+        python monthly_multi_keyword_analyzer.py
+        
+    - name: Upload analysis logs
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: monthly-analysis-logs-${{ github.run_number }}
+        path: |
+          *.log
+          *.json
+        retention-days: 30
