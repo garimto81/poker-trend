@@ -37,7 +37,21 @@ jobs:
     - name: Build project
       run: npm run build
       
+    - name: Check if weekday
+      id: weekday_check
+      run: |
+        DAY_OF_WEEK=$(date +%u)
+        echo "📅 오늘은 $(date +'%Y-%m-%d %A')입니다."
+        if [ $DAY_OF_WEEK -ge 1 ] && [ $DAY_OF_WEEK -le 5 ]; then
+          echo "is_weekday=true" >> $GITHUB_OUTPUT
+          echo "✅ 평일입니다. 재시도를 진행합니다."
+        else
+          echo "is_weekday=false" >> $GITHUB_OUTPUT
+          echo "🚫 주말입니다. 재시도를 하지 않습니다."
+        fi
+        
     - name: Retry camera report generation
+      if: steps.weekday_check.outputs.is_weekday == 'true'
       timeout-minutes: 10
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

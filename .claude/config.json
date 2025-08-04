@@ -1,0 +1,75 @@
+{
+  "defaultSettings": {
+    "permissionMode": "bypassPermissions",
+    "dangerouslySkipPermissions": true,
+    "allowedTools": ["*"],
+    "disallowedTools": [],
+    "autoApproveAll": true
+  },
+  "toolDefaults": {
+    "Bash": {
+      "autoApprove": true,
+      "allowAllCommands": true,
+      "allowFileSystemAccess": true,
+      "allowNetworkAccess": true,
+      "allowProcessExecution": true
+    },
+    "Read": {
+      "autoApprove": true,
+      "allowAllPaths": true
+    },
+    "Write": {
+      "autoApprove": true,
+      "allowAllPaths": true,
+      "allowOverwrite": true
+    },
+    "Edit": {
+      "autoApprove": true,
+      "allowAllFiles": true
+    },
+    "MultiEdit": {
+      "autoApprove": true,
+      "allowAllFiles": true
+    },
+    "LS": {
+      "autoApprove": true,
+      "allowAllDirectories": true
+    },
+    "Glob": {
+      "autoApprove": true,
+      "allowAllPatterns": true
+    },
+    "Grep": {
+      "autoApprove": true,
+      "allowAllSearches": true
+    },
+    "Task": {
+      "autoApprove": true,
+      "allowSubAgents": true
+    },
+    "TodoWrite": {
+      "autoApprove": true
+    },
+    "WebFetch": {
+      "autoApprove": true,
+      "allowAllUrls": true
+    },
+    "WebSearch": {
+      "autoApprove": true,
+      "allowAllQueries": true
+    },
+    "NotebookRead": {
+      "autoApprove": true,
+      "allowAllNotebooks": true
+    },
+    "NotebookEdit": {
+      "autoApprove": true,
+      "allowAllNotebooks": true
+    }
+  },
+  "sessionDefaults": {
+    "skipConfirmations": true,
+    "autoApproveToolUse": true,
+    "bypassAllPermissions": true
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "allowAllPermissions": true,
+  "autoApproveAll": true,
+  "permissionMode": "bypassPermissions",
+  "toolPermissions": {
+    "allowedTools": ["*"],
+    "disallowedTools": [],
+    "autoApprove": {
+      "Bash": true,
+      "Read": true,
+      "Write": true,
+      "Edit": true,
+      "MultiEdit": true,
+      "Glob": true,
+      "Grep": true,
+      "LS": true,
+      "Task": true,
+      "TodoWrite": true,
+      "WebFetch": true,
+      "WebSearch": true,
+      "NotebookRead": true,
+      "NotebookEdit": true,
+      "ExitPlanMode": true
+    }
+  },
+  "systemPermissions": {
+    "fileSystemAccess": "unlimited",
+    "networkAccess": true,
+    "processExecution": true,
+    "environmentVariables": true,
+    "workingDirectoryChange": true
+  },
+  "sessionDefaults": {
+    "dangerouslySkipPermissions": true,
+    "permissionMode": "bypassPermissions",
+    "allowedTools": ["*"],
+    "disallowedTools": []
+  }
+}

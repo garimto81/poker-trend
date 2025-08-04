@@ -1,0 +1,35 @@
+name: Find Parts Data in Google Docs
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/find-parts-data.yml'
+      - 'find-all-parts.js'
+
+jobs:
+  find-parts:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Find all parts data
+      env:
+        GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+        GOOGLE_DOC_ID: 1QvLn7yJJ1c3xtwF8bd4lK_k6FL4hmcT5TiGvoeGRPow
+        TZ: Asia/Seoul
+      run: |
+        echo "🔍 Google Docs에서 파트 데이터를 찾는 중..."
+        echo "📅 한국 시간: $(date +'%Y-%m-%d %H:%M:%S')"
+        node find-all-parts.js

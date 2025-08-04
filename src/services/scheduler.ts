@@ -20,6 +20,13 @@ export class Scheduler {
     console.log('Starting scheduler...');
     
     this.dailyTask = cron.schedule(config.schedule.dailyCron, async () => {
+      // 평일 체크 (1=월, 2=화, ..., 5=금, 6=토, 0=일)
+      const dayOfWeek = new Date().getDay();
+      if (dayOfWeek === 0 || dayOfWeek === 6) {
+        console.log(`🚫 주말입니다 (${dayOfWeek === 0 ? '일요일' : '토요일'}). 보고서를 생성하지 않습니다.`);
+        return;
+      }
+      
       console.log('Running daily report generation...');
       const success = await this.reportGenerator.generateReport();
       
@@ -45,6 +52,14 @@ export class Scheduler {
     const retryCron = `0 */${config.schedule.retryInterval} * * * *`;
     
     this.retryTask = cron.schedule(retryCron, async () => {
+      // 재시도 시에도 평일 체크
+      const dayOfWeek = new Date().getDay();
+      if (dayOfWeek === 0 || dayOfWeek === 6) {
+        console.log(`🚫 주말입니다. 재시도를 하지 않습니다.`);
+        this.stopRetrySchedule();
+        return;
+      }
+      
       this.retryCount++;
       console.log(`Retry attempt ${this.retryCount}/${this.maxRetries}`);
       
