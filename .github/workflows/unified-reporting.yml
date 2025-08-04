@@ -1,0 +1,101 @@
+name: Unified Trend Reporting
+
+on:
+  schedule:
+    # 평일 오전 10시 (UTC 1시 = KST 10시)
+    - cron: '0 1 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      report_type:
+        description: 'Report type to generate'
+        required: false
+        default: 'auto'
+        type: choice
+        options:
+          - auto
+          - daily
+          - weekly
+          - monthly
+
+jobs:
+  determine-report-type:
+    runs-on: ubuntu-latest
+    outputs:
+      report_type: ${{ steps.determine.outputs.report_type }}
+    steps:
+    - name: Determine Report Type
+      id: determine
+      run: |
+        if [ "${{ github.event.inputs.report_type }}" != "auto" ] && [ "${{ github.event.inputs.report_type }}" != "" ]; then
+          echo "report_type=${{ github.event.inputs.report_type }}" >> $GITHUB_OUTPUT
+        else
+          # 현재 날짜 확인 (한국 시간 기준)
+          KST_DATE=$(TZ=Asia/Seoul date)
+          DAY_OF_WEEK=$(TZ=Asia/Seoul date +%u)  # 1=Monday, 7=Sunday
+          DAY_OF_MONTH=$(TZ=Asia/Seoul date +%d)
+          
+          # 매월 첫째주 월요일 확인
+          if [ $DAY_OF_WEEK -eq 1 ] && [ $DAY_OF_MONTH -le 7 ]; then
+            echo "report_type=monthly" >> $GITHUB_OUTPUT
+          # 나머지 월요일은 주간 보고
+          elif [ $DAY_OF_WEEK -eq 1 ]; then
+            echo "report_type=weekly" >> $GITHUB_OUTPUT
+          # 화-금요일은 일간 보고
+          else
+            echo "report_type=daily" >> $GITHUB_OUTPUT
+          fi
+        fi
+
+  generate-report:
+    needs: determine-report-type
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        
+    - name: Cache dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        
+    - name: Install dependencies
+      run: |
+        pip install google-api-python-client google-generativeai requests pandas numpy
+        
+    - name: Generate Report
+      env:
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        REPORT_TYPE: ${{ needs.determine-report-type.outputs.report_type }}
+      run: |
+        cd backend/data-collector
+        
+        # 리포트 타입에 따라 다른 스크립트 실행
+        if [ "$REPORT_TYPE" = "monthly" ]; then
+          echo "Generating monthly report..."
+          python scripts/monthly_trend_report.py
+        elif [ "$REPORT_TYPE" = "weekly" ]; then
+          echo "Generating weekly report..."
+          python scripts/weekly_trend_report.py
+        else
+          echo "Generating daily report..."
+          python scripts/youtube_trend_webhook_enhanced.py
+        fi
+        
+    - name: Save Report Artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: report-${{ needs.determine-report-type.outputs.report_type }}-${{ github.run_number }}
+        path: |
+          backend/data-collector/reports/
+          backend/data-collector/data/
+        retention-days: 90

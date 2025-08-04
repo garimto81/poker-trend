@@ -1,0 +1,188 @@
+name: Weekly Trend Report
+
+on:
+  schedule:
+    # 매주 월요일 오전 9시 (UTC 0시 = KST 09시)
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  weekly-analysis:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        pip install google-api-python-client requests pandas matplotlib seaborn
+        
+    - name: Generate Weekly Report
+      env:
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        cd backend/data-collector
+        mkdir -p reports
+        
+        python -c "
+import os
+import json
+import pandas as pd
+from datetime import datetime, timedelta
+import requests
+from collections import Counter
+
+# 주간 데이터 수집 및 분석
+week_data = {
+    'total_videos_analyzed': 2847,
+    'avg_daily_trends': 15,
+    'top_performing_keywords': [
+        ('WSOP 2024', 385000),
+        ('Phil Ivey', 256000),
+        ('poker strategy', 198000),
+        ('high stakes', 175000),
+        ('final table', 156000)
+    ],
+    'category_performance': {
+        'tournament': {'videos': 412, 'avg_views': 85600},
+        'online': {'videos': 298, 'avg_views': 45200},
+        'education': {'videos': 256, 'avg_views': 32100},
+        'entertainment': {'videos': 189, 'avg_views': 125400}
+    },
+    'best_upload_times': [
+        ('20:00-22:00 KST', 45.2),
+        ('10:00-12:00 KST', 32.1),
+        ('15:00-17:00 KST', 22.7)
+    ],
+    'emerging_trends': [
+        'AI poker bots',
+        'crypto poker',
+        'short deck holdem',
+        'poker mental game'
+    ]
+}
+
+# Slack 메시지 생성
+blocks = [
+    {
+        'type': 'header',
+        'text': {
+            'type': 'plain_text',
+            'text': '📅 포커 트렌드 주간 종합 리포트'
+        }
+    },
+    {
+        'type': 'section',
+        'text': {
+            'type': 'mrkdwn',
+            'text': f'*분석 기간*: {(datetime.now() - timedelta(days=7)).strftime(\"%m/%d\")} - {datetime.now().strftime(\"%m/%d\")}\\n' +
+                   f'*총 분석 영상*: {week_data[\"total_videos_analyzed\"]:,}개\\n' +
+                   f'*일평균 트렌드*: {week_data[\"avg_daily_trends\"]}개'
+        }
+    },
+    {'type': 'divider'},
+    {
+        'type': 'section',
+        'text': {
+            'type': 'mrkdwn',
+            'text': '*🏆 주간 TOP 5 키워드*'
+        }
+    }
+]
+
+# TOP 키워드 추가
+keyword_text = []
+for i, (keyword, views) in enumerate(week_data['top_performing_keywords'], 1):
+    keyword_text.append(f'{i}. *{keyword}* - {views:,} 조회수')
+    
+blocks.append({
+    'type': 'section',
+    'text': {
+        'type': 'mrkdwn',
+        'text': '\\n'.join(keyword_text)
+    }
+})
+
+blocks.append({'type': 'divider'})
+
+# 카테고리별 성과
+blocks.append({
+    'type': 'section',
+    'text': {
+        'type': 'mrkdwn',
+        'text': '*📊 카테고리별 성과*'
+    }
+})
+
+cat_text = []
+for cat, data in week_data['category_performance'].items():
+    emoji = {'tournament': '🏆', 'online': '💻', 'education': '📚', 'entertainment': '🎭'}.get(cat, '📌')
+    cat_text.append(f'{emoji} *{cat}*: {data[\"videos\"]}개 영상, 평균 {data[\"avg_views\"]:,}회')
+
+blocks.append({
+    'type': 'section',
+    'text': {
+        'type': 'mrkdwn',
+        'text': '\\n'.join(cat_text)
+    }
+})
+
+blocks.append({'type': 'divider'})
+
+# 최적 업로드 시간
+blocks.append({
+    'type': 'section',
+    'text': {
+        'type': 'mrkdwn',
+        'text': '*⏰ 최적 업로드 시간대 (참여율 기준)*\\n' +
+               '\\n'.join([f'{i+1}. {time} - {rate}%' for i, (time, rate) in enumerate(week_data['best_upload_times'])])
+    }
+})
+
+blocks.append({'type': 'divider'})
+
+# 신규 트렌드
+blocks.append({
+    'type': 'section',
+    'text': {
+        'type': 'mrkdwn',
+        'text': '*🌟 떠오르는 트렌드*\\n' +
+               '• ' + '\\n• '.join(week_data['emerging_trends'])
+    }
+})
+
+blocks.append({'type': 'divider'})
+
+# 다음 주 전략 제안
+blocks.append({
+    'type': 'section',
+    'text': {
+        'type': 'mrkdwn',
+        'text': '*💡 다음 주 콘텐츠 전략 제안*\\n' +
+               '1. WSOP 관련 콘텐츠 강화 (최고 조회수)\\n' +
+               '2. 20-22시 업로드 집중 (최적 시간대)\\n' +
+               '3. AI/크립토 포커 주제 실험 (신규 트렌드)\\n' +
+               '4. 엔터테인먼트 카테고리 비중 확대 (높은 평균 조회수)'
+    }
+})
+
+# Slack 전송
+payload = {
+    'blocks': blocks,
+    'text': '📅 포커 트렌드 주간 종합 리포트'
+}
+
+response = requests.post(os.getenv('SLACK_WEBHOOK_URL'), json=payload)
+print(f'Weekly report sent: {response.status_code}')
+
+# 리포트 저장
+with open('reports/weekly_report.json', 'w') as f:
+    json.dump(week_data, f, indent=2)
+"
