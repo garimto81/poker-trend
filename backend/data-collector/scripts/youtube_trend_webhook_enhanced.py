@@ -51,12 +51,15 @@ class EnhancedYouTubeTrendAnalyzer:
     """향상된 YouTube 포커 트렌드 분석기"""
     
     def __init__(self):
-        # 동적 키워드 수집기 초기화
-        from dynamic_keyword_collector import DynamicKeywordCollector
-        self.keyword_collector = DynamicKeywordCollector()
-        
-        # 동적 키워드 로드 (기본 + 트렌딩)
-        self.search_terms = self.keyword_collector.get_search_keywords()
+        # 고정된 검색 키워드 (직접 설정)
+        self.search_terms = [
+            'poker', '포커', 'holdem', '홀덤', 
+            'WSOP', 'WPT', 'EPT', 
+            'PokerStars', 'GGPoker', 
+            'tournament', '토너먼트',
+            'cash game', '캐시게임',
+            'poker strategy', '포커 전략'
+        ]
         self.categories = {
             'tournament': ['WSOP', 'WPT', 'EPT', '토너먼트', 'tournament', 'final table'],
             'online': ['포커스타즈', 'PokerStars', 'GGPoker', '온라인 포커', 'online poker'],
