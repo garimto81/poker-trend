@@ -181,6 +181,10 @@ class EnhancedYouTubeTrendAnalyzer:
         trending_words = [kw[0] for kw in self.trend_keywords[:10]]
         logger.info(f"Current trending keywords: {trending_words}")
         
+        # 채널별 통계
+        channel_counts = Counter([v['channel_title'] for v in videos])
+        top_channels = channel_counts.most_common(5)
+        
         # 카테고리별 분류
         category_stats = {cat: [] for cat in self.categories}
         
@@ -221,7 +225,9 @@ class EnhancedYouTubeTrendAnalyzer:
             'avg_engagement': sum(v.get('engagement_rate', 0) for v in videos) / len(videos),
             'trending_keywords': self.trend_keywords,
             'category_breakdown': category_summary,
-            'hourly_avg_views': sum(v.get('views_per_hour', 0) for v in videos) / len(videos)
+            'hourly_avg_views': sum(v.get('views_per_hour', 0) for v in videos) / len(videos),
+            'search_keywords': self.search_terms,  # 검색에 사용된 키워드
+            'top_channels': top_channels  # 가장 많은 영상을 생성한 채널
         }
     
     def categorize_video(self, video: Dict) -> str:
@@ -283,6 +289,38 @@ class EnhancedYouTubeTrendAnalyzer:
             logger.error(f"Gemini AI error: {e}")
             return "AI 제안 생성 중 오류가 발생했습니다."
     
+    def generate_trend_analysis(self, analysis_data: Dict) -> str:
+        """Gemini AI를 사용한 트렌드 분석 한줄 요약"""
+        try:
+            trend_summary = f"""
+            포커 YouTube 트렌드 데이터:
+            - 총 영상: {analysis_data['total_videos']}개
+            - 평균 조회수: {format_number(analysis_data['avg_views'])}
+            - 시간당 조회수: {format_number(analysis_data['hourly_avg_views'])}
+            - TOP 키워드: {', '.join([kw[0] for kw in analysis_data['trending_keywords'][:5]])}
+            - 주요 카테고리: {max(analysis_data['category_breakdown'].items(), key=lambda x: x[1]['count'])[0] if analysis_data['category_breakdown'] else 'N/A'}
+            """
+            
+            prompt = f"""
+            다음 포커 트렌드 데이터를 분석하여 현재 트렌드를 한 문장으로 요약해주세요.
+            
+            {trend_summary}
+            
+            요약은 다음 요소를 포함해야 합니다:
+            - 가장 주목할 만한 트렌드
+            - 시청자들의 관심사
+            - 향후 전망
+            
+            50자 이내로 간결하고 통찰력 있게 작성해주세요.
+            """
+            
+            response = gemini_model.generate_content(prompt)
+            return response.text.strip()
+            
+        except Exception as e:
+            logger.error(f"Trend analysis error: {e}")
+            return "현재 포커 콘텐츠는 토너먼트와 전략 콘텐츠가 주도하고 있습니다."
+    
     def _format_category_stats(self, category_stats: Dict) -> str:
         """카테고리 통계 포맷팅"""
         lines = []
@@ -298,7 +336,7 @@ class EnhancedYouTubeTrendAnalyzer:
         return '\n'.join(lines)
 
 
-def send_enhanced_slack_webhook(data: Dict[str, Any], ai_suggestions: str):
+def send_enhanced_slack_webhook(data: Dict[str, Any], ai_suggestions: str, trend_analysis: str):
     """향상된 Slack Webhook 메시지 전송"""
     
     # 현재 시간 (한국 시간)
@@ -340,6 +378,27 @@ def send_enhanced_slack_webhook(data: Dict[str, Any], ai_suggestions: str):
                     "text": f"*시간당 조회수:*\n{format_number(data['hourly_avg_views'])}회/h"
                 }
             ]
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": f"*🔍 검색 키워드:* {', '.join([f'`{kw}`' for kw in data.get('search_keywords', [])[:10]])}"
+            }
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": f"*🎬 TOP 채널:* {', '.join([f'{ch[0]} ({ch[1]}개)' for ch in data.get('top_channels', [])[:3]])}"
+            }
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": f"*📈 트렌드 분석:* {trend_analysis}"
+            }
         },
         {
             "type": "section",
@@ -500,9 +559,13 @@ def main():
         logger.info("Generating AI suggestions...")
         ai_suggestions = analyzer.generate_ai_suggestions(analysis_result)
         
+        # 트렌드 분석 생성
+        logger.info("Generating trend analysis...")
+        trend_analysis = analyzer.generate_trend_analysis(analysis_result)
+        
         # 향상된 Slack Webhook 전송
         logger.info("Sending enhanced Slack webhook...")
-        send_enhanced_slack_webhook(analysis_result, ai_suggestions)
+        send_enhanced_slack_webhook(analysis_result, ai_suggestions, trend_analysis)
         
         logger.info("Enhanced YouTube trend analysis completed successfully!")
         
