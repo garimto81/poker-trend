@@ -1,0 +1,78 @@
+{
+  "numStartups": 8,
+  "installMethod": "unknown",
+  "autoUpdates": true,
+  "tipsHistory": {
+    "new-user-warmup": 1
+  },
+  "promptQueueUseCount": 11,
+  "firstStartTime": "2025-07-19T10:23:03.702Z",
+  "userID": "de6786d1536423cffd9a176213c925bc24f65a6d3a286d51e9ec74dfc5ad9e4b",
+  "projects": {
+    "C:\\claude-code": {
+      "allowedTools": [],
+      "history": [],
+      "settings": {
+        "autoCompact": true,
+        "preferredLanguage": "ko",
+        "cleanupPeriodDays": 7,
+        "hasClaudeMdExternalIncludesWarningShown": false
+      }
+    }
+  },
+  "oauthAccount": {
+    "accountUuid": "fe7f963b-fc95-4b0c-a45b-50c92cfd60fa",
+    "emailAddress": "ggp.cam@ggproduction.net",
+    "organizationUuid": "1e500fea-a82f-4fea-9855-cc23638633c7",
+    "organizationRole": "admin",
+    "workspaceRole": null,
+    "organizationName": "ggp.cam@ggproduction.net's Organization"
+  },
+  "isQualifiedForDataSharing": false,
+  "shiftEnterKeyBindingInstalled": true,
+  "hasCompletedOnboarding": true,
+  "lastOnboardingVersion": "1.0.56",
+  "changelogLastFetched": 1753543794117,
+  "subscriptionNoticeCount": 0,
+  "hasAvailableSubscription": false,
+  "hasIdeOnboardingBeenShown": {
+    "cursor": true,
+    "vscode": true
+  },
+  "fallbackAvailableWarningThreshold": 0.2,
+  "mcpServers": {
+    "mcp-installer": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@anaisbetts/mcp-installer"
+      ],
+      "env": {}
+    },
+    "mcp-youtube": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@anaisbetts/mcp-youtube"
+      ],
+      "env": {}
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ]
+    }
+  },
+  "lastReleaseNotesSeen": "1.0.61"
+}
