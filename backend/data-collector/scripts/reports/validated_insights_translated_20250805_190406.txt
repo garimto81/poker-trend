@@ -1,0 +1,82 @@
+VALIDATED POKER TREND ANALYSIS WITH KOREAN TRANSLATION
+============================================================
+
+VALIDATION STATISTICS:
+------------------------------
+Total videos checked: 108
+Valid videos: 99
+Invalid videos: 9
+Invalid reasons:
+  - Video not embeddable: 2
+  - Zero views: 3
+  - Video not processed: 4
+
+TOP 5 VALIDATED VIDEOS WITH KOREAN TRANSLATION:
+--------------------------------------------------
+1. 원제: Naruto Mp40 VS Poker Mp40 Ethu Bestnu Sollunga Nanpargalay🔥 #shorts #ffshortstamil
+   한글: 나루토 MP40 vs 포커 MP40: 어떤 게 더 나은가요 친구들? 🔥 #shorts #ffshortstamil
+   언어: Tamil (India)
+   성과: 527,411 views | 키워드: poker
+   채널: மாட்டு RAVI
+   상태: valid
+
+2. 원제: QUADS vs ACES FULL #poker
+   한글: 쿼드 vs 에이스 풀 하우스 #포커
+   언어: English (Global)
+   성과: 316,100 views | 키워드: poker
+   채널: River Shark Poker
+   상태: valid
+
+3. 원제: he actually went for it 🤯 #poker #shorts
+   한글: 진짜로 갔네 🤯 #포커 #shorts
+   언어: English (Global)
+   성과: 118,923 views | 키워드: poker
+   채널: Wolfgang Poker
+   상태: valid
+
+4. 원제: I Play $50,000 Players Championship!!! BIGGEST Buyin Of My Life! ALL On The LIne! Poker Vlog Ep 343
+   한글: 5만 달러 플레이어스 챔피언십에 참가했습니다!!! 인생 최대 바이인! 모든 걸 걸었어요! 포커 브이로그 343화
+   언어: English (Global)
+   성과: 112,650 views | 키워드: poker
+   채널: Brad Owen
+   상태: valid
+
+5. 원제: Guess the Hands 🤔 #poker
+   한글: 손패 맞춰봐 🤔 #포커
+   언어: English (Global)
+   성과: 83,316 views | 키워드: poker
+   채널: The Poker Academy
+   상태: valid
+
+
+AI INSIGHTS WITH TRANSLATION:
+========================================
+**1. 핵심 트렌드**
+
+- 가장 주목할만한 패턴:  게임 플레이 하이라이트 및 흥미로운 상황 (극적인 순간, 예측 불가능한 결말)을 담은 짧은 영상이 높은 조회수를 기록함.
+
+- 언어/지역별 특징: 영어권 콘텐츠가 높은 조회수를 기록하지만, 타밀어 콘텐츠도 높은 참여율을 보이며 지역적 특수성을 활용한 콘텐츠의 성공 가능성을 보여줌.
+
+- 고참여율 콘텐츠 특징:  시청자 참여를 유도하는 요소 (예: 퀴즈, 질문)를 포함하거나, 극적인 순간, 강한 감정 이입을 유발하는 내용을 담은 콘텐츠가 높은 참여율을 보임.
+
+
+**2. 포커 팬 관심사 TOP 3**
+
+- 1위 관심사:  흥미진진한 게임 플레이 장면, 특히 강력한 핸드 대결이나 예상치 못한 반전이 있는 순간.
+
+- 2위 관심사:  고액 베팅 및 고액 대회 참가 영상.  위험 부담과 짜릿함을 동시에 제공.
+
+- 3위 관심사:  손패 추측 게임 등 시청자 참여를 유도하는 콘텐츠.  적극적인 소통을 통해 몰입도 향상.
+
+
+**3. 최고의 쇼츠 아이디어 1개**
+
+제목:  [핵폭탄급 역전! 포커 쇼다운 30초 만에 끝내기!]
+
+컨셉:  초반에 불리한 상황에 처한 플레이어가 마지막 카드 공개 순간에 극적인 역전승을 거두는 장면을 빠르게 편집.  긴장감 넘치는 음악과 효과음을 활용하여 몰입도를 높임.
+
+타겟:  포커 게임을 즐기거나 관심 있는 모든 사람, 특히 짧은 영상을 선호하는 젊은층.
+
+예상 성과:  조회수 50만회 이상 예상.  극적인 역전승 스토리와 짧은 러닝타임, 효과적인 편집은 바이럴 확산에 유리하며, 다양한 플랫폼에서 공유될 가능성이 높음.
+
+해시태그: #포커 #포커쇼츠 #역전승 #카드게임 #온라인포커

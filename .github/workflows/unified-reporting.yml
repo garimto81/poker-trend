@@ -1,0 +1,66 @@
+name: Daily Poker Trend Report
+
+on:
+  schedule:
+    # 평일 오전 10시 (UTC 1시 = KST 10시)
+    # 월-금요일만 실행, 주말 제외
+    - cron: '0 1 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      test_mode:
+        description: 'Run in test mode (no Slack notification)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+jobs:
+  daily-analysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        
+    - name: Cache dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        
+    - name: Install dependencies
+      run: |
+        pip install google-api-python-client google-generativeai requests pandas numpy
+        
+    - name: Generate Daily Report
+      env:
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        TEST_MODE: ${{ github.event.inputs.test_mode || 'false' }}
+      run: |
+        cd backend/data-collector
+        
+        echo "🎰 포커 트렌드 일일 분석 시작..."
+        echo "현재 시간 (KST): $(TZ=Asia/Seoul date)"
+        
+        # 일일 트렌드 분석 실행
+        python scripts/youtube_trend_webhook_enhanced.py
+        
+    - name: Save Report Artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: daily-trend-report-${{ github.run_number }}
+        path: |
+          backend/data-collector/reports/
+          backend/data-collector/data/
+        retention-days: 30
