@@ -99,11 +99,14 @@ class QuickValidatedAnalyzer:
             
             try:
                 # 명확한 단일 번역만 요청하는 개선된 프롬프트
-                translate_prompt = f"""Translate the following {language} text to Korean.
-                IMPORTANT: Provide ONLY the Korean translation, nothing else.
-                Do not provide multiple options or explanations.
-                Text: {title}
-                Korean translation:"""
+                translate_prompt = f"""Translate to Korean: {title}
+                
+                Rules:
+                - Give me ONLY ONE Korean translation
+                - No options, no alternatives, no explanations
+                - Just the Korean text itself
+                
+                Korean:"""
                 
                 response = self.gemini_model.generate_content(translate_prompt)
                 korean_title = response.text.strip()
@@ -116,8 +119,14 @@ class QuickValidatedAnalyzer:
                 korean_title = korean_title.replace('"', '').replace("'", '')
                 korean_title = korean_title.replace('옵션', '').replace('선택', '')
                 
+                # "Several options" 또는 "Here are" 등의 패턴 감지 및 처리
+                if any(phrase in korean_title.lower() for phrase in ['several options', 'here are', 'options:', 'choices:']):
+                    # 문제가 있는 경우 원본 제목 반환
+                    logger.warning(f"Translation issue detected, using original: {title}")
+                    translations[title] = title
+                    continue
+                
                 # "1." 또는 "*" 같은 번호/불릿 제거
-                import re
                 korean_title = re.sub(r'^[0-9\.\*\-\s]+', '', korean_title)
                 korean_title = korean_title.strip()
                 
