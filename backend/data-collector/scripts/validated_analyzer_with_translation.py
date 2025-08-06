@@ -113,14 +113,28 @@ class ValidatedAnalyzerWithTranslation:
                 continue
             
             try:
-                # 간단한 번역 프롬프트
-                translate_prompt = f"Translate this {language} poker video title to Korean in 1 line: {title}"
+                # 명확한 단일 번역만 요청하는 개선된 프롬프트
+                translate_prompt = f"""Translate the following {language} text to Korean.
+                IMPORTANT: Provide ONLY the Korean translation, nothing else.
+                Do not provide multiple options or explanations.
+                Text: {title}
+                Korean translation:"""
                 
                 response = self.gemini_model.generate_content(translate_prompt)
                 korean_title = response.text.strip()
                 
-                # 따옴표나 불필요한 문자 제거
+                # 여러 옵션이 포함된 경우 첫 번째 줄만 추출
+                if '\n' in korean_title:
+                    korean_title = korean_title.split('\n')[0]
+                
+                # 불필요한 문자 및 패턴 제거
                 korean_title = korean_title.replace('"', '').replace("'", '').strip()
+                korean_title = korean_title.replace('옵션', '').replace('선택', '')
+                
+                # "1." 또는 "*" 같은 번호/불릿 제거
+                import re
+                korean_title = re.sub(r'^[0-9\.\*\-\s]+', '', korean_title)
+                korean_title = korean_title.strip()
                 
                 translations[title] = korean_title
                 logger.info(f"Translated: {title[:30]}... -> {korean_title[:30]}...")
