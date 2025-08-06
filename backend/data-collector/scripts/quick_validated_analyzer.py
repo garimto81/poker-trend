@@ -18,6 +18,9 @@ import google.generativeai as genai
 from googleapiclient.discovery import build
 import requests
 import re
+import sys
+sys.path.append(str(Path(__file__).parent.parent / 'src'))
+from validators.poker_content_validator import PokerContentValidator
 
 # 환경 변수 로드
 env_path = Path(__file__).parent.parent / '.env'
@@ -34,6 +37,10 @@ class QuickValidatedAnalyzer:
         genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
         self.gemini_model = genai.GenerativeModel('gemini-1.5-flash')
         self.slack_webhook = os.getenv('SLACK_WEBHOOK_URL')
+        
+        # 포커 콘텐츠 검증기 초기화
+        cache_path = Path(__file__).parent / 'validation_cache.json'
+        self.poker_validator = PokerContentValidator(str(cache_path))
         
         self.keywords = [
             'poker', 'holdem', 'wsop', 'wpt', 'ept', 
@@ -257,12 +264,61 @@ class QuickValidatedAnalyzer:
                 unique_videos.append(video)
                 seen_ids.add(video['video_id'])
         
+        # 포커 콘텐츠 검증 필터링
+        logger.info(f"🔍 포커 콘텐츠 검증 시작: {len(unique_videos)}개 영상")
+        
+        # 비디오 데이터를 포커 검증기에 맞는 형식으로 변환
+        videos_for_validation = []
+        for video in unique_videos:
+            validation_data = {
+                'videoId': video['video_id'],
+                'title': video['original_title'],
+                'description': video.get('description', ''),
+                'tags': [],  # 기본값
+                'channelTitle': video.get('channel_title', ''),
+                'channelId': '',  # 필요하면 추후 추가
+                'categoryId': '20',  # Gaming 카테고리 기본값
+                'viewCount': str(video.get('view_count', 0)),
+                'likeCount': str(video.get('like_count', 0)),
+                'commentCount': str(video.get('comment_count', 0)),
+                'duration': video.get('duration', ''),
+                'publishedAt': video.get('published_at', '')
+            }
+            videos_for_validation.append(validation_data)
+        
+        # 포커 콘텐츠 검증 실행
+        if videos_for_validation:
+            poker_validated_videos = self.poker_validator.batch_validate(videos_for_validation)
+            
+            # 검증된 비디오 ID 추출
+            validated_video_ids = {v.get('videoId') for v in poker_validated_videos}
+            
+            # 원본 비디오 데이터에서 검증된 것들만 필터링
+            poker_filtered_videos = [
+                video for video in unique_videos 
+                if video['video_id'] in validated_video_ids
+            ]
+        else:
+            logger.warning("검증할 비디오가 없습니다.")
+            poker_filtered_videos = []
+            poker_validated_videos = []
+        
+        # 포커 검증 결과를 원본 데이터에 추가
+        for video in poker_filtered_videos:
+            for validated in poker_validated_videos:
+                if validated.get('videoId') == video['video_id']:
+                    video['poker_validation'] = validated.get('validation', {})
+                    break
+        
+        logger.info(f"✅ 포커 콘텐츠 검증 완료: {len(poker_filtered_videos)}/{len(unique_videos)}개 영상이 포커 콘텐츠로 확인")
+        
         # 검증 통계
         success_rate = round(validation_stats['valid']/max(validation_stats['total_checked'], 1)*100, 1)
         logger.info(f"Quick validation: {validation_stats['valid']}/{validation_stats['total_checked']} ({success_rate}%)")
+        logger.info(f"Poker content validated: {len(poker_filtered_videos)}/{len(unique_videos)}")
         
-        # TOP 선별 후 번역
-        top_videos = sorted(unique_videos, key=lambda x: x.get('view_count', 0), reverse=True)[:target_count]
+        # TOP 선별 후 번역 (포커 검증된 영상에서)
+        top_videos = sorted(poker_filtered_videos, key=lambda x: x.get('view_count', 0), reverse=True)[:target_count]
         
         # 한글 번역
         logger.info(f"Translating TOP {len(top_videos)} videos...")
@@ -272,8 +328,8 @@ class QuickValidatedAnalyzer:
         for video in top_videos:
             video['korean_title'] = translations.get(video['original_title'], video['original_title'])
         
-        logger.info(f"Total unique validated videos: {len(unique_videos)}")
-        return unique_videos, validation_stats
+        logger.info(f"Total poker content validated videos: {len(poker_filtered_videos)}")
+        return poker_filtered_videos, validation_stats
     
     def create_slack_report_quick(self, videos, ai_insights, validation_stats):
         """빠른 검증 Slack 리포트"""
