@@ -1,6 +1,6 @@
-# Firebase & Database
-firebase-admin==6.1.0
-google-cloud-firestore==2.11.1
+# Firebase 제거 - REST API만 사용
+# firebase-admin==6.1.0  # 인증 오류로 제거
+# google-cloud-firestore==2.11.1  # 인증 오류로 제거
 
 # AI & ML
 google-generativeai==0.3.2

@@ -46,19 +46,10 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
       
-      - name: Firebase 서비스 계정 키 설정
-        run: |
-          cd backend/platform-analyzer
-          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-key.json
-      
-      - name: 환경 변수 설정
+      - name: 환경 변수 설정 (REST API 전용)
         run: |
           cd backend/platform-analyzer
           cat > .env << EOF
-          FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}
-          FIREBASE_PRIVATE_KEY="${{ secrets.FIREBASE_PRIVATE_KEY }}"
-          FIREBASE_CLIENT_EMAIL=${{ secrets.FIREBASE_CLIENT_EMAIL }}
-          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
           SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}
           EOF
       
@@ -99,24 +90,32 @@ jobs:
           echo "📊 분석 타입: $ANALYSIS_TYPE"
           echo "⏰ 실행 시간 (KST): $(TZ='Asia/Seoul' date)"
           
-          # 분석 실행
-          python online_platform_trend_analyzer.py
+          # Firebase REST API 데이터 수집
+          python firebase_rest_api_fetcher.py
           
-          # 추가 분석 스크립트가 있다면 여기에 추가
-          case $ANALYSIS_TYPE in
-            "weekly")
-              echo "📅 주간 심층 분석 실행..."
-              python weekly_platform_analysis.py || true
-              ;;
-            "monthly")
-              echo "📈 월간 종합 분석 실행..."
-              python monthly_platform_report.py || true
-              ;;
-            "comprehensive")
-              echo "🔍 종합 분석 실행..."
-              python comprehensive_platform_analysis.py || true
-              ;;
-          esac
+          # 일일 비교 분석  
+          python show_daily_comparison.py
+          
+          # Slack 리포트 전송
+          python final_slack_reporter.py
+          
+          # Firebase SDK 의존성 문제로 추가 분석 스크립트 임시 비활성화
+          # case $ANALYSIS_TYPE in
+          #   "weekly")
+          #     echo "📅 주간 심층 분석 실행..."
+          #     python weekly_platform_analysis.py || true
+          #     ;;
+          #   "monthly")
+          #     echo "📈 월간 종합 분석 실행..."
+          #     python monthly_platform_report.py || true
+          #     ;;
+          #   "comprehensive")
+          #     echo "🔍 종합 분석 실행..."
+          #     python comprehensive_platform_analysis.py || true
+          #     ;;
+          # esac
+          
+          echo "✅ 일일 분석 완료 (주간/월간 분석은 Firebase SDK 의존성 해결 후 활성화 예정)"
       
       - name: 분석 결과 아티팩트 업로드
         uses: actions/upload-artifact@v4

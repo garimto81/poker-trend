@@ -29,9 +29,11 @@ class FinalSlackReporter:
     """
     
     def __init__(self, webhook_url: str = None):
-        # 직접 웹훅 URL 설정 (환경 변수 우회)
+        # 환경 변수에서 웹훅 URL 설정
         if not webhook_url:
-            webhook_url = os.getenv('SLACK_WEBHOOK_URL') or "https://hooks.slack.com/services/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"
+            webhook_url = os.getenv('SLACK_WEBHOOK_URL')
+            if not webhook_url:
+                raise ValueError("SLACK_WEBHOOK_URL 환경 변수가 설정되지 않았습니다.")
         self.webhook_url = webhook_url
         self.analyzer = CompetitiveAnalysisReporter()
         

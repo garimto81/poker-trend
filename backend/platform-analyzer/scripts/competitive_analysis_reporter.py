@@ -37,7 +37,7 @@ class CompetitiveAnalysisReporter:
         
         yesterday = (datetime.strptime(target_date, '%Y-%m-%d') - timedelta(days=1)).strftime('%Y-%m-%d')
         
-        logger.info(f"🎯 경쟁 구도 분석: {yesterday} vs {target_date}")
+        logger.info(f"[타겟] 경쟁 구도 분석: {yesterday} vs {target_date}")
         
         # 데이터 수집
         online_analysis = self._analyze_online_competition(yesterday, target_date)
@@ -458,53 +458,53 @@ class CompetitiveAnalysisReporter:
         if ggnetwork.get('status') == 'dominant':
             gg_online = ggnetwork['online_players']
             insights.append(
-                f"👑 GGNetwork 독점 지속: 온라인 {gg_online['current']:,}명 ({gg_online['change_pct']:+.1f}%)"
+                f"[왕관] GGNetwork 독점 지속: 온라인 {gg_online['current']:,}명 ({gg_online['change_pct']:+.1f}%)"
             )
             
             if ggnetwork['weekly_trend'] == 'growing':
-                insights.append("📈 GGNetwork 주간 성장세 지속")
+                insights.append("[성장] GGNetwork 주간 성장세 지속")
             elif ggnetwork['weekly_trend'] == 'declining':
-                insights.append("📉 GGNetwork 주간 하락세 전환")
+                insights.append("[하락] GGNetwork 주간 하락세 전환")
         
         # 2위 경쟁
         if online.get('second_place_battle'):
             second = online['second_place_battle']
             insights.append(
-                f"🥈 온라인 2위: {second['current_holder']} ({second['players']:,}명, {second['change_pct']:+.1f}%)"
+                f"[2위] 온라인 2위: {second['current_holder']} ({second['players']:,}명, {second['change_pct']:+.1f}%)"
             )
             
             if second['gap_to_third'] < 1000:
-                insights.append(f"⚔️ 2-3위 격차 {second['gap_to_third']:,}명으로 경쟁 치열")
+                insights.append(f"[격전] 2-3위 격차 {second['gap_to_third']:,}명으로 경쟁 치열")
         
         # 3위 경쟁
         if online.get('third_place_battle'):
             third = online['third_place_battle']
             if third['threat_level'] == 'high':
-                insights.append(f"🔥 {third['current_holder']} 3위 수성 위협")
+                insights.append(f"[화염] {third['current_holder']} 3위 수성 위협")
         
         # 캐시 게임 경쟁
         if cash.get('second_place_battle'):
             cash_second = cash['second_place_battle']
             insights.append(
-                f"💰 캐시 2위: {cash_second['current_holder']} ({cash_second['cash_players']:,}명)"
+                f"[캐시] 캐시 2위: {cash_second['current_holder']} ({cash_second['cash_players']:,}명)"
             )
             
             if cash_second['revenue_potential'] == 'high':
-                insights.append(f"💎 {cash_second['current_holder']} 높은 수익성 (캐시비율 {cash_second['cash_ratio']:.1f}%)")
+                insights.append(f"[다이아] {cash_second['current_holder']} 높은 수익성 (캐시비율 {cash_second['cash_ratio']:.1f}%)")
         
         # 도전자 분석
         if challengers.get('fastest_growing'):
             fastest = challengers['fastest_growing']
             if fastest['online_growth'] > 10:
                 insights.append(
-                    f"🚀 {fastest['site_name']} 급성장 중 (+{fastest['online_growth']:.1f}%)"
+                    f"[로켓] {fastest['site_name']} 급성장 중 (+{fastest['online_growth']:.1f}%)"
                 )
         
         # 시장 구조
         if online.get('gap_analysis'):
             gap = online['gap_analysis']
             if gap['second_third_combined'] < 20:
-                insights.append("⚠️ 2-3위 합쳐도 시장 점유율 20% 미만")
+                insights.append("[경고] 2-3위 합쳐도 시장 점유율 20% 미만")
         
         return insights
     
