@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude mcp add:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(dir:*)",
+      "Bash(find:*)",
+      "Bash(mkdir:*)",
+      "Bash(powershell:*)",
+      "Bash(ls:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "mcp__xinzhongyouhai-mcp-sequentialthinking-tools__sequentialthinking_tools",
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(python test_streaming.py:*)",
+      "Bash(python run_poker_app.py:*)",
+      "Bash(pip install:*)",
+      "Bash(git commit:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(npx tsc:*)"
+    ],
+    "deny": []
+  }
+}
