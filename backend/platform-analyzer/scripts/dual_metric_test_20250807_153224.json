@@ -1,0 +1,234 @@
+{
+  "analysis_type": "dual_metrics_daily",
+  "period": "2025-08-06 vs 2025-08-07",
+  "online_players": {
+    "metrics": {
+      "total": {
+        "yesterday": 193949,
+        "today": 193949,
+        "change": 0,
+        "change_pct": 0.0
+      },
+      "average": {
+        "yesterday": 4617.833333333333,
+        "today": 4617.833333333333,
+        "change": 0.0,
+        "change_pct": 0.0
+      }
+    },
+    "growth_grade": "➡️ 안정",
+    "market_size": "medium",
+    "trend": "sideways"
+  },
+  "cash_players": {
+    "metrics": {
+      "total": {
+        "yesterday": 18065,
+        "today": 18065,
+        "change": 0,
+        "change_pct": 0.0
+      },
+      "average": {
+        "yesterday": 430.1190476190476,
+        "today": 430.1190476190476,
+        "change": 0.0,
+        "change_pct": 0.0
+      }
+    },
+    "cash_ratio": {
+      "yesterday": 9.314304275866336,
+      "today": 9.314304275866336,
+      "change": 0.0,
+      "quality": "critical"
+    },
+    "growth_grade": "➡️ 안정",
+    "revenue_potential": "매우 낮음"
+  },
+  "correlation": {
+    "growth_multiplier": 0,
+    "pattern": "balanced",
+    "interpretation": "균형적 성장",
+    "health_index": 34.314304275866334,
+    "sync_level": "매우 동조"
+  },
+  "market_share": {
+    "dual_shares": [
+      {
+        "site_name": "PokerMatch",
+        "online_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "cash_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "composite_share": 0.0,
+        "composite_change": 0.0,
+        "trend": "━ 불변"
+      },
+      {
+        "site_name": "WPT Global",
+        "online_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "cash_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "composite_share": 0.0,
+        "composite_change": 0.0,
+        "trend": "━ 불변"
+      },
+      {
+        "site_name": "Pokio",
+        "online_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "cash_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "composite_share": 0.0,
+        "composite_change": 0.0,
+        "trend": "━ 불변"
+      },
+      {
+        "site_name": "PokerStars Ontario",
+        "online_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "cash_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "composite_share": 0.0,
+        "composite_change": 0.0,
+        "trend": "━ 불변"
+      },
+      {
+        "site_name": "GGPoker ON",
+        "online_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "cash_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "composite_share": 0.0,
+        "composite_change": 0.0,
+        "trend": "━ 불변"
+      }
+    ],
+    "top3_concentration": {
+      "online": 0.0,
+      "cash": 0.0,
+      "composite": 0.0
+    },
+    "market_leaders": {
+      "online": {
+        "site_name": "PokerMatch",
+        "online_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "cash_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "composite_share": 0.0,
+        "composite_change": 0.0,
+        "trend": "━ 불변"
+      },
+      "cash": {
+        "site_name": "PokerMatch",
+        "online_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "cash_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "composite_share": 0.0,
+        "composite_change": 0.0,
+        "trend": "━ 불변"
+      },
+      "composite": {
+        "site_name": "PokerMatch",
+        "online_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "cash_share": {
+          "yesterday": 0.0,
+          "today": 0.0,
+          "change": 0.0
+        },
+        "composite_share": 0.0,
+        "composite_change": 0.0,
+        "trend": "━ 불변"
+      }
+    },
+    "movers": {
+      "online_gainers": [],
+      "cash_gainers": [],
+      "online_losers": [],
+      "cash_losers": []
+    }
+  },
+  "comprehensive_score": {
+    "total_score": 150,
+    "online_score": 76,
+    "cash_score": 74,
+    "grade": "A",
+    "interpretation": "우수한 종합 성과",
+    "score_details": {
+      "online_growth": 25,
+      "market_size": 6,
+      "cash_growth": 25,
+      "cash_ratio": 4,
+      "online_correlation": 25,
+      "cash_correlation": 25,
+      "online_market": 20,
+      "cash_market": 20
+    },
+    "balance_ratio": 0.9736842105263158
+  },
+  "insights": {
+    "online_insights": [
+      "📉 총 온라인 플레이어 0.0% 감소, 시장 위축"
+    ],
+    "cash_insights": [],
+    "correlation_insights": [
+      "🔄 균형적 성장"
+    ],
+    "market_insights": [
+      "👑 PokerMatch이 종합 점유율 0.0% 차지"
+    ],
+    "strategic_insights": [
+      "⚖️ 온라인과 캐시 성과가 균형적으로 발전 중",
+      "🏆 우수한 종합 성과 (종합점수: 150/200)"
+    ]
+  },
+  "timestamp": "2025-08-07T15:32:24.347915"
+}

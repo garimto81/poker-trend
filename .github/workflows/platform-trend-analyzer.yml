@@ -1,0 +1,153 @@
+name: 온라인 포커 플랫폼 트렌드 분석
+
+on:
+  schedule:
+    # 매일 오전 10시 30분 (한국시간) - poker-online-analyze 데이터 수집 이후 실행
+    # UTC 기준 오전 1시 30분
+    - cron: '30 1 * * *'
+    
+    # 매주 월요일 오전 11시 30분 (한국시간) - 주간 심층 분석
+    - cron: '30 2 * * 1'
+    
+    # 매월 1일 오후 3시 (한국시간) - 월간 종합 분석
+    - cron: '0 6 1 * *'
+  
+  # 수동 실행 가능
+  workflow_dispatch:
+    inputs:
+      analysis_type:
+        description: '분석 타입'
+        required: true
+        default: 'daily'
+        type: choice
+        options:
+        - daily
+        - weekly
+        - monthly
+        - comprehensive
+
+jobs:
+  platform-trend-analysis:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+      
+      - name: Python 3.11 설정
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: 의존성 설치
+        run: |
+          cd backend/platform-analyzer
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Firebase 서비스 계정 키 설정
+        run: |
+          cd backend/platform-analyzer
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-key.json
+      
+      - name: 환경 변수 설정
+        run: |
+          cd backend/platform-analyzer
+          cat > .env << EOF
+          FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}
+          FIREBASE_PRIVATE_KEY="${{ secrets.FIREBASE_PRIVATE_KEY }}"
+          FIREBASE_CLIENT_EMAIL=${{ secrets.FIREBASE_CLIENT_EMAIL }}
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}
+          EOF
+      
+      - name: 분석 타입 결정
+        id: determine_type
+        run: |
+          # 현재 시간 정보 (한국시간)
+          KST_DATE=$(TZ='Asia/Seoul' date)
+          DAY_OF_MONTH=$(TZ='Asia/Seoul' date +%d)
+          DAY_OF_WEEK=$(TZ='Asia/Seoul' date +%u)
+          
+          echo "Current KST: $KST_DATE"
+          
+          # 수동 실행인 경우
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            ANALYSIS_TYPE="${{ github.event.inputs.analysis_type }}"
+          else
+            # 자동 스케줄 실행
+            if [ "$DAY_OF_MONTH" = "01" ]; then
+              ANALYSIS_TYPE="monthly"
+            elif [ "$DAY_OF_WEEK" = "1" ]; then
+              ANALYSIS_TYPE="weekly"
+            else
+              ANALYSIS_TYPE="daily"
+            fi
+          fi
+          
+          echo "analysis_type=$ANALYSIS_TYPE" >> $GITHUB_OUTPUT
+          echo "🎯 분석 타입: $ANALYSIS_TYPE"
+      
+      - name: 온라인 플랫폼 트렌드 분석 실행
+        run: |
+          cd backend/platform-analyzer/scripts
+          
+          ANALYSIS_TYPE="${{ steps.determine_type.outputs.analysis_type }}"
+          
+          echo "🚀 온라인 포커 플랫폼 트렌드 분석 시작"
+          echo "📊 분석 타입: $ANALYSIS_TYPE"
+          echo "⏰ 실행 시간 (KST): $(TZ='Asia/Seoul' date)"
+          
+          # 분석 실행
+          python online_platform_trend_analyzer.py
+          
+          # 추가 분석 스크립트가 있다면 여기에 추가
+          case $ANALYSIS_TYPE in
+            "weekly")
+              echo "📅 주간 심층 분석 실행..."
+              python weekly_platform_analysis.py || true
+              ;;
+            "monthly")
+              echo "📈 월간 종합 분석 실행..."
+              python monthly_platform_report.py || true
+              ;;
+            "comprehensive")
+              echo "🔍 종합 분석 실행..."
+              python comprehensive_platform_analysis.py || true
+              ;;
+          esac
+      
+      - name: 분석 결과 아티팩트 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: platform-analysis-${{ steps.determine_type.outputs.analysis_type }}-${{ github.run_number }}
+          path: |
+            backend/platform-analyzer/scripts/reports/*.json
+            backend/platform-analyzer/scripts/reports/*.txt
+          retention-days: 30
+      
+      - name: 실행 결과 요약
+        run: |
+          echo "✅ 온라인 포커 플랫폼 트렌드 분석 완료"
+          echo "📊 분석 타입: ${{ steps.determine_type.outputs.analysis_type }}"
+          echo "⏰ 완료 시간 (KST): $(TZ='Asia/Seoul' date)"
+          
+          # 생성된 보고서 확인
+          echo "📁 생성된 보고서:"
+          ls -la backend/platform-analyzer/scripts/reports/ 2>/dev/null || echo "보고서 디렉토리가 없습니다"
+  
+  # 실패 시 알림
+  notify-on-failure:
+    if: failure()
+    needs: platform-trend-analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 실패 알림 전송
+        run: |
+          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
+            -H 'Content-type: application/json' \
+            --data '{
+              "text": "❌ 온라인 포커 플랫폼 트렌드 분석 실패\n실행 시간: '"$(TZ='Asia/Seoul' date)"'\n<https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|GitHub Actions 로그 확인>"
+            }'

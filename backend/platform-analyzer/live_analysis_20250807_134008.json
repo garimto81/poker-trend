@@ -1,0 +1,126 @@
+{
+  "timestamp": "2025-08-07T13:40:08.375529",
+  "summary": {
+    "total_players": 290029,
+    "total_cash": 18065,
+    "active_platforms": 19,
+    "top_platform": "GGNetwork",
+    "top_platform_players": 153008
+  },
+  "top_10": [
+    {
+      "site_name": "GGNetwork",
+      "players_online": 153008,
+      "cash_players": 10404,
+      "peak_24h": 13603,
+      "seven_day_avg": 10500,
+      "collected_at": "2025-08-07T04:40:08.369293+00:00"
+    },
+    {
+      "site_name": "PokerStars US",
+      "players_online": 55540,
+      "cash_players": 254,
+      "peak_24h": 394,
+      "seven_day_avg": 160,
+      "collected_at": "2025-08-07T04:40:08.370968+00:00"
+    },
+    {
+      "site_name": "PokerStars Ontario",
+      "players_online": 55540,
+      "cash_players": 118,
+      "peak_24h": 243,
+      "seven_day_avg": 110,
+      "collected_at": "2025-08-07T04:40:08.371555+00:00"
+    },
+    {
+      "site_name": "WPT Global",
+      "players_online": 5450,
+      "cash_players": 1727,
+      "peak_24h": 3835,
+      "seven_day_avg": 2400,
+      "collected_at": "2025-08-07T04:40:08.369505+00:00"
+    },
+    {
+      "site_name": "IDNPoker",
+      "players_online": 3551,
+      "cash_players": 742,
+      "peak_24h": 2472,
+      "seven_day_avg": 1450,
+      "collected_at": "2025-08-07T04:40:08.369631+00:00"
+    },
+    {
+      "site_name": "Pokio",
+      "players_online": 3039,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "collected_at": "2025-08-07T04:40:08.375080+00:00"
+    },
+    {
+      "site_name": "iPoker Europe",
+      "players_online": 2660,
+      "cash_players": 501,
+      "peak_24h": 716,
+      "seven_day_avg": 0,
+      "collected_at": "2025-08-07T04:40:08.373898+00:00"
+    },
+    {
+      "site_name": "iPoker.it",
+      "players_online": 2582,
+      "cash_players": 903,
+      "peak_24h": 958,
+      "seven_day_avg": 0,
+      "collected_at": "2025-08-07T04:40:08.373784+00:00"
+    },
+    {
+      "site_name": "GGPoker ON",
+      "players_online": 2508,
+      "cash_players": 396,
+      "peak_24h": 692,
+      "seven_day_avg": 350,
+      "collected_at": "2025-08-07T04:40:08.370611+00:00"
+    },
+    {
+      "site_name": "Chico Poker",
+      "players_online": 2417,
+      "cash_players": 513,
+      "peak_24h": 612,
+      "seven_day_avg": 375,
+      "collected_at": "2025-08-07T04:40:08.370495+00:00"
+    }
+  ],
+  "market_share": {
+    "GGNetwork": 52.75610369997483,
+    "PokerStars US": 19.149809157015333,
+    "PokerStars Ontario": 19.149809157015333,
+    "WPT Global": 1.8791224325843279,
+    "IDNPoker": 1.2243603225884307,
+    "Pokio": 1.0478262518575727,
+    "iPoker Europe": 0.9171496643439103,
+    "iPoker.it": 0.8902558020060063,
+    "GGPoker ON": 0.864741112095687,
+    "Chico Poker": 0.8333649393681322
+  },
+  "significant_changes": [
+    [
+      "GGNetwork",
+      1357.2190476190476
+    ],
+    [
+      "PokerStars US",
+      34612.5
+    ],
+    [
+      "PokerStars Ontario",
+      50390.909090909096
+    ],
+    [
+      "WPT Global",
+      127.08333333333333
+    ],
+    [
+      "IDNPoker",
+      144.89655172413794
+    ]
+  ]
+}
