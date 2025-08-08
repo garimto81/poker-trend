@@ -4,6 +4,7 @@
 requests==2.31.0
 beautifulsoup4==4.12.3
 lxml==5.1.0
+feedparser==6.0.10
 
 # AI 분석
 google-generativeai==0.3.2

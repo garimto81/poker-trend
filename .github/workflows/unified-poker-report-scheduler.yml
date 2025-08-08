@@ -258,16 +258,15 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-        cache: 'pip'
     
     - name: 📦 Install dependencies
-      working-directory: poker-trend-analysis/backend/news-analyzer
       run: |
+        cd poker-trend-analysis/backend/news-analyzer
+        pip install --upgrade pip
         pip install -r requirements.txt
         
     - name: 📰 Run PokerNews Analysis
       id: news-analysis
-      working-directory: poker-trend-analysis/backend/news-analyzer
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -278,6 +277,9 @@ jobs:
         echo "🚀 PokerNews 분석 시작..."
         echo "📊 리포트 타입: $REPORT_TYPE"
         echo "📅 데이터 기간: $DATA_PERIOD_START ~ $DATA_PERIOD_END"
+        
+        # 올바른 디렉토리로 이동
+        cd poker-trend-analysis/backend/news-analyzer
         
         # Python 스크립트 실행 (리포트 타입별 분석 지원)
         if python pokernews_slack_reporter.py > pokernews_output.log 2>&1; then
@@ -332,13 +334,13 @@ jobs:
         cache: 'pip'
     
     - name: 📦 Install dependencies
-      working-directory: backend/data-collector
       run: |
+        cd backend/data-collector
+        pip install --upgrade pip
         pip install -r requirements.txt
         
     - name: 🎥 Run YouTube Analysis
       id: youtube-analysis
-      working-directory: backend/data-collector
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
@@ -351,6 +353,9 @@ jobs:
         echo "📊 리포트 타입: $REPORT_TYPE"
         echo "📅 데이터 기간: $DATA_PERIOD_START ~ $DATA_PERIOD_END"
         echo "⏰ 이전 작업 (PokerNews) 상태: ${{ needs.pokernews-analysis.outputs.status || 'skipped' }}"
+        
+        # 올바른 디렉토리로 이동
+        cd backend/data-collector
         
         # 3초 대기 (Slack API rate limit 고려)
         sleep 3
@@ -423,13 +428,13 @@ jobs:
         cache: 'pip'
     
     - name: 📦 Install dependencies
-      working-directory: backend/platform-analyzer
       run: |
+        cd backend/platform-analyzer
+        pip install --upgrade pip
         pip install -r requirements.txt
         
     - name: 📊 Run Platform Analysis
       id: platform-analysis
-      working-directory: backend/platform-analyzer/scripts
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         REPORT_TYPE: ${{ needs.schedule-determination.outputs.report_type }}
@@ -442,6 +447,9 @@ jobs:
         echo "⏰ 이전 작업 상태:"
         echo "  - PokerNews: ${{ needs.pokernews-analysis.outputs.status || 'skipped' }}"
         echo "  - YouTube: ${{ needs.youtube-analysis.outputs.status || 'skipped' }}"
+        
+        # 올바른 디렉토리로 이동
+        cd backend/platform-analyzer/scripts
         
         # 5초 대기 (이전 Slack 메시지들과의 간격 확보)
         sleep 5
