@@ -1,0 +1,436 @@
+{
+  "text": "📊 포커 시장 일일 분석 리포트",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "📊 포커 시장 일일 분석 리포트",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*📅 분석 기간:* 2025-08-06 vs 2025-08-07\n*⏰ 생성 시간:* 2025-08-07 20:00"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*👑 GGNetwork 독점 현황*"
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*온라인 플레이어*\n153,008명 (➡️ +0.7%)"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*캐시 플레이어*\n10,404명 (+2.0%)"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*시장 점유율*\n온라인: 49.3% | 캐시: 48.9%"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*주간 트렌드*\n📉 하락세"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*🌐 온라인 플레이어 2-3위 경쟁*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "🥈 *IDNPoker* ⬆️1\n   8,195명 (🚀 +141.0%)\n🥉 *WPT Global* ⬇️1\n   7,323명 (🚀 +38.2%)\n4️⃣ *Pokerdom* ⬆️95\n   3,747명 (➡️ +0.0%)\n5️⃣ *Pokio* ⬇️1\n   3,039명 (➡️ +0.0%)"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*2-3위 격차:* 872명\n*2위 안정성:* ✅ 안정적"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*💰 캐시 플레이어 2-3위 경쟁*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "🥈 *WPT Global*\n   캐시: 3,556명 (🚀 +71.9%)\n   캐시 비율: 48.6%\n🥉 *IDNPoker*\n   캐시: 2,069명 (🚀 +187.4%)\n   캐시 비율: 25.2%\n4️⃣ *iPoker.it*\n   캐시: 903명 (➡️ +0.0%)\n   캐시 비율: 35.0%\n5️⃣ *Pokerdom*\n   캐시: 874명 (🚀 +52.8%)\n   캐시 비율: 23.3%"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*캐시 2위 수익 잠재력:* 💎 높음"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*🔥 주목할 도전자*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*가장 빠른 성장:* IDNPoker (+141.0%)\n*가장 위협적:* PokerStars Ontario (55,540명)"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*📈 시장 구조*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*시장 형태:* 독점 체제\n*경쟁 수준:* ⚖️ 보통"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*💡 핵심 인사이트*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "• [왕관] GGNetwork 독점 지속: 온라인 153,008명 (+0.7%)\n• [하락] GGNetwork 주간 하락세 전환\n• [2위] 온라인 2위: IDNPoker (8,195명, +141.0%)\n• [격전] 2-3위 격차 872명으로 경쟁 치열\n• [화염] WPT Global 3위 수성 위협\n• [캐시] 캐시 2위: WPT Global (3,556명)"
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "📊 Daily Analysis | ⏰ 2025-08-07 20:00 | 🎯 Focus: 2nd-3rd Competition"
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "analysis_type": "competitive_landscape",
+    "period": "2025-08-06 vs 2025-08-07",
+    "ggnetwork_dominance": {
+      "status": "dominant",
+      "online_players": {
+        "current": 153008,
+        "yesterday": 152000,
+        "change": 1008,
+        "change_pct": 0.6631578947368421
+      },
+      "cash_players": {
+        "current": 10404,
+        "yesterday": 10200,
+        "change": 204,
+        "change_pct": 2.0
+      },
+      "market_dominance": {
+        "online_share": 49.31605750016115,
+        "cash_share": 48.88408589014707
+      },
+      "weekly_trend": "declining",
+      "dominance_level": "moderate"
+    },
+    "online_competition": {
+      "top5_yesterday": [],
+      "top5_today": [
+        {
+          "rank": 1,
+          "site_name": "GGNetwork",
+          "players": 153008,
+          "yesterday_players": 152000,
+          "change": 1008,
+          "change_pct": 0.6631578947368421,
+          "rank_change": 0,
+          "is_ggnetwork": true
+        },
+        {
+          "rank": 2,
+          "site_name": "IDNPoker",
+          "players": 8195,
+          "yesterday_players": 3400,
+          "change": 4795,
+          "change_pct": 141.02941176470588,
+          "rank_change": 1,
+          "is_ggnetwork": false
+        },
+        {
+          "rank": 3,
+          "site_name": "WPT Global",
+          "players": 7323,
+          "yesterday_players": 5300,
+          "change": 2023,
+          "change_pct": 38.16981132075472,
+          "rank_change": -1,
+          "is_ggnetwork": false
+        },
+        {
+          "rank": 4,
+          "site_name": "Pokerdom",
+          "players": 3747,
+          "yesterday_players": 0,
+          "change": 3747,
+          "change_pct": 0,
+          "rank_change": 95,
+          "is_ggnetwork": false
+        },
+        {
+          "rank": 5,
+          "site_name": "Pokio",
+          "players": 3039,
+          "yesterday_players": 3039,
+          "change": 0,
+          "change_pct": 0.0,
+          "rank_change": -1,
+          "is_ggnetwork": false
+        }
+      ],
+      "second_place_battle": {
+        "current_holder": "IDNPoker",
+        "players": 8195,
+        "change": 4795,
+        "change_pct": 141.02941176470588,
+        "gap_to_first": 144813,
+        "gap_to_third": 872,
+        "stability": "stable"
+      },
+      "third_place_battle": {
+        "current_holder": "WPT Global",
+        "players": 7323,
+        "change": 2023,
+        "change_pct": 38.16981132075472,
+        "gap_to_second": 872,
+        "gap_to_fourth": 3576,
+        "threat_level": "high"
+      },
+      "gap_analysis": {
+        "first_dominance": 87.27753947248334,
+        "second_third_combined": 8.851647348726843,
+        "competition_intensity": "medium"
+      }
+    },
+    "cash_competition": {
+      "top5_today": [
+        {
+          "rank": 1,
+          "site_name": "GGNetwork",
+          "cash_players": 10404,
+          "yesterday_cash": 10200,
+          "change": 204,
+          "change_pct": 2.0,
+          "rank_change": 0,
+          "cash_ratio": 6.799644463034612,
+          "is_ggnetwork": true
+        },
+        {
+          "rank": 2,
+          "site_name": "WPT Global",
+          "cash_players": 3556,
+          "yesterday_cash": 2069,
+          "change": 1487,
+          "change_pct": 71.87046882551957,
+          "rank_change": 0,
+          "cash_ratio": 48.55933360644545,
+          "is_ggnetwork": false
+        },
+        {
+          "rank": 3,
+          "site_name": "IDNPoker",
+          "cash_players": 2069,
+          "yesterday_cash": 720,
+          "change": 1349,
+          "change_pct": 187.36111111111111,
+          "rank_change": 1,
+          "cash_ratio": 25.247101891397193,
+          "is_ggnetwork": false
+        },
+        {
+          "rank": 4,
+          "site_name": "iPoker.it",
+          "cash_players": 903,
+          "yesterday_cash": 903,
+          "change": 0,
+          "change_pct": 0.0,
+          "rank_change": -1,
+          "cash_ratio": 34.97288923315259,
+          "is_ggnetwork": false
+        },
+        {
+          "rank": 5,
+          "site_name": "Pokerdom",
+          "cash_players": 874,
+          "yesterday_cash": 572,
+          "change": 302,
+          "change_pct": 52.7972027972028,
+          "rank_change": 0,
+          "cash_ratio": 23.325326928209233,
+          "is_ggnetwork": false
+        }
+      ],
+      "second_place_battle": {
+        "current_holder": "WPT Global",
+        "cash_players": 3556,
+        "change": 1487,
+        "change_pct": 71.87046882551957,
+        "cash_ratio": 48.55933360644545,
+        "gap_to_first": 6848,
+        "revenue_potential": "high"
+      },
+      "third_place_battle": {
+        "current_holder": "IDNPoker",
+        "cash_players": 2069,
+        "change": 1349,
+        "change_pct": 187.36111111111111,
+        "cash_ratio": 25.247101891397193,
+        "gap_to_second": 1487,
+        "growth_momentum": "strong"
+      },
+      "cash_concentration": {
+        "ggnetwork_share": 58.42974278333146,
+        "second_third_share": 31.590475120745815,
+        "competitive_landscape": "competitive"
+      }
+    },
+    "challenger_analysis": {
+      "challengers": [
+        {
+          "site_name": "PokerStars Ontario",
+          "online_players": 55540,
+          "cash_players": 124,
+          "online_growth": 2.851851851851852,
+          "cash_growth": 7.82608695652174,
+          "cash_ratio": 0.22326251350378107,
+          "competitive_position": "established_brand",
+          "growth_potential": "high"
+        },
+        {
+          "site_name": "PokerStars US",
+          "online_players": 55540,
+          "cash_players": 68,
+          "online_growth": 3.8130841121495327,
+          "cash_growth": -98.08773903262093,
+          "cash_ratio": 0.12243428159884767,
+          "competitive_position": "established_brand",
+          "growth_potential": "low"
+        },
+        {
+          "site_name": "PokerStars.it",
+          "online_players": 11145,
+          "cash_players": 34,
+          "online_growth": 0,
+          "cash_growth": 0,
+          "cash_ratio": 0.3050695379093764,
+          "competitive_position": "established_brand",
+          "growth_potential": "low"
+        },
+        {
+          "site_name": "IDNPoker",
+          "online_players": 8195,
+          "cash_players": 2069,
+          "online_growth": 141.02941176470588,
+          "cash_growth": 187.36111111111111,
+          "cash_ratio": 25.247101891397193,
+          "competitive_position": "niche_player",
+          "growth_potential": "very_high"
+        }
+      ],
+      "most_threatening": {
+        "site_name": "PokerStars Ontario",
+        "online_players": 55540,
+        "cash_players": 124,
+        "online_growth": 2.851851851851852,
+        "cash_growth": 7.82608695652174,
+        "cash_ratio": 0.22326251350378107,
+        "competitive_position": "established_brand",
+        "growth_potential": "high"
+      },
+      "fastest_growing": {
+        "site_name": "IDNPoker",
+        "online_players": 8195,
+        "cash_players": 2069,
+        "online_growth": 141.02941176470588,
+        "cash_growth": 187.36111111111111,
+        "cash_ratio": 25.247101891397193,
+        "competitive_position": "niche_player",
+        "growth_potential": "very_high"
+      },
+      "competition_intensity": "very_high"
+    },
+    "market_dynamics": {
+      "market_structure": "monopolistic",
+      "competition_level": "moderate",
+      "key_battlegrounds": [
+        "캐시 게임 2-3위 경쟁 활발"
+      ],
+      "strategic_implications": [
+        "GGNetwork의 독점적 지위 공고화"
+      ]
+    },
+    "insights": [
+      "[왕관] GGNetwork 독점 지속: 온라인 153,008명 (+0.7%)",
+      "[하락] GGNetwork 주간 하락세 전환",
+      "[2위] 온라인 2위: IDNPoker (8,195명, +141.0%)",
+      "[격전] 2-3위 격차 872명으로 경쟁 치열",
+      "[화염] WPT Global 3위 수성 위협",
+      "[캐시] 캐시 2위: WPT Global (3,556명)",
+      "[다이아] WPT Global 높은 수익성 (캐시비율 48.6%)",
+      "[로켓] IDNPoker 급성장 중 (+141.0%)",
+      "[경고] 2-3위 합쳐도 시장 점유율 20% 미만"
+    ],
+    "timestamp": "2025-08-07T20:00:11.708297"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "timestamp": "2025-08-04T15:58:39.016798",
+  "api_calls": {
+    "youtube_search": "✅ 성공 - 87개 영상 수집",
+    "youtube_details": "✅ 성공 - 상세 정보 추가",
+    "gemini_analysis": "✅ 성공 - 트렌드 분석 생성",
+    "gemini_suggestions": "✅ 성공 - 5개 쇼츠 아이디어",
+    "slack_webhook": "✅ 성공 - 메시지 전송"
+  },
+  "sample_output": {
+    "total_videos": 87,
+    "search_keywords": [
+      "poker",
+      "포커",
+      "holdem",
+      "홀덤",
+      "WSOP",
+      "WPT",
+      "EPT",
+      "PokerStars",
+      "GGPoker",
+      "tournament"
+    ],
+    "top_channels": [
+      [
+        "PokerGO",
+        15
+      ],
+      [
+        "PokerStars",
+        12
+      ],
+      [
+        "포커마스터TV",
+        8
+      ],
+      [
+        "Hustler Casino Live",
+        6
+      ],
+      [
+        "포커하이라이트",
+        5
+      ]
+    ],
+    "trend_analysis": "WSOP 시즌으로 토너먼트 콘텐츠가 급증하며, 프로 선수들의 블러프 영상이 높은 참여율을 보임",
+    "top_video": {
+      "title": "Phil Ivey's INSANE Bluff at WSOP 2024 Final Table! 😱",
+      "channel": "PokerGO",
+      "views": 385234,
+      "link": "https://youtube.com/watch?v=abc123"
+    }
+  }
+}

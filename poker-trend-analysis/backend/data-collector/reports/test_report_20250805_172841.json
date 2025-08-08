@@ -1,0 +1,25 @@
+{
+  "report_type": "test",
+  "generated_at": "2025-08-05T17:28:41.352223",
+  "total_videos": 9,
+  "keywords_analyzed": [
+    "poker",
+    "holdem",
+    "wsop"
+  ],
+  "top_video": {
+    "video_id": "mock_poker_0",
+    "title": "INSANE poker Bluff at WSOP 2025!",
+    "channel_title": "Brad Owen",
+    "channel_id": "channel_0",
+    "published_at": "2025-08-04T05:28:41.351562Z",
+    "view_count": 77790,
+    "like_count": 605,
+    "comment_count": 506,
+    "duration": "PT14M37S",
+    "url": "https://youtube.com/watch?v=mock_poker_0",
+    "keyword": "poker",
+    "category": "entertainment"
+  },
+  "ai_insights": "오늘의 포커 트렌드는 WSOP 관련 콘텐츠가 주도하고 있습니다. \n특히 Phil Ivey의 블러프 플레이가 화제를 모으며 관련 영상들이 급상승하고 있습니다. \n내일은 온라인 포커 플랫폼의 새로운 토너먼트 발표로 인해 관련 콘텐츠 수요가 증가할 것으로 예상됩니다."
+}

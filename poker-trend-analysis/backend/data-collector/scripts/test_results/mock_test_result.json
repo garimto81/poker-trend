@@ -1,0 +1,22 @@
+{
+  "test_time": "2025-08-04T15:30:07.189032",
+  "mock_data": true,
+  "total_videos": 87,
+  "search_keywords_count": 10,
+  "top_channels": [
+    [
+      "PokerGO",
+      15
+    ],
+    [
+      "PokerStars",
+      12
+    ],
+    [
+      "포커마스터TV",
+      8
+    ]
+  ],
+  "trend_analysis": "WSOP 관련 콘텐츠와 프로 선수 블러프가 주목받으며, 교육 콘텐츠 수요 증가 중",
+  "test_status": "success"
+}

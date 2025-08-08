@@ -1,0 +1,28 @@
+title: "Poker Trend - 포커 트렌드 쇼츠 자동 제작 시스템"
+description: "AI 기반 실시간 포커 트렌드 감지 및 쇼츠 콘텐츠 자동 생성 시스템"
+url: "https://garimto81.github.io"
+baseurl: "/poker-trend"
+
+# GitHub Pages 설정
+source: docs
+destination: _site
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# SEO 설정
+lang: ko-KR
+author: garimto81
+
+# 소셜 미디어
+github_username: garimto81
+
+# 빌드 설정
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

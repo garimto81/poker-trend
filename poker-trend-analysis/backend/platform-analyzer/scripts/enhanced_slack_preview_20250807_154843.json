@@ -1,0 +1,312 @@
+{
+  "text": "📊 포커 시장 종합 분석 리포트 (TOP 3 포함)",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "📊 포커 시장 종합 분석 리포트",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*분석 기간:* 2025-08-06 vs 2025-08-07\n*분석 시간:* 2025-08-07 15:48"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*종합 평가: 20/100점 ⚠️*\n개선 필요"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*📈 시장 전체 변화*"
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*🌐 총 온라인 플레이어*\n193,949 → 193,949"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*변화*\n➡️ +0.0% (+0명)"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*💰 총 캐시 플레이어*\n18,065 → 18,065"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*변화*\n➡️ +0.0% (+0명)"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*💵 캐시 비율*\n9.3% (+0.0%p)"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*활성 사이트*\n42개"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*🌐 온라인 플레이어 TOP 3*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "데이터 없음"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*💰 캐시 플레이어 TOP 3*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "데이터 없음"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*📊 트렌드 분석*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*방향:* 📉 downtrend\n*모멘텀:* 💔 bearish\n*주간 성장:* 온라인 -63.4% | 캐시 -15.3%\n*변동성:* 온라인 47.7% | 캐시 11.6%"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*💡 주요 인사이트*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "• 📊 주간 트렌드: 하락세 지속"
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "📊 Enhanced Analysis | ⏰ 2025-08-07 15:48"
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "analysis_type": "enhanced_dual_metrics",
+    "period": "2025-08-06 vs 2025-08-07",
+    "top_sites": {
+      "online_top3": [],
+      "cash_top3": [],
+      "online_leader": null,
+      "cash_leader": null
+    },
+    "daily_changes": {
+      "market_changes": {
+        "total_online": {
+          "yesterday": 193949,
+          "today": 193949,
+          "change": 0,
+          "change_pct": 0.0,
+          "trend": "➡️ 보합"
+        },
+        "total_cash": {
+          "yesterday": 18065,
+          "today": 18065,
+          "change": 0,
+          "change_pct": 0.0,
+          "trend": "➡️ 보합"
+        },
+        "avg_online": {
+          "yesterday": 4617.833333333333,
+          "today": 4617.833333333333,
+          "change": 0.0,
+          "change_pct": 0.0
+        },
+        "avg_cash": {
+          "yesterday": 430.1190476190476,
+          "today": 430.1190476190476,
+          "change": 0.0,
+          "change_pct": 0.0
+        }
+      },
+      "cash_ratio": {
+        "yesterday": 9.314304275866336,
+        "today": 9.314304275866336,
+        "change": 0.0,
+        "trend": "declining"
+      },
+      "top_gainers": [
+        {
+          "site_name": "PaiWangLuo (Bodog)",
+          "old_avg": 0.0,
+          "new_avg": 0.0,
+          "change": 0.0,
+          "change_pct": 0
+        },
+        {
+          "site_name": "SwC Poker",
+          "old_avg": 134.0,
+          "new_avg": 134.0,
+          "change": 0.0,
+          "change_pct": 0.0
+        },
+        {
+          "site_name": "PokerSaint",
+          "old_avg": 0.0,
+          "new_avg": 0.0,
+          "change": 0.0,
+          "change_pct": 0
+        },
+        {
+          "site_name": "Party Borgata (NJ)",
+          "old_avg": 0.0,
+          "new_avg": 0.0,
+          "change": 0.0,
+          "change_pct": 0
+        },
+        {
+          "site_name": "PokerStars Ontario",
+          "old_avg": 7500.0,
+          "new_avg": 7500.0,
+          "change": 0.0,
+          "change_pct": 0.0
+        }
+      ],
+      "top_losers": [
+        {
+          "site_name": "Gamezy",
+          "old_avg": 0.0,
+          "new_avg": 0.0,
+          "change": 0.0,
+          "change_pct": 0
+        },
+        {
+          "site_name": "Chico Poker",
+          "old_avg": 2417.0,
+          "new_avg": 2417.0,
+          "change": 0.0,
+          "change_pct": 0.0
+        },
+        {
+          "site_name": "PokerStars PA",
+          "old_avg": 0.0,
+          "new_avg": 0.0,
+          "change": 0.0,
+          "change_pct": 0
+        },
+        {
+          "site_name": "BetMGM MI",
+          "old_avg": 0.0,
+          "new_avg": 0.0,
+          "change": 0.0,
+          "change_pct": 0
+        },
+        {
+          "site_name": "iPoker Europe",
+          "old_avg": 2660.0,
+          "new_avg": 2660.0,
+          "change": 0.0,
+          "change_pct": 0.0
+        }
+      ],
+      "active_sites": {
+        "yesterday": 42,
+        "today": 42,
+        "change": 0
+      }
+    },
+    "trend_analysis": {
+      "trend_direction": "downtrend",
+      "weekly_growth": {
+        "online": -63.42089480176079,
+        "cash": -15.267354596622889
+      },
+      "volatility": {
+        "online": 47.74474401281748,
+        "cash": 11.575532245499751
+      },
+      "momentum": "bearish",
+      "trend_strength": {
+        "online": 45213.35714285713,
+        "cash": 658.3571428571436
+      },
+      "data_points": 8
+    },
+    "comprehensive_score": {
+      "score": 20,
+      "max_score": 100,
+      "grade": "D",
+      "interpretation": "개선 필요"
+    },
+    "insights": [
+      "📊 주간 트렌드: 하락세 지속"
+    ],
+    "raw_data": {
+      "yesterday": [],
+      "today": []
+    },
+    "timestamp": "2025-08-07T15:48:43.897952"
+  }
+}

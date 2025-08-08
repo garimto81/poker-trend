@@ -1,0 +1,18 @@
+# PokerNews 분석 시스템 의존성
+
+# 웹 스크래핑
+requests==2.31.0
+beautifulsoup4==4.12.3
+lxml==5.1.0
+
+# AI 분석
+google-generativeai==0.3.2
+
+# 환경 변수
+python-dotenv==1.0.0
+
+# 유틸리티
+python-dateutil==2.8.2
+
+# 로깅
+colorlog==6.8.0
