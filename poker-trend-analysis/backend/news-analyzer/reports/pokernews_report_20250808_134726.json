@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "timestamp": "2025-08-08T13:47:26.805551",
+  "articles_collected": 19,
+  "today_articles": 0,
+  "analysis": {
+    "status": "error",
+    "error": "404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "fallback_summary": "📰 오늘의 포커 뉴스 요약 (10개 기사)\n\n【GENERAL】\n• Thailand Legalizing Poker Tournaments, Sparks Controversy Over Gambling - chiangraitimes.com\n• 'Hellmuth’s parents hated me': Norman Chad’s guide to great poker commentary - Poker.org\n• Breaking: Here’s the Complete 2025 WSOP Online Bracelet Schedule on GGPoker - Pokerfuse\n"
+  },
+  "slack_sent": false
+}

@@ -36,7 +36,7 @@ class PokerNewsAIAnalyzer:
         
         # Gemini 설정
         genai.configure(api_key=self.api_key)
-        self.model = genai.GenerativeModel('gemini-pro')
+        self.model = genai.GenerativeModel('gemini-1.5-flash')
         
         logger.info("Gemini AI 분석기 초기화 완료")
     

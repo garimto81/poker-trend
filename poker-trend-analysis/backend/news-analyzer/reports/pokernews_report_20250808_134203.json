@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "timestamp": "2025-08-08T13:42:03.901461",
+  "articles_collected": 19,
+  "today_articles": 0,
+  "analysis": {
+    "status": "error",
+    "error": "400 API key not valid. Please pass a valid API key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]",
+    "fallback_summary": "📰 오늘의 포커 뉴스 요약 (10개 기사)\n\n【GENERAL】\n• Thailand Legalizing Poker Tournaments, Sparks Controversy Over Gambling - chiangraitimes.com\n• 'Hellmuth’s parents hated me': Norman Chad’s guide to great poker commentary - Poker.org\n• Breaking: Here’s the Complete 2025 WSOP Online Bracelet Schedule on GGPoker - Pokerfuse\n"
+  },
+  "slack_sent": false
+}
