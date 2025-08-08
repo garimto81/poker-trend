@@ -1,0 +1,47 @@
+name: Debug Path Check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  debug-paths:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Show current directory structure
+      run: |
+        echo "=== Current Working Directory ==="
+        pwd
+        echo ""
+        echo "=== GitHub Workspace ==="
+        echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+        echo ""
+        echo "=== Directory Contents ==="
+        ls -la
+        echo ""
+        echo "=== Check if poker-trend-analysis exists ==="
+        if [ -d "poker-trend-analysis" ]; then
+          echo "✅ poker-trend-analysis directory exists"
+          ls -la poker-trend-analysis/
+        else
+          echo "❌ poker-trend-analysis directory NOT found"
+        fi
+        echo ""
+        echo "=== Check if backend exists directly ==="
+        if [ -d "backend" ]; then
+          echo "✅ backend directory exists at root"
+          ls -la backend/
+        else
+          echo "❌ backend directory NOT found at root"
+        fi
+        echo ""
+        echo "=== Repository Information ==="
+        echo "Repository: ${{ github.repository }}"
+        echo "Repository Name: ${{ github.event.repository.name }}"
+        echo "Runner workspace: ${{ runner.workspace }}"
+        echo ""
+        echo "=== Find all news-analyzer directories ==="
+        find . -type d -name "news-analyzer" 2>/dev/null || echo "No news-analyzer directories found"
