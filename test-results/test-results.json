@@ -1,0 +1,1364 @@
+{
+  "config": {
+    "configFile": "C:\\claude03\\playwright.config.js",
+    "rootDir": "C:/claude03/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "C:\\claude03\\tests\\global-setup.js",
+    "globalTeardown": "C:\\claude03\\tests\\global-teardown.js",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "test-results/playwright-report"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/junit.xml"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/test-results.json"
+        }
+      ],
+      [
+        "list",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/claude03/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/claude03/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "C:/claude03/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "C:/claude03/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.54.2",
+    "workers": 16,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "06-slack-integration.spec.js",
+      "file": "06-slack-integration.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Slack Integration",
+          "file": "06-slack-integration.spec.js",
+          "line": 7,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Slack 웹훅 URL 형식 검증",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 77,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Webhook URL Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_webhook_validation.py\\\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  URL {i+1}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 9: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Webhook URL Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_webhook_validation.py\\\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  URL {i+1}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 9: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:51:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 51
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 49 |\u001b[39m     \n \u001b[90m 50 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Webhook URL Validation'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 51 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 52 |\u001b[39m     \n \u001b[90m 53 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 54 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 51
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Webhook URL Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_webhook_validation.py\\\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  URL {i+1}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 9: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  49 |     \n  50 |     expect(result.output).toContain('Slack Webhook URL Validation');\n> 51 |     expect(result.output).toContain('COMPLETED');\n     |                           ^\n  52 |     \n  53 |     // 임시 파일 정리\n  54 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:51:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:14:56.158Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 51
+                      }
+                    },
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 66,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Webhook URL Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_webhook_validation.py\\\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  URL {i+1}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 9: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Webhook URL Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_webhook_validation.py\\\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  URL {i+1}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 9: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:51:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 51
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 49 |\u001b[39m     \n \u001b[90m 50 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Webhook URL Validation'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 51 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 52 |\u001b[39m     \n \u001b[90m 53 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 54 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 51
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Webhook URL Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_webhook_validation.py\\\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  URL {i+1}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 9: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  49 |     \n  50 |     expect(result.output).toContain('Slack Webhook URL Validation');\n> 51 |     expect(result.output).toContain('COMPLETED');\n     |                           ^\n  52 |     \n  53 |     // 임시 파일 정리\n  54 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:51:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T06:14:57.076Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 51
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-b72e4218e1a467e717ea",
+              "file": "06-slack-integration.spec.js",
+              "line": 17,
+              "column": 3
+            },
+            {
+              "title": "Slack 메시지 페이로드 구조 검증",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 77,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"JSON serialization: ✓\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Payload Validation:···\u001b[39m\n\u001b[31mPayload 1:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_payload_validation.py\\\"\u001b[0m, line \u001b[35m58\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  {check}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 12: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"JSON serialization: ✓\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Payload Validation:···\u001b[39m\n\u001b[31mPayload 1:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_payload_validation.py\\\"\u001b[0m, line \u001b[35m58\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  {check}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 12: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:135:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 135
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 133 |\u001b[39m     \n \u001b[90m 134 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Payload Validation'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 135 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'JSON serialization: ✓'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 136 |\u001b[39m     \n \u001b[90m 137 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 138 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 135
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"JSON serialization: ✓\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Payload Validation:···\u001b[39m\n\u001b[31mPayload 1:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_payload_validation.py\\\"\u001b[0m, line \u001b[35m58\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  {check}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 12: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  133 |     \n  134 |     expect(result.output).toContain('Slack Payload Validation');\n> 135 |     expect(result.output).toContain('JSON serialization: ✓');\n      |                           ^\n  136 |     \n  137 |     // 임시 파일 정리\n  138 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:135:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:14:57.966Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 135
+                      }
+                    },
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 70,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"JSON serialization: ✓\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Payload Validation:···\u001b[39m\n\u001b[31mPayload 1:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_payload_validation.py\\\"\u001b[0m, line \u001b[35m58\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  {check}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 12: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"JSON serialization: ✓\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Payload Validation:···\u001b[39m\n\u001b[31mPayload 1:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_payload_validation.py\\\"\u001b[0m, line \u001b[35m58\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  {check}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 12: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:135:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 135
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 133 |\u001b[39m     \n \u001b[90m 134 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Payload Validation'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 135 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'JSON serialization: ✓'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 136 |\u001b[39m     \n \u001b[90m 137 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 138 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 135
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"JSON serialization: ✓\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Payload Validation:···\u001b[39m\n\u001b[31mPayload 1:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_payload_validation.py\\\"\u001b[0m, line \u001b[35m58\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  {check}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 12: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  133 |     \n  134 |     expect(result.output).toContain('Slack Payload Validation');\n> 135 |     expect(result.output).toContain('JSON serialization: ✓');\n      |                           ^\n  136 |     \n  137 |     // 임시 파일 정리\n  138 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:135:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T06:14:58.873Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 135
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-0d215dfa73cfe473d467",
+              "file": "06-slack-integration.spec.js",
+              "line": 59,
+              "column": 3
+            },
+            {
+              "title": "Slack API 응답 처리 테스트",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 66,
+                      "error": {
+                        "message": "Error: EPERM: operation not permitted, unlink 'C:\\claude03\\test-results\\temp_api_response.py'",
+                        "stack": "Error: EPERM: operation not permitted, unlink 'C:\\claude03\\test-results\\temp_api_response.py'\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:219:10",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 10,
+                          "line": 219
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 217 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 218 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 219 |\u001b[39m       fs\u001b[33m.\u001b[39munlinkSync(tempScript)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 220 |\u001b[39m     }\n \u001b[90m 221 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 222 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 10,
+                            "line": 219
+                          },
+                          "message": "Error: EPERM: operation not permitted, unlink 'C:\\claude03\\test-results\\temp_api_response.py'\n\n  217 |     // 임시 파일 정리\n  218 |     if (fs.existsSync(tempScript)) {\n> 219 |       fs.unlinkSync(tempScript);\n      |          ^\n  220 |     }\n  221 |   });\n  222 |\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:219:10"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:14:59.783Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-API-응답-처리-테스트-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 10,
+                        "line": 219
+                      }
+                    },
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 60,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T06:15:00.682Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "flaky"
+                }
+              ],
+              "id": "ec9980472f00291c128f-b3c3af482c7374444d1c",
+              "file": "06-slack-integration.spec.js",
+              "line": 143,
+              "column": 3
+            },
+            {
+              "title": "Slack 메시지 형식화 및 한글 지원 테스트",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 73,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"Korean text support confirmed\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Message Formatting Test:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_formatting_test.py\\\"\u001b[0m, line \u001b[35m85\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(\\\"\\\\u2713 Message formatting successful\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 0: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"Korean text support confirmed\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Message Formatting Test:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_formatting_test.py\\\"\u001b[0m, line \u001b[35m85\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(\\\"\\\\u2713 Message formatting successful\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 0: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:325:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 325
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 323 |\u001b[39m     \n \u001b[90m 324 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Message Formatting Test'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 325 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Korean text support confirmed'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 326 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 327 |\u001b[39m     \n \u001b[90m 328 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 325
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"Korean text support confirmed\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Message Formatting Test:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_formatting_test.py\\\"\u001b[0m, line \u001b[35m85\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(\\\"\\\\u2713 Message formatting successful\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 0: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  323 |     \n  324 |     expect(result.output).toContain('Slack Message Formatting Test');\n> 325 |     expect(result.output).toContain('Korean text support confirmed');\n      |                           ^\n  326 |     expect(result.output).toContain('COMPLETED');\n  327 |     \n  328 |     // 임시 파일 정리\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:325:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:15:00.753Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 325
+                      }
+                    },
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 77,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"Korean text support confirmed\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Message Formatting Test:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_formatting_test.py\\\"\u001b[0m, line \u001b[35m85\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(\\\"\\\\u2713 Message formatting successful\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 0: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"Korean text support confirmed\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Message Formatting Test:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_formatting_test.py\\\"\u001b[0m, line \u001b[35m85\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(\\\"\\\\u2713 Message formatting successful\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 0: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:325:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 325
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 323 |\u001b[39m     \n \u001b[90m 324 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Message Formatting Test'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 325 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Korean text support confirmed'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 326 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 327 |\u001b[39m     \n \u001b[90m 328 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 325
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"Korean text support confirmed\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Message Formatting Test:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_formatting_test.py\\\"\u001b[0m, line \u001b[35m85\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(\\\"\\\\u2713 Message formatting successful\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 0: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  323 |     \n  324 |     expect(result.output).toContain('Slack Message Formatting Test');\n> 325 |     expect(result.output).toContain('Korean text support confirmed');\n      |                           ^\n  326 |     expect(result.output).toContain('COMPLETED');\n  327 |     \n  328 |     // 임시 파일 정리\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:325:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T06:15:01.646Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 325
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-63b79b4398a9b819bc59",
+              "file": "06-slack-integration.spec.js",
+              "line": 223,
+              "column": 3
+            },
+            {
+              "title": "Slack 알림 재시도 메커니즘 테스트",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 55,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:15:02.539Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-81ede0a530e185a5f6c9",
+              "file": "06-slack-integration.spec.js",
+              "line": 334,
+              "column": 3
+            },
+            {
+              "title": "Slack 리포트 템플릿 시스템 테스트",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 66,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Report Template System Test:···\u001b[39m\n\u001b[31mDAILY Template:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_template_test.py\\\"\u001b[0m, line \u001b[35m115\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  Text: {report['text']}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\U0001f4ca' in position 8: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Report Template System Test:···\u001b[39m\n\u001b[31mDAILY Template:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_template_test.py\\\"\u001b[0m, line \u001b[35m115\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  Text: {report['text']}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\U0001f4ca' in position 8: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:549:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 549
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 547 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Report Template System Test'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 548 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'DAILY Template:'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 549 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 550 |\u001b[39m     \n \u001b[90m 551 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 552 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 549
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Report Template System Test:···\u001b[39m\n\u001b[31mDAILY Template:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_template_test.py\\\"\u001b[0m, line \u001b[35m115\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  Text: {report['text']}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\U0001f4ca' in position 8: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  547 |     expect(result.output).toContain('Slack Report Template System Test');\n  548 |     expect(result.output).toContain('DAILY Template:');\n> 549 |     expect(result.output).toContain('COMPLETED');\n      |                           ^\n  550 |     \n  551 |     // 임시 파일 정리\n  552 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:549:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:15:02.605Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 549
+                      }
+                    },
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 69,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Report Template System Test:···\u001b[39m\n\u001b[31mDAILY Template:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_template_test.py\\\"\u001b[0m, line \u001b[35m115\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  Text: {report['text']}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\U0001f4ca' in position 8: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Report Template System Test:···\u001b[39m\n\u001b[31mDAILY Template:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_template_test.py\\\"\u001b[0m, line \u001b[35m115\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  Text: {report['text']}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\U0001f4ca' in position 8: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:549:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 549
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 547 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Report Template System Test'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 548 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'DAILY Template:'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 549 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 550 |\u001b[39m     \n \u001b[90m 551 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 552 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 549
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Report Template System Test:···\u001b[39m\n\u001b[31mDAILY Template:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_template_test.py\\\"\u001b[0m, line \u001b[35m115\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  Text: {report['text']}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\U0001f4ca' in position 8: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  547 |     expect(result.output).toContain('Slack Report Template System Test');\n  548 |     expect(result.output).toContain('DAILY Template:');\n> 549 |     expect(result.output).toContain('COMPLETED');\n      |                           ^\n  550 |     \n  551 |     // 임시 파일 정리\n  552 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:549:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T06:15:03.486Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 549
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-89ded5ee4bb767c572c6",
+              "file": "06-slack-integration.spec.js",
+              "line": 415,
+              "column": 3
+            },
+            {
+              "title": "Slack 채널별 라우팅 테스트",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 70,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Channel Routing Test:···\u001b[39m\n\u001b[31m1. Routing Rules Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_routing_test.py\\\"\u001b[0m, line \u001b[35m65\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"   {channel}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 16: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Channel Routing Test:···\u001b[39m\n\u001b[31m1. Routing Rules Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_routing_test.py\\\"\u001b[0m, line \u001b[35m65\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"   {channel}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 16: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:653:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 653
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 651 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Channel Routing Test'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 652 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Routing Rules Validation'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 653 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 654 |\u001b[39m     \n \u001b[90m 655 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 656 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 653
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Channel Routing Test:···\u001b[39m\n\u001b[31m1. Routing Rules Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_routing_test.py\\\"\u001b[0m, line \u001b[35m65\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"   {channel}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 16: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  651 |     expect(result.output).toContain('Slack Channel Routing Test');\n  652 |     expect(result.output).toContain('Routing Rules Validation');\n> 653 |     expect(result.output).toContain('COMPLETED');\n      |                           ^\n  654 |     \n  655 |     // 임시 파일 정리\n  656 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:653:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:15:04.400Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 653
+                      }
+                    },
+                    {
+                      "workerIndex": 20,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 66,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Channel Routing Test:···\u001b[39m\n\u001b[31m1. Routing Rules Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_routing_test.py\\\"\u001b[0m, line \u001b[35m65\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"   {channel}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 16: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Channel Routing Test:···\u001b[39m\n\u001b[31m1. Routing Rules Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_routing_test.py\\\"\u001b[0m, line \u001b[35m65\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"   {channel}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 16: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:653:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 653
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 651 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Channel Routing Test'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 652 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Routing Rules Validation'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 653 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 654 |\u001b[39m     \n \u001b[90m 655 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 656 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 653
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Channel Routing Test:···\u001b[39m\n\u001b[31m1. Routing Rules Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_routing_test.py\\\"\u001b[0m, line \u001b[35m65\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"   {channel}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 16: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  651 |     expect(result.output).toContain('Slack Channel Routing Test');\n  652 |     expect(result.output).toContain('Routing Rules Validation');\n> 653 |     expect(result.output).toContain('COMPLETED');\n      |                           ^\n  654 |     \n  655 |     // 임시 파일 정리\n  656 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:653:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T06:15:05.285Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 653
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-130a4ec5ff6435b131b7",
+              "file": "06-slack-integration.spec.js",
+              "line": 557,
+              "column": 3
+            },
+            {
+              "title": "Slack 웹훅 URL 형식 검증",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 77,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Webhook URL Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_webhook_validation.py\\\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  URL {i+1}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 9: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Webhook URL Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_webhook_validation.py\\\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  URL {i+1}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 9: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:51:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 51
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 49 |\u001b[39m     \n \u001b[90m 50 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Webhook URL Validation'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 51 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 52 |\u001b[39m     \n \u001b[90m 53 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 54 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 51
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Webhook URL Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_webhook_validation.py\\\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  URL {i+1}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 9: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  49 |     \n  50 |     expect(result.output).toContain('Slack Webhook URL Validation');\n> 51 |     expect(result.output).toContain('COMPLETED');\n     |                           ^\n  52 |     \n  53 |     // 임시 파일 정리\n  54 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:51:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:14:56.157Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-firefox\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 51
+                      }
+                    },
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 66,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Webhook URL Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_webhook_validation.py\\\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  URL {i+1}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 9: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Webhook URL Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_webhook_validation.py\\\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  URL {i+1}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 9: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:51:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 51
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 49 |\u001b[39m     \n \u001b[90m 50 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Webhook URL Validation'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 51 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 52 |\u001b[39m     \n \u001b[90m 53 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 54 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 51
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Webhook URL Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_webhook_validation.py\\\"\u001b[0m, line \u001b[35m23\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  URL {i+1}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 9: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  49 |     \n  50 |     expect(result.output).toContain('Slack Webhook URL Validation');\n> 51 |     expect(result.output).toContain('COMPLETED');\n     |                           ^\n  52 |     \n  53 |     // 임시 파일 정리\n  54 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:51:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T06:14:57.075Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-firefox-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 51
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-c1303417d6a3c5fabe78",
+              "file": "06-slack-integration.spec.js",
+              "line": 17,
+              "column": 3
+            },
+            {
+              "title": "Slack 메시지 페이로드 구조 검증",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 77,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"JSON serialization: ✓\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Payload Validation:···\u001b[39m\n\u001b[31mPayload 1:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_payload_validation.py\\\"\u001b[0m, line \u001b[35m58\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  {check}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 12: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"JSON serialization: ✓\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Payload Validation:···\u001b[39m\n\u001b[31mPayload 1:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_payload_validation.py\\\"\u001b[0m, line \u001b[35m58\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  {check}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 12: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:135:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 135
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 133 |\u001b[39m     \n \u001b[90m 134 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Payload Validation'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 135 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'JSON serialization: ✓'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 136 |\u001b[39m     \n \u001b[90m 137 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 138 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 135
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"JSON serialization: ✓\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Payload Validation:···\u001b[39m\n\u001b[31mPayload 1:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_payload_validation.py\\\"\u001b[0m, line \u001b[35m58\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  {check}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 12: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  133 |     \n  134 |     expect(result.output).toContain('Slack Payload Validation');\n> 135 |     expect(result.output).toContain('JSON serialization: ✓');\n      |                           ^\n  136 |     \n  137 |     // 임시 파일 정리\n  138 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:135:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:14:57.965Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-firefox\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 135
+                      }
+                    },
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 71,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"JSON serialization: ✓\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Payload Validation:···\u001b[39m\n\u001b[31mPayload 1:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_payload_validation.py\\\"\u001b[0m, line \u001b[35m58\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  {check}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 12: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"JSON serialization: ✓\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Payload Validation:···\u001b[39m\n\u001b[31mPayload 1:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_payload_validation.py\\\"\u001b[0m, line \u001b[35m58\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  {check}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 12: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:135:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 135
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 133 |\u001b[39m     \n \u001b[90m 134 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Payload Validation'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 135 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'JSON serialization: ✓'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 136 |\u001b[39m     \n \u001b[90m 137 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 138 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 135
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"JSON serialization: ✓\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Payload Validation:···\u001b[39m\n\u001b[31mPayload 1:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_payload_validation.py\\\"\u001b[0m, line \u001b[35m58\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  {check}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 12: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  133 |     \n  134 |     expect(result.output).toContain('Slack Payload Validation');\n> 135 |     expect(result.output).toContain('JSON serialization: ✓');\n      |                           ^\n  136 |     \n  137 |     // 임시 파일 정리\n  138 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:135:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T06:14:58.872Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-firefox-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 135
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-a55762716adaf518fe9f",
+              "file": "06-slack-integration.spec.js",
+              "line": 59,
+              "column": 3
+            },
+            {
+              "title": "Slack API 응답 처리 테스트",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 69,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:14:59.778Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-3eaa4367ac2350a7a0ee",
+              "file": "06-slack-integration.spec.js",
+              "line": 143,
+              "column": 3
+            },
+            {
+              "title": "Slack 메시지 형식화 및 한글 지원 테스트",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 82,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"Korean text support confirmed\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Message Formatting Test:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_formatting_test.py\\\"\u001b[0m, line \u001b[35m85\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(\\\"\\\\u2713 Message formatting successful\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 0: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"Korean text support confirmed\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Message Formatting Test:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_formatting_test.py\\\"\u001b[0m, line \u001b[35m85\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(\\\"\\\\u2713 Message formatting successful\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 0: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:325:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 325
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 323 |\u001b[39m     \n \u001b[90m 324 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Message Formatting Test'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 325 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Korean text support confirmed'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 326 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 327 |\u001b[39m     \n \u001b[90m 328 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 325
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"Korean text support confirmed\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Message Formatting Test:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_formatting_test.py\\\"\u001b[0m, line \u001b[35m85\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(\\\"\\\\u2713 Message formatting successful\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 0: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  323 |     \n  324 |     expect(result.output).toContain('Slack Message Formatting Test');\n> 325 |     expect(result.output).toContain('Korean text support confirmed');\n      |                           ^\n  326 |     expect(result.output).toContain('COMPLETED');\n  327 |     \n  328 |     // 임시 파일 정리\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:325:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:14:59.857Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-firefox\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 325
+                      }
+                    },
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 76,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"Korean text support confirmed\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Message Formatting Test:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_formatting_test.py\\\"\u001b[0m, line \u001b[35m85\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(\\\"\\\\u2713 Message formatting successful\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 0: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"Korean text support confirmed\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Message Formatting Test:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_formatting_test.py\\\"\u001b[0m, line \u001b[35m85\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(\\\"\\\\u2713 Message formatting successful\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 0: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:325:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 325
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 323 |\u001b[39m     \n \u001b[90m 324 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Message Formatting Test'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 325 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Korean text support confirmed'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 326 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 327 |\u001b[39m     \n \u001b[90m 328 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 325
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"Korean text support confirmed\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Message Formatting Test:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_formatting_test.py\\\"\u001b[0m, line \u001b[35m85\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(\\\"\\\\u2713 Message formatting successful\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 0: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  323 |     \n  324 |     expect(result.output).toContain('Slack Message Formatting Test');\n> 325 |     expect(result.output).toContain('Korean text support confirmed');\n      |                           ^\n  326 |     expect(result.output).toContain('COMPLETED');\n  327 |     \n  328 |     // 임시 파일 정리\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:325:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T06:15:00.771Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-firefox-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 325
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-74f22c8cb79a5fa77bbe",
+              "file": "06-slack-integration.spec.js",
+              "line": 223,
+              "column": 3
+            },
+            {
+              "title": "Slack 알림 재시도 메커니즘 테스트",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 60,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:15:01.665Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-04e18c58bc09d7c9fb6c",
+              "file": "06-slack-integration.spec.js",
+              "line": 334,
+              "column": 3
+            },
+            {
+              "title": "Slack 리포트 템플릿 시스템 테스트",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 73,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Report Template System Test:···\u001b[39m\n\u001b[31mDAILY Template:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_template_test.py\\\"\u001b[0m, line \u001b[35m115\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  Text: {report['text']}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\U0001f4ca' in position 8: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Report Template System Test:···\u001b[39m\n\u001b[31mDAILY Template:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_template_test.py\\\"\u001b[0m, line \u001b[35m115\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  Text: {report['text']}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\U0001f4ca' in position 8: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:549:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 549
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 547 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Report Template System Test'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 548 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'DAILY Template:'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 549 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 550 |\u001b[39m     \n \u001b[90m 551 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 552 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 549
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Report Template System Test:···\u001b[39m\n\u001b[31mDAILY Template:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_template_test.py\\\"\u001b[0m, line \u001b[35m115\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  Text: {report['text']}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\U0001f4ca' in position 8: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  547 |     expect(result.output).toContain('Slack Report Template System Test');\n  548 |     expect(result.output).toContain('DAILY Template:');\n> 549 |     expect(result.output).toContain('COMPLETED');\n      |                           ^\n  550 |     \n  551 |     // 임시 파일 정리\n  552 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:549:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:15:01.735Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-firefox\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 549
+                      }
+                    },
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 67,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Report Template System Test:···\u001b[39m\n\u001b[31mDAILY Template:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_template_test.py\\\"\u001b[0m, line \u001b[35m115\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  Text: {report['text']}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\U0001f4ca' in position 8: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Report Template System Test:···\u001b[39m\n\u001b[31mDAILY Template:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_template_test.py\\\"\u001b[0m, line \u001b[35m115\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  Text: {report['text']}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\U0001f4ca' in position 8: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:549:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 549
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 547 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Report Template System Test'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 548 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'DAILY Template:'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 549 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 550 |\u001b[39m     \n \u001b[90m 551 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 552 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 549
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Report Template System Test:···\u001b[39m\n\u001b[31mDAILY Template:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_template_test.py\\\"\u001b[0m, line \u001b[35m115\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"  Text: {report['text']}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\U0001f4ca' in position 8: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  547 |     expect(result.output).toContain('Slack Report Template System Test');\n  548 |     expect(result.output).toContain('DAILY Template:');\n> 549 |     expect(result.output).toContain('COMPLETED');\n      |                           ^\n  550 |     \n  551 |     // 임시 파일 정리\n  552 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:549:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T06:15:02.621Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-firefox-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 549
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-242f03c51b91e4954578",
+              "file": "06-slack-integration.spec.js",
+              "line": 415,
+              "column": 3
+            },
+            {
+              "title": "Slack 채널별 라우팅 테스트",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 78,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Channel Routing Test:···\u001b[39m\n\u001b[31m1. Routing Rules Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_routing_test.py\\\"\u001b[0m, line \u001b[35m65\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"   {channel}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 16: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Channel Routing Test:···\u001b[39m\n\u001b[31m1. Routing Rules Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_routing_test.py\\\"\u001b[0m, line \u001b[35m65\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"   {channel}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 16: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:653:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 653
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 651 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Channel Routing Test'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 652 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Routing Rules Validation'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 653 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 654 |\u001b[39m     \n \u001b[90m 655 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 656 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 653
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Channel Routing Test:···\u001b[39m\n\u001b[31m1. Routing Rules Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_routing_test.py\\\"\u001b[0m, line \u001b[35m65\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"   {channel}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 16: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  651 |     expect(result.output).toContain('Slack Channel Routing Test');\n  652 |     expect(result.output).toContain('Routing Rules Validation');\n> 653 |     expect(result.output).toContain('COMPLETED');\n      |                           ^\n  654 |     \n  655 |     // 임시 파일 정리\n  656 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:653:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T06:15:03.501Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-firefox\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 653
+                      }
+                    },
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 69,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Channel Routing Test:···\u001b[39m\n\u001b[31m1. Routing Rules Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_routing_test.py\\\"\u001b[0m, line \u001b[35m65\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"   {channel}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 16: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Channel Routing Test:···\u001b[39m\n\u001b[31m1. Routing Rules Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_routing_test.py\\\"\u001b[0m, line \u001b[35m65\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"   {channel}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 16: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:653:27",
+                        "location": {
+                          "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                          "column": 27,
+                          "line": 653
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 651 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Slack Channel Routing Test'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 652 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'Routing Rules Validation'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 653 |\u001b[39m     expect(result\u001b[33m.\u001b[39moutput)\u001b[33m.\u001b[39mtoContain(\u001b[32m'COMPLETED'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 654 |\u001b[39m     \n \u001b[90m 655 |\u001b[39m     \u001b[90m// 임시 파일 정리\u001b[39m\n \u001b[90m 656 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(tempScript)) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                            "column": 27,
+                            "line": 653
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"COMPLETED\"\u001b[39m\nReceived string:    \u001b[31m\"Slack Channel Routing Test:···\u001b[39m\n\u001b[31m1. Routing Rules Validation:·\u001b[39m\n\u001b[31mTraceback (most recent call last):·\u001b[39m\n\u001b[31m  File \u001b[35m\\\"C:\\\\claude03\\\\test-results\\\\temp_routing_test.py\\\"\u001b[0m, line \u001b[35m65\u001b[0m, in \u001b[35m<module>\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31mprint\u001b[0m\u001b[1;31m(f\\\"   {channel}: {status}\\\")\u001b[0m·\u001b[39m\n\u001b[31m    \u001b[31m~~~~~\u001b[0m\u001b[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m·\u001b[39m\n\u001b[31m\u001b[1;35mUnicodeEncodeError\u001b[0m: \u001b[35m'cp949' codec can't encode character '\\\\u2713' in position 16: illegal multibyte sequence\u001b[0m·\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  651 |     expect(result.output).toContain('Slack Channel Routing Test');\n  652 |     expect(result.output).toContain('Routing Rules Validation');\n> 653 |     expect(result.output).toContain('COMPLETED');\n      |                           ^\n  654 |     \n  655 |     // 임시 파일 정리\n  656 |     if (fs.existsSync(tempScript)) {\n    at C:\\claude03\\tests\\06-slack-integration.spec.js:653:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T06:15:04.415Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\claude03\\test-results\\06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-firefox-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\claude03\\tests\\06-slack-integration.spec.js",
+                        "column": 27,
+                        "line": 653
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ec9980472f00291c128f-49f7c44fa3fbff427d26",
+              "file": "06-slack-integration.spec.js",
+              "line": 557,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-08-08T06:14:55.215Z",
+    "duration": 10178.447,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 10,
+    "flaky": 1
+  }
+}

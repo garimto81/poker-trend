@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase 환경변수 테스트</title>
+    
+    <!-- Firebase 환경변수 설정 -->
+    <script>
+        window.FIREBASE_API_KEY = "AIzaSyD6LVOtT0x30CQNZDt5aSUEBKT8vXPhM6k";
+        window.FIREBASE_AUTH_DOMAIN = "ggp-camera.firebaseapp.com";
+        window.FIREBASE_PROJECT_ID = "ggp-camera";
+        window.FIREBASE_STORAGE_BUCKET = "ggp-camera.appspot.com";
+        window.FIREBASE_MESSAGING_SENDER_ID = "906682771595";
+        window.FIREBASE_APP_ID = "1:906682771595:web:431b539435f4a0ca294c8e";
+        window.FIREBASE_MEASUREMENT_ID = "G-JLR9TMLSS1";
+    </script>
+    
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .result { background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; border: 1px solid #f5c6cb; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🔥 Firebase 환경변수 설정 테스트</h1>
+    
+    <div class="result" id="env-test">
+        <h3>1. 환경변수 설정 확인</h3>
+        <div id="env-result">테스트 중...</div>
+    </div>
+    
+    <div class="result" id="config-test">
+        <h3>2. Config.js 모듈 로드 테스트</h3>
+        <div id="config-result">테스트 중...</div>
+    </div>
+    
+    <div class="result" id="firebase-test">
+        <h3>3. Firebase 설정 유효성 테스트</h3>
+        <div id="firebase-result">테스트 중...</div>
+    </div>
+    
+    <button onclick="runAllTests()" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 20px 0;">
+        🧪 전체 테스트 실행
+    </button>
+    
+    <script type="module">
+        // 1. 환경변수 설정 확인
+        function testEnvironmentVariables() {
+            const envResult = document.getElementById('env-result');
+            
+            const requiredVars = [
+                'FIREBASE_API_KEY',
+                'FIREBASE_AUTH_DOMAIN', 
+                'FIREBASE_PROJECT_ID',
+                'FIREBASE_STORAGE_BUCKET',
+                'FIREBASE_MESSAGING_SENDER_ID',
+                'FIREBASE_APP_ID',
+                'FIREBASE_MEASUREMENT_ID'
+            ];
+            
+            let allPresent = true;
+            let results = [];
+            
+            requiredVars.forEach(varName => {
+                const value = window[varName];
+                if (value) {
+                    results.push(`✅ ${varName}: ${value.substring(0, 20)}...`);
+                } else {
+                    results.push(`❌ ${varName}: 설정되지 않음`);
+                    allPresent = false;
+                }
+            });
+            
+            const resultDiv = document.getElementById('env-test');
+            if (allPresent) {
+                resultDiv.className = 'result success';
+                envResult.innerHTML = `<p><strong>✅ 모든 환경변수가 정상적으로 설정되었습니다!</strong></p><pre>${results.join('\n')}</pre>`;
+            } else {
+                resultDiv.className = 'result error';
+                envResult.innerHTML = `<p><strong>❌ 일부 환경변수가 누락되었습니다.</strong></p><pre>${results.join('\n')}</pre>`;
+            }
+        }
+        
+        // 2. Config.js 모듈 로드 테스트
+        async function testConfigModule() {
+            const configResult = document.getElementById('config-result');
+            const resultDiv = document.getElementById('config-test');
+            
+            try {
+                const { getFirebaseConfig, ASSIGNEES, ERROR_MESSAGES } = await import('./config.js');
+                
+                // Config 함수 테스트
+                const config = getFirebaseConfig();
+                
+                const tests = [
+                    { name: 'getFirebaseConfig 함수', result: typeof getFirebaseConfig === 'function' },
+                    { name: 'ASSIGNEES 객체', result: typeof ASSIGNEES === 'object' && Object.keys(ASSIGNEES).length > 0 },
+                    { name: 'ERROR_MESSAGES 객체', result: typeof ERROR_MESSAGES === 'object' },
+                    { name: 'Firebase config 반환', result: config && config.apiKey && config.projectId },
+                    { name: 'API Key 유효성', result: config.apiKey.startsWith('AIza') }
+                ];
+                
+                const allPassed = tests.every(test => test.result);
+                
+                if (allPassed) {
+                    resultDiv.className = 'result success';
+                    configResult.innerHTML = `
+                        <p><strong>✅ Config.js 모듈이 정상적으로 로드되었습니다!</strong></p>
+                        <pre>${tests.map(t => `✅ ${t.name}: ${t.result ? 'PASS' : 'FAIL'}`).join('\n')}</pre>
+                        <p><strong>Firebase Config:</strong></p>
+                        <pre>${JSON.stringify({...config, apiKey: config.apiKey.substring(0, 10) + '...'}, null, 2)}</pre>
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    configResult.innerHTML = `
+                        <p><strong>❌ Config.js 모듈 로드 중 문제가 발생했습니다.</strong></p>
+                        <pre>${tests.map(t => `${t.result ? '✅' : '❌'} ${t.name}: ${t.result ? 'PASS' : 'FAIL'}`).join('\n')}</pre>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                configResult.innerHTML = `<p><strong>❌ Config.js 모듈 로드 실패:</strong></p><pre>${error.message}</pre>`;
+            }
+        }
+        
+        // 3. Firebase 설정 유효성 테스트
+        async function testFirebaseConfig() {
+            const firebaseResult = document.getElementById('firebase-result');
+            const resultDiv = document.getElementById('firebase-test');
+            
+            try {
+                const { getFirebaseConfig } = await import('./config.js');
+                const config = getFirebaseConfig();
+                
+                const validations = [
+                    { name: 'API Key 형식', test: () => config.apiKey && config.apiKey.length > 30 },
+                    { name: 'Project ID', test: () => config.projectId === 'ggp-camera' },
+                    { name: 'Auth Domain', test: () => config.authDomain && config.authDomain.includes('firebaseapp.com') },
+                    { name: 'Storage Bucket', test: () => config.storageBucket && config.storageBucket.includes('appspot.com') },
+                    { name: 'Messaging Sender ID', test: () => config.messagingSenderId && config.messagingSenderId.length > 5 },
+                    { name: 'App ID', test: () => config.appId && config.appId.includes(':') }
+                ];
+                
+                const results = validations.map(v => {
+                    try {
+                        const passed = v.test();
+                        return { name: v.name, passed, error: null };
+                    } catch (error) {
+                        return { name: v.name, passed: false, error: error.message };
+                    }
+                });
+                
+                const allPassed = results.every(r => r.passed);
+                
+                if (allPassed) {
+                    resultDiv.className = 'result success';
+                    firebaseResult.innerHTML = `
+                        <p><strong>✅ Firebase 설정이 모두 유효합니다!</strong></p>
+                        <pre>${results.map(r => `✅ ${r.name}: PASS`).join('\n')}</pre>
+                        <p><em>이제 실제 Firebase 서비스에 연결할 준비가 완료되었습니다.</em></p>
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    firebaseResult.innerHTML = `
+                        <p><strong>❌ Firebase 설정에 문제가 있습니다.</strong></p>
+                        <pre>${results.map(r => `${r.passed ? '✅' : '❌'} ${r.name}: ${r.passed ? 'PASS' : 'FAIL'}${r.error ? ' (' + r.error + ')' : ''}`).join('\n')}</pre>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                firebaseResult.innerHTML = `<p><strong>❌ Firebase 설정 테스트 실패:</strong></p><pre>${error.message}</pre>`;
+            }
+        }
+        
+        // 전체 테스트 실행
+        window.runAllTests = async function() {
+            console.log('🧪 Firebase 환경변수 테스트 시작...');
+            
+            testEnvironmentVariables();
+            await testConfigModule();
+            await testFirebaseConfig();
+            
+            console.log('✅ 모든 테스트 완료!');
+        };
+        
+        // 페이지 로드 시 자동 실행
+        document.addEventListener('DOMContentLoaded', runAllTests);
+    </script>
+</body>
+</html>

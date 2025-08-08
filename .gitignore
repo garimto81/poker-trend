@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+*/node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Build outputs
+dist/
+build/
+*.pyc
+__pycache__/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test results
+test-results/
+coverage/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Python
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Playwright
+playwright-report/
+test-downloads/

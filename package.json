@@ -1,0 +1,44 @@
+{
+  "name": "claude03",
+  "version": "1.0.0",
+  "description": "**통합 포커 트렌드 분석 및 자동화 플랫폼**",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.54.2",
+    "@playwright/test-runner": "^0.9.24",
+    "js-yaml": "^4.1.0",
+    "playwright": "^1.54.2",
+    "playwright-core": "^1.54.2"
+  },
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "test:schedule": "npx playwright test tests/01-schedule-validation.spec.js",
+    "test:pokernews": "npx playwright test tests/02-pokernews-pipeline.spec.js",
+    "test:youtube": "npx playwright test tests/03-youtube-analysis.spec.js",
+    "test:platform": "npx playwright test tests/04-platform-analysis.spec.js",
+    "test:github": "npx playwright test tests/05-github-actions.spec.js",
+    "test:slack": "npx playwright test tests/06-slack-integration.spec.js",
+    "test:e2e": "npx playwright test tests/07-e2e-integration.spec.js",
+    "test:performance": "npx playwright test tests/08-performance-error.spec.js",
+    "test:report": "npx playwright show-report",
+    "test:install": "npx playwright install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garimto81/poker-trend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/garimto81/poker-trend/issues"
+  },
+  "homepage": "https://github.com/garimto81/poker-trend#readme"
+}

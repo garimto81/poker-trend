@@ -1,0 +1,741 @@
+<testsuites id="" name="" tests="14" failures="10" skipped="0" errors="0" time="10.178447">
+<testsuite name="06-slack-integration.spec.js" timestamp="2025-08-08T06:14:55.353Z" hostname="chromium" tests="7" failures="5" skipped="0" time="0.892" errors="0">
+<testcase name="Slack Integration › Slack 웹훅 URL 형식 검증" classname="06-slack-integration.spec.js" time="0.143">
+<failure message="06-slack-integration.spec.js:17:3 Slack 웹훅 URL 형식 검증" type="FAILURE">
+<![CDATA[  [chromium] › 06-slack-integration.spec.js:17:3 › Slack Integration › Slack 웹훅 URL 형식 검증 ──────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "COMPLETED"
+    Received string:    "Slack Webhook URL Validation:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_webhook_validation.py\", line 23, in <module>·
+        print(f\"  URL {i+1}: {status}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 9: illegal multibyte sequence·
+    "
+
+      49 |     
+      50 |     expect(result.output).toContain('Slack Webhook URL Validation');
+    > 51 |     expect(result.output).toContain('COMPLETED');
+         |                           ^
+      52 |     
+      53 |     // 임시 파일 정리
+      54 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:51:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "COMPLETED"
+    Received string:    "Slack Webhook URL Validation:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_webhook_validation.py\", line 23, in <module>·
+        print(f\"  URL {i+1}: {status}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 9: illegal multibyte sequence·
+    "
+
+      49 |     
+      50 |     expect(result.output).toContain('Slack Webhook URL Validation');
+    > 51 |     expect(result.output).toContain('COMPLETED');
+         |                           ^
+      52 |     
+      53 |     // 임시 파일 정리
+      54 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:51:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-chromium-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-chromium-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-chromium\trace.zip]]
+
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-chromium-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Slack Integration › Slack 메시지 페이로드 구조 검증" classname="06-slack-integration.spec.js" time="0.147">
+<failure message="06-slack-integration.spec.js:59:3 Slack 메시지 페이로드 구조 검증" type="FAILURE">
+<![CDATA[  [chromium] › 06-slack-integration.spec.js:59:3 › Slack Integration › Slack 메시지 페이로드 구조 검증 ────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "JSON serialization: ✓"
+    Received string:    "Slack Payload Validation:···
+    Payload 1:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_payload_validation.py\", line 58, in <module>·
+        print(f\"  {check}: {status}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 12: illegal multibyte sequence·
+    "
+
+      133 |     
+      134 |     expect(result.output).toContain('Slack Payload Validation');
+    > 135 |     expect(result.output).toContain('JSON serialization: ✓');
+          |                           ^
+      136 |     
+      137 |     // 임시 파일 정리
+      138 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:135:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "JSON serialization: ✓"
+    Received string:    "Slack Payload Validation:···
+    Payload 1:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_payload_validation.py\", line 58, in <module>·
+        print(f\"  {check}: {status}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 12: illegal multibyte sequence·
+    "
+
+      133 |     
+      134 |     expect(result.output).toContain('Slack Payload Validation');
+    > 135 |     expect(result.output).toContain('JSON serialization: ✓');
+          |                           ^
+      136 |     
+      137 |     // 임시 파일 정리
+      138 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:135:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-chromium-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-chromium-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-chromium\trace.zip]]
+
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-chromium-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Slack Integration › Slack API 응답 처리 테스트" classname="06-slack-integration.spec.js" time="0.126">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-API-응답-처리-테스트-chromium\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Slack Integration › Slack 메시지 형식화 및 한글 지원 테스트" classname="06-slack-integration.spec.js" time="0.15">
+<failure message="06-slack-integration.spec.js:223:3 Slack 메시지 형식화 및 한글 지원 테스트" type="FAILURE">
+<![CDATA[  [chromium] › 06-slack-integration.spec.js:223:3 › Slack Integration › Slack 메시지 형식화 및 한글 지원 테스트 ──
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Korean text support confirmed"
+    Received string:    "Slack Message Formatting Test:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_formatting_test.py\", line 85, in <module>·
+        print(\"\\u2713 Message formatting successful\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 0: illegal multibyte sequence·
+    "
+
+      323 |     
+      324 |     expect(result.output).toContain('Slack Message Formatting Test');
+    > 325 |     expect(result.output).toContain('Korean text support confirmed');
+          |                           ^
+      326 |     expect(result.output).toContain('COMPLETED');
+      327 |     
+      328 |     // 임시 파일 정리
+        at C:\claude03\tests\06-slack-integration.spec.js:325:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Korean text support confirmed"
+    Received string:    "Slack Message Formatting Test:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_formatting_test.py\", line 85, in <module>·
+        print(\"\\u2713 Message formatting successful\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 0: illegal multibyte sequence·
+    "
+
+      323 |     
+      324 |     expect(result.output).toContain('Slack Message Formatting Test');
+    > 325 |     expect(result.output).toContain('Korean text support confirmed');
+          |                           ^
+      326 |     expect(result.output).toContain('COMPLETED');
+      327 |     
+      328 |     // 임시 파일 정리
+        at C:\claude03\tests\06-slack-integration.spec.js:325:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-chromium-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-chromium-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-chromium\trace.zip]]
+
+[[ATTACHMENT|06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-chromium-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Slack Integration › Slack 알림 재시도 메커니즘 테스트" classname="06-slack-integration.spec.js" time="0.055">
+</testcase>
+<testcase name="Slack Integration › Slack 리포트 템플릿 시스템 테스트" classname="06-slack-integration.spec.js" time="0.135">
+<failure message="06-slack-integration.spec.js:415:3 Slack 리포트 템플릿 시스템 테스트" type="FAILURE">
+<![CDATA[  [chromium] › 06-slack-integration.spec.js:415:3 › Slack Integration › Slack 리포트 템플릿 시스템 테스트 ──────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "COMPLETED"
+    Received string:    "Slack Report Template System Test:···
+    DAILY Template:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_template_test.py\", line 115, in <module>·
+        print(f\"  Text: {report['text']}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\U0001f4ca' in position 8: illegal multibyte sequence·
+    "
+
+      547 |     expect(result.output).toContain('Slack Report Template System Test');
+      548 |     expect(result.output).toContain('DAILY Template:');
+    > 549 |     expect(result.output).toContain('COMPLETED');
+          |                           ^
+      550 |     
+      551 |     // 임시 파일 정리
+      552 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:549:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "COMPLETED"
+    Received string:    "Slack Report Template System Test:···
+    DAILY Template:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_template_test.py\", line 115, in <module>·
+        print(f\"  Text: {report['text']}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\U0001f4ca' in position 8: illegal multibyte sequence·
+    "
+
+      547 |     expect(result.output).toContain('Slack Report Template System Test');
+      548 |     expect(result.output).toContain('DAILY Template:');
+    > 549 |     expect(result.output).toContain('COMPLETED');
+          |                           ^
+      550 |     
+      551 |     // 임시 파일 정리
+      552 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:549:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-chromium-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-chromium-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-chromium\trace.zip]]
+
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-chromium-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Slack Integration › Slack 채널별 라우팅 테스트" classname="06-slack-integration.spec.js" time="0.136">
+<failure message="06-slack-integration.spec.js:557:3 Slack 채널별 라우팅 테스트" type="FAILURE">
+<![CDATA[  [chromium] › 06-slack-integration.spec.js:557:3 › Slack Integration › Slack 채널별 라우팅 테스트 ──────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "COMPLETED"
+    Received string:    "Slack Channel Routing Test:···
+    1. Routing Rules Validation:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_routing_test.py\", line 65, in <module>·
+        print(f\"   {channel}: {status}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 16: illegal multibyte sequence·
+    "
+
+      651 |     expect(result.output).toContain('Slack Channel Routing Test');
+      652 |     expect(result.output).toContain('Routing Rules Validation');
+    > 653 |     expect(result.output).toContain('COMPLETED');
+          |                           ^
+      654 |     
+      655 |     // 임시 파일 정리
+      656 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:653:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "COMPLETED"
+    Received string:    "Slack Channel Routing Test:···
+    1. Routing Rules Validation:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_routing_test.py\", line 65, in <module>·
+        print(f\"   {channel}: {status}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 16: illegal multibyte sequence·
+    "
+
+      651 |     expect(result.output).toContain('Slack Channel Routing Test');
+      652 |     expect(result.output).toContain('Routing Rules Validation');
+    > 653 |     expect(result.output).toContain('COMPLETED');
+          |                           ^
+      654 |     
+      655 |     // 임시 파일 정리
+      656 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:653:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-chromium-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-chromium-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-chromium\trace.zip]]
+
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-chromium-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="06-slack-integration.spec.js" timestamp="2025-08-08T06:14:55.353Z" hostname="firefox" tests="7" failures="5" skipped="0" time="0.865" errors="0">
+<testcase name="Slack Integration › Slack 웹훅 URL 형식 검증" classname="06-slack-integration.spec.js" time="0.143">
+<failure message="06-slack-integration.spec.js:17:3 Slack 웹훅 URL 형식 검증" type="FAILURE">
+<![CDATA[  [firefox] › 06-slack-integration.spec.js:17:3 › Slack Integration › Slack 웹훅 URL 형식 검증 ───────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "COMPLETED"
+    Received string:    "Slack Webhook URL Validation:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_webhook_validation.py\", line 23, in <module>·
+        print(f\"  URL {i+1}: {status}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 9: illegal multibyte sequence·
+    "
+
+      49 |     
+      50 |     expect(result.output).toContain('Slack Webhook URL Validation');
+    > 51 |     expect(result.output).toContain('COMPLETED');
+         |                           ^
+      52 |     
+      53 |     // 임시 파일 정리
+      54 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:51:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "COMPLETED"
+    Received string:    "Slack Webhook URL Validation:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_webhook_validation.py\", line 23, in <module>·
+        print(f\"  URL {i+1}: {status}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 9: illegal multibyte sequence·
+    "
+
+      49 |     
+      50 |     expect(result.output).toContain('Slack Webhook URL Validation');
+    > 51 |     expect(result.output).toContain('COMPLETED');
+         |                           ^
+      52 |     
+      53 |     // 임시 파일 정리
+      54 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:51:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-firefox\trace.zip]]
+
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-웹훅-URL-형식-검증-firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Slack Integration › Slack 메시지 페이로드 구조 검증" classname="06-slack-integration.spec.js" time="0.148">
+<failure message="06-slack-integration.spec.js:59:3 Slack 메시지 페이로드 구조 검증" type="FAILURE">
+<![CDATA[  [firefox] › 06-slack-integration.spec.js:59:3 › Slack Integration › Slack 메시지 페이로드 구조 검증 ─────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "JSON serialization: ✓"
+    Received string:    "Slack Payload Validation:···
+    Payload 1:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_payload_validation.py\", line 58, in <module>·
+        print(f\"  {check}: {status}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 12: illegal multibyte sequence·
+    "
+
+      133 |     
+      134 |     expect(result.output).toContain('Slack Payload Validation');
+    > 135 |     expect(result.output).toContain('JSON serialization: ✓');
+          |                           ^
+      136 |     
+      137 |     // 임시 파일 정리
+      138 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:135:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "JSON serialization: ✓"
+    Received string:    "Slack Payload Validation:···
+    Payload 1:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_payload_validation.py\", line 58, in <module>·
+        print(f\"  {check}: {status}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 12: illegal multibyte sequence·
+    "
+
+      133 |     
+      134 |     expect(result.output).toContain('Slack Payload Validation');
+    > 135 |     expect(result.output).toContain('JSON serialization: ✓');
+          |                           ^
+      136 |     
+      137 |     // 임시 파일 정리
+      138 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:135:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-firefox\trace.zip]]
+
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-메시지-페이로드-구조-검증-firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Slack Integration › Slack API 응답 처리 테스트" classname="06-slack-integration.spec.js" time="0.069">
+</testcase>
+<testcase name="Slack Integration › Slack 메시지 형식화 및 한글 지원 테스트" classname="06-slack-integration.spec.js" time="0.158">
+<failure message="06-slack-integration.spec.js:223:3 Slack 메시지 형식화 및 한글 지원 테스트" type="FAILURE">
+<![CDATA[  [firefox] › 06-slack-integration.spec.js:223:3 › Slack Integration › Slack 메시지 형식화 및 한글 지원 테스트 ───
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Korean text support confirmed"
+    Received string:    "Slack Message Formatting Test:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_formatting_test.py\", line 85, in <module>·
+        print(\"\\u2713 Message formatting successful\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 0: illegal multibyte sequence·
+    "
+
+      323 |     
+      324 |     expect(result.output).toContain('Slack Message Formatting Test');
+    > 325 |     expect(result.output).toContain('Korean text support confirmed');
+          |                           ^
+      326 |     expect(result.output).toContain('COMPLETED');
+      327 |     
+      328 |     // 임시 파일 정리
+        at C:\claude03\tests\06-slack-integration.spec.js:325:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Korean text support confirmed"
+    Received string:    "Slack Message Formatting Test:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_formatting_test.py\", line 85, in <module>·
+        print(\"\\u2713 Message formatting successful\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 0: illegal multibyte sequence·
+    "
+
+      323 |     
+      324 |     expect(result.output).toContain('Slack Message Formatting Test');
+    > 325 |     expect(result.output).toContain('Korean text support confirmed');
+          |                           ^
+      326 |     expect(result.output).toContain('COMPLETED');
+      327 |     
+      328 |     // 임시 파일 정리
+        at C:\claude03\tests\06-slack-integration.spec.js:325:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-firefox\trace.zip]]
+
+[[ATTACHMENT|06-slack-integration-Slack-13e49-n-Slack-메시지-형식화-및-한글-지원-테스트-firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Slack Integration › Slack 알림 재시도 메커니즘 테스트" classname="06-slack-integration.spec.js" time="0.06">
+</testcase>
+<testcase name="Slack Integration › Slack 리포트 템플릿 시스템 테스트" classname="06-slack-integration.spec.js" time="0.14">
+<failure message="06-slack-integration.spec.js:415:3 Slack 리포트 템플릿 시스템 테스트" type="FAILURE">
+<![CDATA[  [firefox] › 06-slack-integration.spec.js:415:3 › Slack Integration › Slack 리포트 템플릿 시스템 테스트 ───────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "COMPLETED"
+    Received string:    "Slack Report Template System Test:···
+    DAILY Template:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_template_test.py\", line 115, in <module>·
+        print(f\"  Text: {report['text']}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\U0001f4ca' in position 8: illegal multibyte sequence·
+    "
+
+      547 |     expect(result.output).toContain('Slack Report Template System Test');
+      548 |     expect(result.output).toContain('DAILY Template:');
+    > 549 |     expect(result.output).toContain('COMPLETED');
+          |                           ^
+      550 |     
+      551 |     // 임시 파일 정리
+      552 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:549:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "COMPLETED"
+    Received string:    "Slack Report Template System Test:···
+    DAILY Template:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_template_test.py\", line 115, in <module>·
+        print(f\"  Text: {report['text']}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\U0001f4ca' in position 8: illegal multibyte sequence·
+    "
+
+      547 |     expect(result.output).toContain('Slack Report Template System Test');
+      548 |     expect(result.output).toContain('DAILY Template:');
+    > 549 |     expect(result.output).toContain('COMPLETED');
+          |                           ^
+      550 |     
+      551 |     // 임시 파일 정리
+      552 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:549:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-firefox\trace.zip]]
+
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-리포트-템플릿-시스템-테스트-firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Slack Integration › Slack 채널별 라우팅 테스트" classname="06-slack-integration.spec.js" time="0.147">
+<failure message="06-slack-integration.spec.js:557:3 Slack 채널별 라우팅 테스트" type="FAILURE">
+<![CDATA[  [firefox] › 06-slack-integration.spec.js:557:3 › Slack Integration › Slack 채널별 라우팅 테스트 ───────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "COMPLETED"
+    Received string:    "Slack Channel Routing Test:···
+    1. Routing Rules Validation:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_routing_test.py\", line 65, in <module>·
+        print(f\"   {channel}: {status}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 16: illegal multibyte sequence·
+    "
+
+      651 |     expect(result.output).toContain('Slack Channel Routing Test');
+      652 |     expect(result.output).toContain('Routing Rules Validation');
+    > 653 |     expect(result.output).toContain('COMPLETED');
+          |                           ^
+      654 |     
+      655 |     // 임시 파일 정리
+      656 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:653:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "COMPLETED"
+    Received string:    "Slack Channel Routing Test:···
+    1. Routing Rules Validation:·
+    Traceback (most recent call last):·
+      File \"C:\\claude03\\test-results\\temp_routing_test.py\", line 65, in <module>·
+        print(f\"   {channel}: {status}\")·
+        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^·
+    UnicodeEncodeError: 'cp949' codec can't encode character '\\u2713' in position 16: illegal multibyte sequence·
+    "
+
+      651 |     expect(result.output).toContain('Slack Channel Routing Test');
+      652 |     expect(result.output).toContain('Routing Rules Validation');
+    > 653 |     expect(result.output).toContain('COMPLETED');
+          |                           ^
+      654 |     
+      655 |     // 임시 파일 정리
+      656 |     if (fs.existsSync(tempScript)) {
+        at C:\claude03\tests\06-slack-integration.spec.js:653:27
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-firefox\trace.zip]]
+
+[[ATTACHMENT|06-slack-integration-Slack-Integration-Slack-채널별-라우팅-테스트-firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

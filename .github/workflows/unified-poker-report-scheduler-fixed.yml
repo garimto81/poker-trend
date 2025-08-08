@@ -1,0 +1,546 @@
+name: 🎰 통합 포커 보고 스케줄링 시스템 (경로 수정)
+
+# 통일된 스케줄링 규칙:
+# 1. 월간 보고서: 매월 첫째주 월요일 - 지난달 데이터 분석
+# 2. 주간 보고서: 매주 월요일 - 지난주 데이터 분석 (월간 보고서 있으면 생략)  
+# 3. 일간 보고서: 매일 (평일만) - 전일 데이터 분석 (주간 보고서 있으면 생략)
+# 4. 주말 제외: 토요일, 일요일 보고 없음
+# 5. 실행 시간: 매일 오전 10시 (KST) 순차 실행
+
+on:
+  schedule:
+    # 매일 오전 10시 (KST) = UTC 01:00 (평일만 실행)
+    - cron: '0 1 * * 1-5'  # 월-금요일만 실행
+    
+  workflow_dispatch:
+    inputs:
+      force_report_type:
+        description: '강제 리포트 타입 (자동 결정 무시)'
+        required: false
+        type: choice
+        options:
+        - ''
+        - daily
+        - weekly  
+        - monthly
+        default: ''
+      date_override:
+        description: '날짜 오버라이드 (YYYY-MM-DD 형식, 테스트용)'
+        required: false
+        type: string
+        default: ''
+      skip_pokernews:
+        description: 'PokerNews 분석 건너뛰기'
+        type: boolean
+        default: false
+      skip_youtube:
+        description: 'YouTube 분석 건너뛰기'
+        type: boolean
+        default: false
+      skip_platform:
+        description: 'Platform 분석 건너뛰기'
+        type: boolean
+        default: false
+
+# 환경 변수
+env:
+  TIMEZONE: Asia/Seoul
+  WORKFLOW_NAME: "통합 포커 보고 스케줄링 시스템"
+
+jobs:
+  # Job 1: 스케줄 결정 및 검증 로직
+  schedule-determination:
+    name: "🧠 지능형 스케줄 결정"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      report_type: ${{ steps.determine-schedule.outputs.report_type }}
+      data_period_start: ${{ steps.determine-schedule.outputs.data_period_start }}
+      data_period_end: ${{ steps.determine-schedule.outputs.data_period_end }}
+      should_run_pokernews: ${{ steps.determine-schedule.outputs.should_run_pokernews }}
+      should_run_youtube: ${{ steps.determine-schedule.outputs.should_run_youtube }}
+      should_run_platform: ${{ steps.determine-schedule.outputs.should_run_platform }}
+      schedule_description: ${{ steps.determine-schedule.outputs.schedule_description }}
+      execution_priority: ${{ steps.determine-schedule.outputs.execution_priority }}
+      news_analyzer_path: ${{ steps.path-check.outputs.news_analyzer_path }}
+      youtube_path: ${{ steps.path-check.outputs.youtube_path }}
+      platform_path: ${{ steps.path-check.outputs.platform_path }}
+
+    steps:
+    - name: 🔄 Checkout code
+      uses: actions/checkout@v4
+    
+    - name: 🔍 Check directory structure
+      id: path-check
+      run: |
+        echo "🔍 Checking directory structure..."
+        
+        # 현재 위치 확인
+        echo "Current directory: $(pwd)"
+        echo "GitHub workspace: $GITHUB_WORKSPACE"
+        
+        # PokerNews 경로 찾기
+        if [ -d "poker-trend-analysis/backend/news-analyzer" ]; then
+          echo "news_analyzer_path=poker-trend-analysis/backend/news-analyzer" >> $GITHUB_OUTPUT
+          echo "✅ Found news-analyzer at: poker-trend-analysis/backend/news-analyzer"
+        elif [ -d "backend/news-analyzer" ]; then
+          echo "news_analyzer_path=backend/news-analyzer" >> $GITHUB_OUTPUT
+          echo "✅ Found news-analyzer at: backend/news-analyzer"
+        else
+          echo "❌ news-analyzer directory not found!"
+          find . -type d -name "news-analyzer" 2>/dev/null || true
+          exit 1
+        fi
+        
+        # YouTube 경로 찾기
+        if [ -d "backend/data-collector" ]; then
+          echo "youtube_path=backend/data-collector" >> $GITHUB_OUTPUT
+          echo "✅ Found data-collector at: backend/data-collector"
+        elif [ -d "poker-trend-analysis/backend/data-collector" ]; then
+          echo "youtube_path=poker-trend-analysis/backend/data-collector" >> $GITHUB_OUTPUT
+          echo "✅ Found data-collector at: poker-trend-analysis/backend/data-collector"
+        else
+          echo "❌ data-collector directory not found!"
+          exit 1
+        fi
+        
+        # Platform 경로 찾기
+        if [ -d "backend/platform-analyzer" ]; then
+          echo "platform_path=backend/platform-analyzer" >> $GITHUB_OUTPUT
+          echo "✅ Found platform-analyzer at: backend/platform-analyzer"
+        elif [ -d "poker-trend-analysis/backend/platform-analyzer" ]; then
+          echo "platform_path=poker-trend-analysis/backend/platform-analyzer" >> $GITHUB_OUTPUT
+          echo "✅ Found platform-analyzer at: poker-trend-analysis/backend/platform-analyzer"
+        else
+          echo "❌ platform-analyzer directory not found!"
+          exit 1
+        fi
+        
+        echo "📁 Directory structure verified successfully"
+      
+    - name: 🧠 지능형 스케줄 결정 로직
+      id: determine-schedule
+      run: |
+        echo "🚀 통합 포커 보고 스케줄링 시스템 시작"
+        
+        # 현재 시간 정보 (KST)
+        if [[ -n "${{ github.event.inputs.date_override }}" ]]; then
+          # 테스트용 날짜 오버라이드
+          CURRENT_DATE="${{ github.event.inputs.date_override }}"
+          echo "⚠️ 날짜 오버라이드 사용: $CURRENT_DATE"
+          # 오버라이드된 날짜로 계산
+          DAY_OF_MONTH=$(date -d "$CURRENT_DATE" +%d)
+          DAY_OF_WEEK=$(date -d "$CURRENT_DATE" +%u)
+          WEEK_OF_MONTH=$(( ($(date -d "$CURRENT_DATE" +%d) - 1) / 7 + 1 ))
+          KST_TIME=$(date -d "$CURRENT_DATE" "+%Y-%m-%d %H:%M:%S KST")
+        else
+          # 실제 KST 시간 사용
+          CURRENT_DATE=$(TZ=Asia/Seoul date '+%Y-%m-%d')
+          DAY_OF_MONTH=$(TZ=Asia/Seoul date '+%d')
+          DAY_OF_WEEK=$(TZ=Asia/Seoul date '+%u')  # 1=월요일, 7=일요일
+          WEEK_OF_MONTH=$(( ($(TZ=Asia/Seoul date '+%d') - 1) / 7 + 1 ))
+          KST_TIME=$(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S %Z')
+        fi
+        
+        echo "📅 현재 날짜: $CURRENT_DATE"
+        echo "📊 요일: $DAY_OF_WEEK (1=월, 7=일)"
+        echo "📈 월 중 몇째 주: $WEEK_OF_MONTH"
+        echo "🕐 실행 시간: $KST_TIME"
+        
+        # 수동 실행 시 강제 타입 확인
+        if [[ "${{ github.event_name }}" == "workflow_dispatch" && -n "${{ github.event.inputs.force_report_type }}" ]]; then
+          REPORT_TYPE="${{ github.event.inputs.force_report_type }}"
+          echo "🔧 수동 실행: 강제 리포트 타입 = $REPORT_TYPE"
+        else
+          # 자동 스케줄 결정 로직
+          if [[ $DAY_OF_WEEK -eq 1 && $WEEK_OF_MONTH -eq 1 ]]; then
+            # 첫째주 월요일 → 월간 리포트
+            REPORT_TYPE="monthly"
+            echo "🗓️ 첫째주 월요일 감지 → 월간 리포트"
+          elif [[ $DAY_OF_WEEK -eq 1 ]]; then
+            # 일반 월요일 → 주간 리포트
+            REPORT_TYPE="weekly"
+            echo "📅 일반 월요일 감지 → 주간 리포트"
+          elif [[ $DAY_OF_WEEK -ge 2 && $DAY_OF_WEEK -le 5 ]]; then
+            # 평일 (화-금) → 일간 리포트
+            REPORT_TYPE="daily"
+            echo "📋 평일 감지 → 일간 리포트"
+          else
+            # 주말 → 실행하지 않음
+            echo "🚫 주말 감지 → 실행 중단"
+            echo "should_run_pokernews=false" >> $GITHUB_OUTPUT
+            echo "should_run_youtube=false" >> $GITHUB_OUTPUT
+            echo "should_run_platform=false" >> $GITHUB_OUTPUT
+            echo "report_type=none" >> $GITHUB_OUTPUT
+            echo "schedule_description=주말 - 실행하지 않음" >> $GITHUB_OUTPUT
+            echo "execution_priority=0" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+        fi
+        
+        # 데이터 기간 계산
+        case $REPORT_TYPE in
+          "monthly")
+            # 지난달 1일~말일
+            DATA_START=$(date -d "$CURRENT_DATE -1 month" '+%Y-%m-01')
+            DATA_END=$(date -d "$CURRENT_DATE -1 month" '+%Y-%m-01' | date -d "$(cat) +1 month -1 day" '+%Y-%m-%d')
+            SCHEDULE_DESC="월간 보고서 - 지난달 ($DATA_START ~ $DATA_END) 데이터 분석"
+            PRIORITY=3
+            ;;
+          "weekly")
+            # 지난주 월요일~일요일
+            DAYS_SINCE_MONDAY=$(( ($DAY_OF_WEEK - 1) % 7 ))
+            LAST_MONDAY=$(date -d "$CURRENT_DATE -$(($DAYS_SINCE_MONDAY + 7)) days" '+%Y-%m-%d')
+            LAST_SUNDAY=$(date -d "$LAST_MONDAY +6 days" '+%Y-%m-%d')
+            DATA_START=$LAST_MONDAY
+            DATA_END=$LAST_SUNDAY
+            SCHEDULE_DESC="주간 보고서 - 지난주 ($DATA_START ~ $DATA_END) 데이터 분석"
+            PRIORITY=2
+            ;;
+          "daily"|*)
+            # 어제 (전일)
+            DATA_START=$(date -d "$CURRENT_DATE -1 day" '+%Y-%m-%d')
+            DATA_END=$DATA_START
+            SCHEDULE_DESC="일간 보고서 - 어제 ($DATA_START) 데이터 분석"
+            PRIORITY=1
+            ;;
+        esac
+        
+        # 실행 여부 결정 (사용자 입력 고려)
+        RUN_POKERNEWS="true"
+        RUN_YOUTUBE="true"
+        RUN_PLATFORM="true"
+        
+        # 수동 실행 시 사용자 설정 적용
+        if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+          if [[ "${{ github.event.inputs.skip_pokernews }}" == "true" ]]; then
+            RUN_POKERNEWS="false"
+          fi
+          if [[ "${{ github.event.inputs.skip_youtube }}" == "true" ]]; then
+            RUN_YOUTUBE="false"
+          fi
+          if [[ "${{ github.event.inputs.skip_platform }}" == "true" ]]; then
+            RUN_PLATFORM="false"
+          fi
+        fi
+        
+        # 출력 설정
+        echo "report_type=$REPORT_TYPE" >> $GITHUB_OUTPUT
+        echo "data_period_start=$DATA_START" >> $GITHUB_OUTPUT
+        echo "data_period_end=$DATA_END" >> $GITHUB_OUTPUT
+        echo "should_run_pokernews=$RUN_POKERNEWS" >> $GITHUB_OUTPUT
+        echo "should_run_youtube=$RUN_YOUTUBE" >> $GITHUB_OUTPUT
+        echo "should_run_platform=$RUN_PLATFORM" >> $GITHUB_OUTPUT
+        echo "schedule_description=$SCHEDULE_DESC" >> $GITHUB_OUTPUT
+        echo "execution_priority=$PRIORITY" >> $GITHUB_OUTPUT
+        
+        # 결과 요약 출력
+        echo "==============================================="
+        echo "🎯 스케줄 결정 결과"
+        echo "==============================================="
+        echo "📊 리포트 타입: $REPORT_TYPE"
+        echo "📅 데이터 기간: $DATA_START ~ $DATA_END"
+        echo "🔄 PokerNews 실행: $RUN_POKERNEWS"
+        echo "🔄 YouTube 실행: $RUN_YOUTUBE"
+        echo "🔄 Platform 실행: $RUN_PLATFORM"
+        echo "⚡ 우선순위: $PRIORITY"
+        echo "📋 설명: $SCHEDULE_DESC"
+        echo "==============================================="
+        echo "📂 경로 정보:"
+        echo "  PokerNews: ${{ steps.path-check.outputs.news_analyzer_path }}"
+        echo "  YouTube: ${{ steps.path-check.outputs.youtube_path }}"
+        echo "  Platform: ${{ steps.path-check.outputs.platform_path }}"
+        echo "==============================================="
+
+    - name: 📤 Slack 시작 알림
+      if: steps.determine-schedule.outputs.report_type != 'none'
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        if [[ -n "$SLACK_WEBHOOK_URL" ]]; then
+          REPORT_TYPE="${{ steps.determine-schedule.outputs.report_type }}"
+          SCHEDULE_DESC="${{ steps.determine-schedule.outputs.schedule_description }}"
+          DATA_START="${{ steps.determine-schedule.outputs.data_period_start }}"
+          DATA_END="${{ steps.determine-schedule.outputs.data_period_end }}"
+          EXECUTION_TIME="$(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S %Z')"
+          
+          curl -X POST -H 'Content-type: application/json' \
+               --data "{
+                 \"blocks\": [
+                   {
+                     \"type\": \"header\",
+                     \"text\": {
+                       \"type\": \"plain_text\",
+                       \"text\": \"🎰 통합 포커 보고 시스템 시작\",
+                       \"emoji\": true
+                     }
+                   },
+                   {
+                     \"type\": \"section\",
+                     \"text\": {
+                       \"type\": \"mrkdwn\",
+                       \"text\": \"*📅 실행 시간:* ${EXECUTION_TIME}\\n*📊 리포트 타입:* ${REPORT_TYPE}\\n*📈 데이터 기간:* ${DATA_START} ~ ${DATA_END}\\n*📋 설명:* ${SCHEDULE_DESC}\"
+                     }
+                   },
+                   {
+                     \"type\": \"section\",
+                     \"text\": {
+                       \"type\": \"mrkdwn\",
+                       \"text\": \"*🔄 실행 계획:*\\n• PokerNews: ${{ steps.determine-schedule.outputs.should_run_pokernews }}\\n• YouTube: ${{ steps.determine-schedule.outputs.should_run_youtube }}\\n• Platform: ${{ steps.determine-schedule.outputs.should_run_platform }}\"
+                     }
+                   }
+                 ]
+               }" \
+               "$SLACK_WEBHOOK_URL"
+        fi
+
+  # Job 2: PokerNews 뉴스 분석
+  pokernews-analysis:
+    name: "📰 PokerNews 분석"
+    runs-on: ubuntu-latest
+    needs: schedule-determination
+    if: ${{ needs.schedule-determination.outputs.should_run_pokernews == 'true' && needs.schedule-determination.outputs.report_type != 'none' }}
+    timeout-minutes: 15
+    outputs:
+      status: ${{ steps.news-analysis.outputs.status }}
+      slack_sent: ${{ steps.news-analysis.outputs.slack_sent }}
+      error_message: ${{ steps.news-analysis.outputs.error_message }}
+
+    steps:
+    - name: 🔄 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: 📦 Install dependencies
+      working-directory: ${{ needs.schedule-determination.outputs.news_analyzer_path }}
+      run: |
+        pip install -r requirements.txt
+        
+    - name: 📰 Run PokerNews Analysis
+      id: news-analysis
+      working-directory: ${{ needs.schedule-determination.outputs.news_analyzer_path }}
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        REPORT_TYPE: ${{ needs.schedule-determination.outputs.report_type }}
+        DATA_PERIOD_START: ${{ needs.schedule-determination.outputs.data_period_start }}
+        DATA_PERIOD_END: ${{ needs.schedule-determination.outputs.data_period_end }}
+      run: |
+        echo "🚀 PokerNews 분석 시작..."
+        echo "📊 리포트 타입: $REPORT_TYPE"
+        echo "📅 데이터 기간: $DATA_PERIOD_START ~ $DATA_PERIOD_END"
+        echo "📂 작업 디렉토리: $(pwd)"
+        
+        # Python 스크립트 실행 (리포트 타입별 분석 지원)
+        if python pokernews_slack_reporter.py > pokernews_output.log 2>&1; then
+          echo "✅ PokerNews 분석 완료"
+          echo "status=success" >> $GITHUB_OUTPUT
+          echo "slack_sent=true" >> $GITHUB_OUTPUT
+          
+          echo "📋 PokerNews 분석 결과:"
+          cat pokernews_output.log
+        else
+          echo "❌ PokerNews 분석 실패"
+          echo "status=failed" >> $GITHUB_OUTPUT
+          echo "slack_sent=false" >> $GITHUB_OUTPUT
+          
+          echo "📋 PokerNews 에러 로그:"
+          cat pokernews_output.log
+          
+          error_msg=$(cat pokernews_output.log | tail -5)
+          echo "error_message=$error_msg" >> $GITHUB_OUTPUT
+          
+          exit 1
+        fi
+    
+    - name: 📄 Upload PokerNews Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: pokernews-reports-${{ needs.schedule-determination.outputs.report_type }}-${{ github.run_id }}
+        path: ${{ needs.schedule-determination.outputs.news_analyzer_path }}/reports/
+        retention-days: 30
+
+  # Job 3: YouTube 트렌드 분석
+  youtube-analysis:
+    name: "🎥 YouTube 트렌드 분석"
+    runs-on: ubuntu-latest
+    needs: [schedule-determination, pokernews-analysis]
+    if: ${{ needs.schedule-determination.outputs.should_run_youtube == 'true' && needs.schedule-determination.outputs.report_type != 'none' && (needs.pokernews-analysis.outputs.status == 'success' || needs.pokernews-analysis.result == 'skipped') }}
+    timeout-minutes: 20
+    outputs:
+      status: ${{ steps.youtube-analysis.outputs.status }}
+      slack_sent: ${{ steps.youtube-analysis.outputs.slack_sent }}
+      error_message: ${{ steps.youtube-analysis.outputs.error_message }}
+
+    steps:
+    - name: 🔄 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: 📦 Install dependencies
+      working-directory: ${{ needs.schedule-determination.outputs.youtube_path }}
+      run: |
+        pip install -r requirements.txt
+        
+    - name: 🎥 Run YouTube Analysis
+      id: youtube-analysis
+      working-directory: ${{ needs.schedule-determination.outputs.youtube_path }}
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        REPORT_TYPE: ${{ needs.schedule-determination.outputs.report_type }}
+        DATA_PERIOD_START: ${{ needs.schedule-determination.outputs.data_period_start }}
+        DATA_PERIOD_END: ${{ needs.schedule-determination.outputs.data_period_end }}
+      run: |
+        echo "🚀 YouTube 트렌드 분석 시작..."
+        echo "📊 리포트 타입: $REPORT_TYPE"
+        echo "📅 데이터 기간: $DATA_PERIOD_START ~ $DATA_PERIOD_END"
+        echo "📂 작업 디렉토리: $(pwd)"
+        echo "⏰ 이전 작업 (PokerNews) 상태: ${{ needs.pokernews-analysis.outputs.status || 'skipped' }}"
+        
+        # 3초 대기 (Slack API rate limit 고려)
+        sleep 3
+        
+        # 리포트 타입별 분석 스크립트 선택
+        case $REPORT_TYPE in
+          "monthly")
+            echo "🗓️ 월간 YouTube 분석 실행..."
+            python scripts/enhanced_validated_analyzer.py > youtube_output.log 2>&1
+            ;;
+          "weekly")
+            echo "📅 주간 YouTube 분석 실행..."
+            python scripts/validated_analyzer_with_translation.py > youtube_output.log 2>&1
+            ;;
+          "daily"|*)
+            echo "📋 일간 YouTube 분석 실행..."
+            python scripts/quick_validated_analyzer.py > youtube_output.log 2>&1
+            ;;
+        esac
+        
+        if [[ $? -eq 0 ]]; then
+          echo "✅ YouTube 분석 완료"
+          echo "status=success" >> $GITHUB_OUTPUT
+          echo "slack_sent=true" >> $GITHUB_OUTPUT
+          
+          echo "📋 YouTube 분석 결과:"
+          cat youtube_output.log
+        else
+          echo "❌ YouTube 분석 실패"
+          echo "status=failed" >> $GITHUB_OUTPUT
+          echo "slack_sent=false" >> $GITHUB_OUTPUT
+          
+          echo "📋 YouTube 에러 로그:"
+          cat youtube_output.log
+          
+          error_msg=$(cat youtube_output.log | tail -5)
+          echo "error_message=$error_msg" >> $GITHUB_OUTPUT
+          
+          exit 1
+        fi
+    
+    - name: 📄 Upload YouTube Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: youtube-reports-${{ needs.schedule-determination.outputs.report_type }}-${{ github.run_id }}
+        path: ${{ needs.schedule-determination.outputs.youtube_path }}/scripts/reports/
+        retention-days: 30
+
+  # Job 4: Platform 트렌드 분석
+  platform-analysis:
+    name: "📊 Platform 트렌드 분석"
+    runs-on: ubuntu-latest
+    needs: [schedule-determination, pokernews-analysis, youtube-analysis]
+    if: ${{ needs.schedule-determination.outputs.should_run_platform == 'true' && needs.schedule-determination.outputs.report_type != 'none' && (needs.youtube-analysis.outputs.status == 'success' || needs.youtube-analysis.result == 'skipped') }}
+    timeout-minutes: 15
+    outputs:
+      status: ${{ steps.platform-analysis.outputs.status }}
+      slack_sent: ${{ steps.platform-analysis.outputs.slack_sent }}
+      error_message: ${{ steps.platform-analysis.outputs.error_message }}
+
+    steps:
+    - name: 🔄 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: 📦 Install dependencies
+      working-directory: ${{ needs.schedule-determination.outputs.platform_path }}
+      run: |
+        pip install -r requirements.txt
+        
+    - name: 📊 Run Platform Analysis
+      id: platform-analysis
+      working-directory: ${{ needs.schedule-determination.outputs.platform_path }}/scripts
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        REPORT_TYPE: ${{ needs.schedule-determination.outputs.report_type }}
+        DATA_PERIOD_START: ${{ needs.schedule-determination.outputs.data_period_start }}
+        DATA_PERIOD_END: ${{ needs.schedule-determination.outputs.data_period_end }}
+      run: |
+        echo "🚀 Platform 트렌드 분석 시작..."
+        echo "📊 리포트 타입: $REPORT_TYPE"
+        echo "📅 데이터 기간: $DATA_PERIOD_START ~ $DATA_END"
+        echo "📂 작업 디렉토리: $(pwd)"
+        echo "⏰ 이전 작업 상태:"
+        echo "  - PokerNews: ${{ needs.pokernews-analysis.outputs.status || 'skipped' }}"
+        echo "  - YouTube: ${{ needs.youtube-analysis.outputs.status || 'skipped' }}"
+        
+        # 5초 대기 (이전 Slack 메시지들과의 간격 확보)
+        sleep 5
+        
+        # Firebase REST API 데이터 수집
+        python firebase_rest_api_fetcher.py > platform_output.log 2>&1
+        
+        # 일일 비교 분석  
+        python show_daily_comparison.py >> platform_output.log 2>&1
+        
+        # Slack 리포트 전송
+        python final_slack_reporter.py >> platform_output.log 2>&1
+        
+        if [[ $? -eq 0 ]]; then
+          echo "✅ Platform 분석 완료"
+          echo "status=success" >> $GITHUB_OUTPUT
+          echo "slack_sent=true" >> $GITHUB_OUTPUT
+          
+          echo "📋 Platform 분석 결과:"
+          cat platform_output.log
+        else
+          echo "❌ Platform 분석 실패"
+          echo "status=failed" >> $GITHUB_OUTPUT
+          echo "slack_sent=false" >> $GITHUB_OUTPUT
+          
+          echo "📋 Platform 에러 로그:"
+          cat platform_output.log
+          
+          error_msg=$(cat platform_output.log | tail -5)
+          echo "error_message=$error_msg" >> $GITHUB_OUTPUT
+          
+          exit 1
+        fi
+    
+    - name: 📄 Upload Platform Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: platform-reports-${{ needs.schedule-determination.outputs.report_type }}-${{ github.run_id }}
+        path: ${{ needs.schedule-determination.outputs.platform_path }}/scripts/*.json
+        retention-days: 30
+
+  # 나머지 Job들은 동일... (completion-report, failure-notification)

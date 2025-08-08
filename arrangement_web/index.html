@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ko" class="">
+<head>
+      <!-- Firebase 환경변수 설정 -->
+  <script>
+      window.FIREBASE_API_KEY = "AIzaSyD6LVOtT0x30CQNZDt5aSUEBKT8vXPhM6k";
+      window.FIREBASE_AUTH_DOMAIN = "ggp-camera.firebaseapp.com";
+      window.FIREBASE_PROJECT_ID = "ggp-camera";
+      window.FIREBASE_STORAGE_BUCKET = "ggp-camera.appspot.com";
+      window.FIREBASE_MESSAGING_SENDER_ID = "906682771595";
+      window.FIREBASE_APP_ID = "1:906682771595:web:431b539435f4a0ca294c8e";
+      window.FIREBASE_MEASUREMENT_ID = "G-JLR9TMLSS1";
+  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GGP CAMERA 업무 현황 보드 v1.19</title>
+    <!-- Tailwind CSS CDN - 운영환경에서는 PostCSS 플러그인이나 Tailwind CLI 사용 권장 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind CDN 경고 메시지 숨기기 (개발용)
+        if (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')) {
+            console.warn = function(msg) {
+                if (!msg.includes('cdn.tailwindcss.com')) {
+                    console.warn.apply(console, arguments);
+                }
+            };
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        
+        .task-row-title {
+            position: relative;
+        }
+        .task-row-title .task-actions {
+            position: absolute;
+            top: 50%;
+            right: 0.5rem;
+            transform: translateY(-50%);
+            display: none;
+            gap: 0.25rem;
+            background-color: rgba(0,0,0,0.1);
+            padding: 4px;
+            border-radius: 5px;
+        }
+        .dark .task-row-title .task-actions {
+             background-color: rgba(255,255,255,0.1);
+        }
+        .task-row:hover .task-actions {
+            display: flex;
+        }
+
+        .timeline-task-bar {
+            position: absolute;
+            height: calc(100% - 0.5rem);
+            min-height: 1.75rem;
+            top: 0.25rem;
+            overflow: hidden;
+            border-radius: 0.375rem;
+            padding: 0;
+            transition: background-color 0.2s;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .priority-btn.hidden, .category-action-btn.hidden {
+            visibility: hidden;
+        }
+        .category-toggle-btn {
+            transition: transform 0.2s;
+        }
+        .category-toggle-btn.collapsed {
+            transform: rotate(-90deg);
+        }
+        .task-row.dragging {
+            opacity: 0.5;
+            background: #eef2ff;
+        }
+        .dark .task-row.dragging {
+            background: #312e81;
+        }
+        .drag-handle {
+            opacity: 0;
+            transition: opacity 0.2s;
+            cursor: grab;
+        }
+        .task-row:hover .drag-handle {
+            opacity: 1;
+        }
+        
+        /* 모바일 접근성 개선 */
+        @media (max-width: 768px) {
+            .btn, button {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            .task-actions button {
+                min-width: 44px;
+                min-height: 44px;
+            }
+        }
+        
+        /* 로딩 스피너 */
+        .loading-spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 2s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+
+    <div class="max-w-[1920px] mx-auto p-4 sm:p-6 md:p-8">
+        
+        <header class="flex flex-col sm:flex-row items-center justify-between mb-8 gap-4">
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white flex items-center gap-3">
+                <i class="fa-solid fa-calendar-week text-indigo-500"></i>
+                <span>GGP CAMERA 업무 현황 v1.19</span>
+            </h1>
+            <div class="flex items-center gap-2">
+                <button id="manage-category-btn" class="flex items-center gap-2 bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-600 transition-colors shadow">
+                    <i class="fa-solid fa-tags"></i><span>카테고리 관리</span>
+                </button>
+                <button id="add-task-btn" class="flex items-center gap-2 bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors shadow">
+                    <i class="fa-solid fa-plus"></i><span>업무 추가</span>
+                </button>
+                <button id="dark-mode-toggle" class="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-white dark:bg-gray-700 text-gray-600 dark:text-yellow-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors shadow-sm">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">
+            <div id="timeline-controls" class="flex flex-col sm:flex-row items-center justify-between mb-4 gap-4">
+                <h2 id="current-range-display" class="text-lg sm:text-xl font-bold text-gray-700 dark:text-gray-200 order-first sm:order-none"></h2>
+                <div class="flex items-center gap-2">
+                    <button id="prev-btn" class="px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500">&lt; 이전</button>
+                    <button id="today-btn" class="px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500">오늘</button>
+                    <button id="next-btn" class="px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500">다음 &gt;</button>
+                </div>
+            </div>
+            <div id="timeline-container" class="overflow-visible">
+                 <div class="initial-loading-message text-center text-gray-500 dark:text-gray-400 py-8">
+                    <div class="loading-spinner mx-auto mb-2"></div>
+                    <p>타임라인 로딩 중...</p>
+                 </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Tooltip -->
+    <div id="task-tooltip" class="fixed hidden z-50 p-2 text-sm text-white bg-gray-900/80 dark:bg-black/80 rounded-md shadow-lg pointer-events-none max-w-xs">
+        <div id="tooltip-title" class="font-bold"></div>
+        <div id="tooltip-assignees" class="text-xs text-gray-300 mt-1"></div>
+    </div>
+
+    <!-- Modals -->
+    <div id="task-modal" role="dialog" class="fixed inset-0 bg-black/60 flex items-center justify-center hidden z-40 p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl p-6 max-h-[90vh] flex flex-col">
+            <h3 id="task-modal-title" class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-6 flex-shrink-0"></h3>
+            <form id="task-form" class="flex-grow overflow-y-auto pr-4">
+                <input type="hidden" id="task-id">
+                <input type="hidden" id="task-source">
+                <div class="mb-4">
+                    <label for="task-category" class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">카테고리</label>
+                    <select id="task-category" class="w-full px-3 py-2 border rounded-md bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500" required></select>
+                </div>
+                <div class="mb-4">
+                    <label for="task-title" class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">제목</label>
+                    <input type="text" id="task-title" class="w-full px-3 py-2 border rounded-md bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600" required>
+                </div>
+                <div class="mb-4">
+                    <label for="task-url" class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">URL</label>
+                    <input type="url" id="task-url" class="w-full px-3 py-2 border rounded-md bg-gray-50 dark:bg-gray-700" placeholder="https://...">
+                </div>
+                 <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">담당자</label>
+                    <div id="task-assignees-container" class="flex flex-wrap gap-x-4 gap-y-2 p-2 border rounded-md bg-gray-50 dark:bg-gray-700">
+                        <!-- Checkboxes will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <hr class="my-6 border-gray-200 dark:border-gray-600">
+
+                <div id="schedules-container" class="space-y-4">
+                    <!-- Schedule blocks will be dynamically inserted here -->
+                </div>
+                
+                <button type="button" id="add-schedule-btn" class="mt-4 w-full flex items-center justify-center gap-2 py-2 px-4 border-2 border-dashed rounded-lg text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>업무 구간 추가</span>
+                </button>
+            </form>
+            <div class="flex justify-end gap-3 mt-8 flex-shrink-0">
+                <button type="button" class="close-modal-btn px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-600">취소</button>
+                <button type="submit" form="task-form" class="bg-indigo-600 text-white font-bold py-2 px-6 rounded-md">저장</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="category-modal" role="dialog" class="fixed inset-0 bg-black/60 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md p-6">
+            <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-6">카테고리 관리</h3>
+            <div id="category-list" class="space-y-2 mb-6 max-h-60 overflow-y-auto pr-2"></div>
+            <form id="add-category-form" class="flex gap-2">
+                <input type="text" id="new-category-name" class="flex-grow px-3 py-2 border rounded-md bg-gray-50 dark:bg-gray-700" placeholder="새 카테고리 이름" required>
+                <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-md">추가</button>
+            </form>
+            <div class="flex justify-end mt-8">
+                <button type="button" class="close-modal-btn px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-600">닫기</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="delete-confirm-modal" role="dialog" class="fixed inset-0 bg-black/60 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-sm p-6">
+            <h3 id="delete-confirm-title" class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2"></h3>
+            <p id="delete-confirm-message" class="text-gray-600 dark:text-gray-300 mb-6"></p>
+            <div class="flex justify-end gap-3">
+                <button class="close-modal-btn px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-600">취소</button>
+                <button id="confirm-delete-btn" class="px-4 py-2 rounded-md bg-red-600 text-white">삭제</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="info-modal" role="alert" class="fixed inset-0 bg-black/60 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-sm p-6 text-center">
+            <p id="info-modal-message" class="text-gray-700 dark:text-gray-200 mb-6 text-lg"></p>
+            <button id="info-modal-close-btn" class="px-6 py-2 rounded-md bg-indigo-600 text-white">확인</button>
+        </div>
+    </div>
+
+
+    <!-- 환경 설정은 위에서 직접 설정됨 -->
+    
+    <script type="module">
+        // 필요한 모듈들 import
+        import { getFirebaseConfig, ASSIGNEES, ERROR_MESSAGES } from './config.js';
+        import { ErrorHandler, InputValidator, DateUtils, debounce, StorageUtils } from './utils.js';
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, query, onSnapshot, addDoc, updateDoc, doc, deleteDoc, serverTimestamp, orderBy, getDocs, writeBatch, where } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // ASSIGNEES는 config.js에서 import
+        const DOM = {
+            timelineContainer: document.getElementById('timeline-container'),
+            taskModal: document.getElementById('task-modal'),
+            categoryModal: document.getElementById('category-modal'),
+            deleteModal: document.getElementById('delete-confirm-modal'),
+            infoModal: document.getElementById('info-modal'),
+            taskForm: document.getElementById('task-form'),
+            categoryList: document.getElementById('category-list'),
+            darkModeToggle: document.getElementById('dark-mode-toggle'),
+            tooltip: document.getElementById('task-tooltip'),
+        };
+        
+        let db, auth, userId, appId;
+        let unsubscribeFunctions = []; // 구독 해제를 위한 배열
+        let state = { 
+            categories: [], 
+            tasks: [], 
+            isAuthReady: false, 
+            itemToDelete: null, 
+            viewDate: new Date(), 
+            collapsedCategories: StorageUtils.get('collapsedCategories', []), 
+            individuallyShownTasks: new Set(StorageUtils.get('individuallyShownTasks', []))
+        };
+        
+        // Firebase 초기화를 안전하게 처리
+        let initializationError = null;
+        try {
+            const firebaseConfig = getFirebaseConfig();
+            appId = firebaseConfig.appId;
+            const app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+        } catch (error) {
+            initializationError = error;
+            console.error("Firebase 초기화 실패:", error);
+        }
+
+
+        // DateUtils.formatDate 사용
+        const formatDate = DateUtils.formatDate;
+        
+        const getSortedCategories = () => {
+            return [...state.categories].sort((a, b) => (a.priority ?? 999) - (b.priority ?? 999));
+        };
+
+        const getTaskBarBackground = (assignees) => {
+            if (!assignees || assignees.length === 0) {
+                return { class: 'bg-gray-500', style: '' };
+            }
+
+            const validAssignees = assignees
+                .map(name => ASSIGNEES[name])
+                .filter(Boolean);
+
+            if (validAssignees.length === 0) {
+                return { class: 'bg-gray-500', style: '' };
+            }
+
+            if (validAssignees.length === 1) {
+                return { class: validAssignees[0].c, style: '' };
+            }
+            
+            const colors = validAssignees.map(a => a.hex);
+
+            if (validAssignees.length === 2) {
+                return { class: '', style: `background-image: linear-gradient(to right, ${colors[0]}, ${colors[1]});` };
+            }
+            if (validAssignees.length === 3) {
+                return { class: '', style: `background-image: linear-gradient(to right, ${colors[0]}, ${colors[1]}, ${colors[2]});` };
+            }
+            
+            return { class: '', style: `background-image: linear-gradient(to right, ${colors[0]}, ${colors[1]});` };
+        };
+
+        const renderTimeline = () => {
+            const { tasks, viewDate, collapsedCategories, individuallyShownTasks } = state;
+            const sortedCategories = getSortedCategories();
+            
+            const centerDate = new Date(viewDate);
+            const startDate = new Date(centerDate);
+            startDate.setDate(centerDate.getDate() - 15);
+            startDate.setHours(0,0,0,0);
+
+            const endDate = new Date(centerDate);
+            endDate.setDate(centerDate.getDate() + 15);
+            endDate.setHours(0,0,0,0);
+
+            document.getElementById('current-range-display').textContent = `${startDate.toLocaleDateString('ko-KR')} ~ ${endDate.toLocaleDateString('ko-KR')}`;
+
+            const dateArray = [];
+            for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+                dateArray.push(new Date(d));
+            }
+            const daysInRange = dateArray.length;
+            const todayStr = formatDate(new Date());
+            
+            const timelineGrid = document.createElement('div');
+            timelineGrid.className = 'animate-fade-in';
+            
+            let headerHtml = `<div class="sticky top-0 z-20 bg-gray-200 dark:bg-gray-700 grid" style="grid-template-columns: 320px 1fr;">`;
+            headerHtml += `<div class="font-semibold text-sm p-2 border-r border-b border-gray-300 dark:border-gray-600">업무</div>`;
+            headerHtml += `<div class="grid" style="grid-template-columns: repeat(${daysInRange}, minmax(0, 1fr));">`;
+            dateArray.forEach(d => {
+                const isToday = formatDate(d) === todayStr;
+                const isWeekend = d.getDay() === 0 || d.getDay() === 6;
+                headerHtml += `<div class="text-center p-1 border-b border-l border-gray-300 dark:border-gray-600 ${isToday ? 'bg-indigo-600 text-white' : ''}">
+                    <div class="text-xs ${isWeekend && !isToday ? 'text-red-500' : isToday ? '' : 'text-gray-500 dark:text-gray-400'}">${d.toLocaleString('ko-KR', { weekday: 'short' })}</div>
+                    <div class="font-bold text-sm">${d.getDate()}</div>
+                </div>`;
+            });
+            headerHtml += `</div></div>`;
+            timelineGrid.innerHTML = headerHtml;
+
+            sortedCategories.forEach(cat => {
+                const allCategoryTasks = tasks.filter(t => t.category === cat.name);
+                
+                const prioritizedTasks = allCategoryTasks.filter(t => t.priority != null).sort((a, b) => a.priority - b.priority);
+                const unprioritizedTasks = allCategoryTasks.filter(t => t.priority == null).sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+                const categoryTasks = [...prioritizedTasks, ...unprioritizedTasks];
+
+                if (cat.name === '기본' && categoryTasks.length === 0) return;
+                
+                const isCollapsed = collapsedCategories.includes(cat.name);
+
+                const categoryRow = document.createElement('div');
+                categoryRow.className = 'grid';
+                categoryRow.style.gridTemplateColumns = '320px 1fr';
+                
+                const categoryTitleCell = document.createElement('div');
+                categoryTitleCell.className = 'sticky left-0 z-10 bg-gray-100 dark:bg-gray-700/80 p-2 text-sm border-b border-r border-gray-300 dark:border-gray-600 flex items-center gap-2';
+                categoryTitleCell.innerHTML = `
+                    <button class="category-toggle-btn w-6 h-6 flex items-center justify-center rounded hover:bg-gray-300 dark:hover:bg-gray-600 ${isCollapsed ? 'collapsed' : ''}" data-category-name="${cat.name}">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    <span class="font-bold">${cat.name}</span>`;
+                
+                const categoryTimelineCell = document.createElement('div');
+                categoryTimelineCell.className = 'relative border-b border-gray-300 dark:border-gray-600';
+                
+                categoryRow.appendChild(categoryTitleCell);
+                categoryRow.appendChild(categoryTimelineCell);
+                timelineGrid.appendChild(categoryRow);
+
+                if (categoryTasks.length > 0) {
+                    const activeDays = new Set();
+                    categoryTasks.forEach(task => {
+                        (task.schedules || []).forEach(schedule => {
+                            const taskStart = new Date(schedule.startDate);
+                            const taskEnd = schedule.status === 'completed' && schedule.endDate 
+                                ? new Date(schedule.endDate) 
+                                : new Date(todayStr);
+                            
+                            for (let d = new Date(taskStart); d <= taskEnd; d.setDate(d.getDate() + 1)) {
+                                activeDays.add(formatDate(d));
+                            }
+                        });
+                    });
+
+                    const sortedDates = Array.from(activeDays).sort();
+
+                    if (sortedDates.length > 0) {
+                        const dateBlocks = [];
+                        let currentBlock = { start: sortedDates[0], end: sortedDates[0] };
+
+                        for (let i = 1; i < sortedDates.length; i++) {
+                            const prevDate = new Date(currentBlock.end);
+                            prevDate.setDate(prevDate.getDate() + 1);
+                            const currentDate = new Date(sortedDates[i]);
+
+                            if (prevDate.getTime() === currentDate.getTime()) {
+                                currentBlock.end = sortedDates[i];
+                            } else {
+                                dateBlocks.push(currentBlock);
+                                currentBlock = { start: sortedDates[i], end: sortedDates[i] };
+                            }
+                        }
+                        dateBlocks.push(currentBlock);
+
+                        const startMs = startDate.getTime();
+                        const endMs = endDate.getTime();
+
+                        dateBlocks.forEach((block) => {
+                            const blockStartDt = new Date(block.start);
+                            const blockEndDt = new Date(block.end);
+
+                            if (blockEndDt.getTime() >= startMs && blockStartDt.getTime() <= endMs) {
+                                const leftOffset = (Math.max(blockStartDt.getTime(), startMs) - startMs) / (1000 * 60 * 60 * 24);
+                                const rightOffset = (Math.min(blockEndDt.getTime(), endMs) - startMs) / (1000 * 60 * 60 * 24);
+                                const left = (leftOffset / daysInRange) * 100;
+                                const width = ((rightOffset - leftOffset + 1) / daysInRange) * 100;
+
+                                if (width > 0) {
+                                    const categoryBar = document.createElement('div');
+                                    categoryBar.className = 'absolute h-4 top-1/2 -translate-y-1/2 bg-gray-400 dark:bg-gray-500 rounded flex items-center justify-center text-white text-xs font-semibold';
+                                    categoryBar.style.left = `${left}%`;
+                                    categoryBar.style.width = `${width}%`;
+                                    
+                                    const blockDuration = (blockEndDt.getTime() - blockStartDt.getTime()) / (1000 * 60 * 60 * 24) + 1;
+                                    categoryBar.innerHTML = `${blockDuration}일`;
+                                    
+                                    categoryTimelineCell.appendChild(categoryBar);
+                                }
+                            }
+                        });
+                    }
+                }
+
+                const tasksContainer = document.createElement('div');
+                tasksContainer.dataset.category = cat.name;
+                timelineGrid.appendChild(tasksContainer);
+
+                if (categoryTasks.length > 0) {
+                    categoryTasks.forEach(task => {
+                        const isIndividuallyShown = individuallyShownTasks.has(task.id);
+                        const isVisible = !isCollapsed || isIndividuallyShown;
+
+                        const taskRow = document.createElement('div');
+                        taskRow.className = `task-row grid ${!isVisible ? 'hidden' : ''}`;
+                        taskRow.style.gridTemplateColumns = '320px 1fr';
+                        taskRow.dataset.taskId = task.id;
+                        taskRow.dataset.taskSource = task.source;
+                        taskRow.draggable = true;
+
+                        taskRow.innerHTML = `<div class="task-row-title sticky left-0 z-10 bg-white dark:bg-gray-800 p-2 border-b border-r border-gray-200 dark:border-gray-600/50 flex items-center text-sm gap-2">
+                                                <i class="fa-solid fa-grip-vertical text-gray-400 drag-handle"></i>
+                                                <div class="flex-grow">
+                                                    <a href="${task.url || '#'}" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" ${!task.url ? 'onclick="return false;"' : ''}>${task.title}</a>
+                                                </div>
+                                                <div class="task-actions">
+                                                    <button class="edit-task-btn w-6 h-6 rounded hover:bg-gray-200 dark:hover:bg-gray-600 flex items-center justify-center"><i class="fa-solid fa-pencil text-xs"></i></button>
+                                                    <button class="delete-task-btn w-6 h-6 rounded hover:bg-gray-200 dark:hover:bg-gray-600 flex items-center justify-center"><i class="fa-solid fa-trash-can text-xs text-red-500"></i></button>
+                                                </div>
+                                            </div>`;
+                        
+                        const timelineCell = document.createElement('div');
+                        timelineCell.className = 'relative border-b border-gray-200 dark:border-gray-600/50 grid';
+                        timelineCell.style.gridTemplateColumns = `repeat(${daysInRange}, minmax(0, 1fr))`;
+                        
+                        for(let i=0; i < daysInRange; i++) {
+                            const bgCell = document.createElement('div');
+                            const currentDateStr = formatDate(dateArray[i]);
+                            const isToday = currentDateStr === todayStr;
+                            const isWeekend = dateArray[i].getDay() === 0 || dateArray[i].getDay() === 6;
+                            
+                            let bgClass = isWeekend ? 'bg-gray-50 dark:bg-gray-800/40' : '';
+                            if (isToday) bgClass = 'bg-indigo-100 dark:bg-indigo-900/30';
+                            bgCell.className = `border-r border-gray-200 dark:border-gray-600/50 ${bgClass}`;
+                            timelineCell.appendChild(bgCell);
+                        }
+
+                        (task.schedules || []).forEach(schedule => {
+                            const taskStartDt = new Date(schedule.startDate);
+                            const taskEndDt = schedule.status === 'completed' && schedule.endDate ? new Date(schedule.endDate) : new Date(todayStr);
+                            
+                            const startMs = startDate.getTime();
+                            const endMs = endDate.getTime();
+
+                            if (taskEndDt.getTime() >= startMs && taskStartDt.getTime() <= endMs) {
+                                const leftOffset = (Math.max(taskStartDt.getTime(), startMs) - startMs) / (1000 * 60 * 60 * 24);
+                                const rightOffset = (Math.min(taskEndDt.getTime(), endMs) - startMs) / (1000 * 60 * 60 * 24);
+                                const left = (leftOffset / daysInRange) * 100;
+                                const width = ((rightOffset - leftOffset + 1) / daysInRange) * 100;
+
+                                const taskBar = document.createElement('a');
+                                taskBar.href = task.url || '#';
+                                taskBar.target = '_blank';
+                                if(!task.url) taskBar.onclick = () => false;
+                                taskBar.dataset.taskId = task.id;
+                                
+                                taskBar.className = 'absolute timeline-task-bar bg-gray-200 dark:bg-gray-700 p-0.5';
+                                taskBar.setAttribute('style', `left: ${left}%; width: ${width}%;`);
+                                
+                                const progressFill = document.createElement('div');
+                                const background = getTaskBarBackground(task.assignees);
+                                progressFill.className = `h-full rounded-sm ${background.class}`;
+                                progressFill.setAttribute('style', `width: ${schedule.progress || 0}%; ${background.style}`);
+
+                                taskBar.appendChild(progressFill);
+                                timelineCell.appendChild(taskBar);
+                            }
+                        });
+
+                        taskRow.appendChild(timelineCell);
+                        tasksContainer.appendChild(taskRow);
+                    });
+                } else if (!isCollapsed) {
+                    const emptyRow = document.createElement('div');
+                    emptyRow.className = 'grid';
+                    emptyRow.style.gridTemplateColumns = '320px 1fr';
+                    emptyRow.innerHTML = `<div class="sticky left-0 bg-white dark:bg-gray-800 p-2 border-b border-r border-gray-200 dark:border-gray-600/50 text-gray-400 text-sm italic">(업무 없음)</div><div class="border-b border-gray-200 dark:border-gray-600/50"></div>`;
+                    tasksContainer.appendChild(emptyRow);
+                }
+            });
+
+            DOM.timelineContainer.innerHTML = '';
+            DOM.timelineContainer.appendChild(timelineGrid);
+        };
+        
+        const renderCategoryList = () => {
+            const sortedCategories = getSortedCategories();
+
+            DOM.categoryList.innerHTML = sortedCategories.map((c, index) => `
+                <div class="flex items-center justify-between bg-gray-100 dark:bg-gray-700 p-2 rounded-md" data-id="${c.id}">
+                    <div class="flex items-center gap-2 flex-grow">
+                         <div class="flex flex-col">
+                            <button class="priority-btn move-category-up-btn ${index === 0 ? 'hidden' : ''}" aria-label="위로 이동"><i class="fa-solid fa-caret-up"></i></button>
+                            <button class="priority-btn move-category-down-btn ${index === sortedCategories.length - 1 ? 'hidden' : ''}" aria-label="아래로 이동"><i class="fa-solid fa-caret-down"></i></button>
+                         </div>
+                         <div class="category-name-wrapper flex-grow">
+                            <span class="font-medium category-name-text">${c.name}</span>
+                            <input type="text" value="${c.name}" class="hidden category-name-input w-full bg-white dark:bg-gray-800 px-1 rounded-sm border border-indigo-500">
+                         </div>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <button class="category-action-btn edit-category-btn w-7 h-7 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600"><i class="fa-solid fa-pencil text-sm"></i></button>
+                        <button class="category-action-btn save-category-btn hidden w-7 h-7 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600"><i class="fa-solid fa-check text-sm text-green-500"></i></button>
+                        <button class="delete-category-btn w-7 h-7 rounded-md hover:bg-red-100 dark:hover:bg-red-900/50 text-red-500"><i class="fa-solid fa-trash-can text-sm"></i></button>
+                    </div>
+                </div>`).join('') || '<p class="text-center text-sm text-gray-400">카테고리가 없습니다.</p>';
+        };
+
+        const renderAll = () => {
+            if (!state.isAuthReady) return;
+            renderTimeline();
+        };
+        
+        // 렌더링 디바운싱 적용
+        const debouncedRenderAll = debounce(renderAll, 100);
+
+        const openModal = (modal) => modal.classList.remove('hidden');
+        const closeModal = (modal) => modal.classList.add('hidden');
+        
+        const showInfo = (message) => {
+            document.getElementById('info-modal-message').textContent = message;
+            openModal(DOM.infoModal);
+        };
+
+        // 누락된 addScheduleBlock 함수 추가
+        const addScheduleBlock = (container, schedule = {}, index = 0) => {
+            const scheduleBlock = document.createElement('div');
+            scheduleBlock.className = 'schedule-block p-4 border rounded-md bg-gray-50 dark:bg-gray-700/50';
+            
+            scheduleBlock.innerHTML = `
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-medium text-gray-700 dark:text-gray-300">업무 구간 ${index + 1}</h4>
+                    ${index > 0 ? '<button type="button" class="remove-schedule-btn text-red-500 hover:text-red-700"><i class="fa-solid fa-trash-can"></i></button>' : ''}
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">시작일</label>
+                        <input type="date" name="start-date" value="${schedule.startDate || DateUtils.formatDate(new Date())}" 
+                               class="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-600" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">종료일</label>
+                        <input type="date" name="end-date" value="${schedule.endDate || ''}" 
+                               class="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-600">
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">상태</label>
+                    <div class="flex gap-4">
+                        <label class="flex items-center">
+                            <input type="radio" name="status-${index}" value="inProgress" 
+                                   ${(schedule.status || 'inProgress') === 'inProgress' ? 'checked' : ''}
+                                   class="text-indigo-600 mr-2">
+                            <span>진행 중</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="status-${index}" value="completed" 
+                                   ${schedule.status === 'completed' ? 'checked' : ''}
+                                   class="text-indigo-600 mr-2">
+                            <span>완료</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="status-${index}" value="paused" 
+                                   ${schedule.status === 'paused' ? 'checked' : ''}
+                                   class="text-indigo-600 mr-2">
+                            <span>일시중단</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">진행률 (%)</label>
+                    <input type="range" name="progress" min="0" max="100" value="${schedule.progress || 0}" 
+                           class="w-full progress-slider">
+                    <div class="text-center text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        <span class="progress-value">${schedule.progress || 0}</span>%
+                    </div>
+                </div>
+            `;
+            
+            // 진행률 슬라이더 이벤트 리스너
+            const progressSlider = scheduleBlock.querySelector('[name="progress"]');
+            const progressValue = scheduleBlock.querySelector('.progress-value');
+            progressSlider.addEventListener('input', (e) => {
+                progressValue.textContent = e.target.value;
+            });
+            
+            // 삭제 버튼 이벤트 리스너
+            const removeBtn = scheduleBlock.querySelector('.remove-schedule-btn');
+            if (removeBtn) {
+                removeBtn.addEventListener('click', () => {
+                    if (container.children.length > 1) {
+                        scheduleBlock.remove();
+                        // 인덱스 재정렬
+                        updateScheduleIndexes(container);
+                    } else {
+                        showInfo('최소 하나의 업무 구간은 필요합니다.');
+                    }
+                });
+            }
+            
+            container.appendChild(scheduleBlock);
+        };
+        
+        const updateScheduleIndexes = (container) => {
+            Array.from(container.children).forEach((block, index) => {
+                const title = block.querySelector('h4');
+                if (title) {
+                    title.textContent = `업무 구간 ${index + 1}`;
+                }
+                
+                // 라디오 버튼 name 속성 업데이트
+                const radios = block.querySelectorAll('input[type="radio"]');
+                radios.forEach(radio => {
+                    radio.name = `status-${index}`;
+                });
+            });
+        };
+
+        const openTaskModal = (task = null) => {
+            DOM.taskForm.reset();
+            const taskCategory = document.getElementById('task-category');
+            const assigneesContainer = document.getElementById('task-assignees-container');
+            const sortedCategories = getSortedCategories();
+            
+            taskCategory.innerHTML = sortedCategories.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+            
+            assigneesContainer.innerHTML = Object.keys(ASSIGNEES).map(name => `
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" name="task-assignees" value="${name}" class="text-indigo-600 rounded">
+                    <span>${name}</span>
+                </label>
+            `).join('');
+            
+            if (task) {
+                document.getElementById('task-modal-title').textContent = '업무 수정';
+                document.getElementById('task-id').value = task.id;
+                document.getElementById('task-source').value = task.source;
+                taskCategory.value = task.category;
+                document.getElementById('task-title').value = task.title;
+                document.getElementById('task-url').value = task.url || '';
+                
+                const assignees = task.assignees || (task.name ? [task.name] : []);
+                assignees.forEach(assigneeName => {
+                    const checkbox = assigneesContainer.querySelector(`input[value="${assigneeName}"]`);
+                    if (checkbox) checkbox.checked = true;
+                });
+
+                // Schedule rendering logic
+                const schedulesContainer = document.getElementById('schedules-container');
+                schedulesContainer.innerHTML = ''; // Clear existing schedules
+                let schedules = task.schedules;
+                if (!schedules || schedules.length === 0) { // Migration for old data
+                    schedules = [{
+                        startDate: task.startDate,
+                        endDate: task.endDate,
+                        status: task.status || 'inProgress',
+                        progress: task.progress || 0
+                    }];
+                }
+
+                schedules.forEach((schedule, index) => {
+                    addScheduleBlock(schedulesContainer, schedule, index);
+                });
+
+            } else {
+                document.getElementById('task-modal-title').textContent = '새 업무 추가';
+                document.getElementById('task-id').value = '';
+                document.getElementById('task-source').value = 'new';
+                const schedulesContainer = document.getElementById('schedules-container');
+                schedulesContainer.innerHTML = '';
+                addScheduleBlock(schedulesContainer, {}, 0); // Add one empty block
+            }
+            openModal(DOM.taskModal);
+        };
+
+        const openDeleteConfirmModal = (id, type, source) => {
+            state.itemToDelete = { id, type, source };
+            document.getElementById('delete-confirm-title').textContent = type === 'task' ? '업무 삭제' : '카테고리 삭제';
+            document.getElementById('delete-confirm-message').textContent = `정말로 이 ${type === 'task' ? '업무' : '카테고리'}를 삭제하시겠습니까?`;
+            openModal(DOM.deleteModal);
+        };
+        
+        const handleTaskFormSubmit = async (e) => {
+            e.preventDefault();
+            
+            try {
+                // 입력 검증
+                const title = InputValidator.validateTaskTitle(document.getElementById('task-title').value);
+                const url = InputValidator.validateUrl(document.getElementById('task-url').value);
+                const category = InputValidator.validateCategoryName(document.getElementById('task-category').value);
+                
+                const id = document.getElementById('task-id').value;
+                const source = document.getElementById('task-source').value;
+            
+                const selectedAssignees = Array.from(document.querySelectorAll('input[name="task-assignees"]:checked')).map(cb => cb.value);
+
+                const schedules = [];
+                document.querySelectorAll('.schedule-block').forEach(block => {
+                    const schedule = {
+                        startDate: block.querySelector('[name="start-date"]').value,
+                        endDate: block.querySelector('[name="end-date"]').value || null,
+                        status: block.querySelector('[name^="status-"]:checked').value,
+                        progress: parseInt(block.querySelector('[name="progress"]').value, 10)
+                    };
+                    if (schedule.status === 'completed' && !schedule.endDate) {
+                        schedule.endDate = formatDate(new Date());
+                    }
+                    schedules.push(schedule);
+                });
+
+                const data = {
+                    category: category,
+                    title: title,
+                    url: url,
+                    assignees: selectedAssignees,
+                    schedules: schedules
+                };
+
+                closeModal(DOM.taskModal);
+                
+                // Firebase 작업
+                if (id) {
+                    if (source === 'old') {
+                        const batch = writeBatch(db);
+                        const taskData = state.tasks.find(t => t.id === id);
+                        const { id: taskId, source: taskSource, name, startDate, endDate, status, progress, ...dataToSave } = taskData;
+                        
+                        const tasksInCategory = state.tasks.filter(t => t.category === category && t.source !== 'old');
+                        data.priority = tasksInCategory.length;
+                        
+                        const newTaskRef = doc(db, "tasks", id);
+                        batch.set(newTaskRef, { ...dataToSave, ...data });
+
+                        const oldTaskRef = doc(db, `artifacts/${appId}/public/data/work-pages`, id);
+                        batch.delete(oldTaskRef);
+                        
+                        await batch.commit();
+                    } else {
+                        const { name, startDate, endDate, status, progress, ...updateData } = data;
+                        await updateDoc(doc(db, "tasks", id), updateData);
+                    }
+                } else {
+                    const tasksInCategory = state.tasks.filter(t => t.category === category && t.source !== 'old');
+                    data.priority = tasksInCategory.length;
+                    data.createdAt = serverTimestamp();
+                    await addDoc(collection(db, "tasks"), data);
+                }
+            } catch(err) { 
+                ErrorHandler.handle(err, 'handleTaskFormSubmit');
+            }
+        };
+
+        const handleAddCategoryFormSubmit = async (e) => {
+            e.preventDefault();
+            const input = document.getElementById('new-category-name');
+            const name = input.value.trim();
+            if (name && !state.categories.some(c => c.name.toLowerCase() === name.toLowerCase())) {
+                const newPriority = state.categories.length > 0 ? Math.max(...state.categories.map(c => c.priority ?? 0)) + 1 : 0;
+                await addDoc(collection(db, "categories"), { 
+                    name, 
+                    createdAt: serverTimestamp(),
+                    priority: newPriority 
+                });
+                input.value = '';
+            } else if (name) {
+                showInfo("이미 존재하는 카테고리입니다.");
+            }
+        };
+        
+        // 전역 에러 메시지 표시 이벤트 리스너
+        document.addEventListener('showErrorMessage', (event) => {
+            showInfo(event.detail);
+        });
+        };
+
+        const handleDeleteConfirmed = async () => {
+            const { id, type, source } = state.itemToDelete;
+            closeModal(DOM.deleteModal);
+            if (!id || !type) return;
+
+            try {
+                if (type === 'task') {
+                    const collectionPath = source === 'old' ? `artifacts/${appId}/public/data/work-pages` : 'tasks';
+                    await deleteDoc(doc(db, collectionPath, id));
+                } else if (type === 'category') {
+                    await deleteDoc(doc(db, "categories", id));
+                }
+            } catch (err) { 
+                ErrorHandler.handle(err, 'handleDeleteConfirmed');
+            }
+        };
+        
+        const handleCategoryPriorityChange = async (categoryId, direction) => {
+            const categories = getSortedCategories();
+            const currentIndex = categories.findIndex(c => c.id === categoryId);
+            
+            if (currentIndex === -1) return;
+            
+            const newOrder = [...categories];
+            const targetIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
+
+            if (targetIndex < 0 || targetIndex >= newOrder.length) return;
+
+            [newOrder[currentIndex], newOrder[targetIndex]] = [newOrder[targetIndex], newOrder[currentIndex]];
+
+            const batch = writeBatch(db);
+            newOrder.forEach((category, index) => {
+                const docRef = doc(db, "categories", category.id);
+                batch.update(docRef, { priority: index });
+            });
+
+            try {
+                await batch.commit();
+            } catch (err) {
+                console.error("카테고리 순서 변경 실패:", err);
+            }
+        };
+        
+        const handleCategoryNameUpdate = async (categoryId, newName) => {
+            const oldCategory = state.categories.find(c => c.id === categoryId);
+            if (!oldCategory || !newName || oldCategory.name === newName) {
+                 renderCategoryList();
+                 return; 
+            }
+
+            if (state.categories.some(c => c.name.toLowerCase() === newName.toLowerCase() && c.id !== categoryId)) {
+                showInfo("이미 존재하는 카테고리 이름입니다.");
+                renderCategoryList();
+                return;
+            }
+
+            const batch = writeBatch(db);
+            const categoryRef = doc(db, "categories", categoryId);
+            batch.update(categoryRef, { name: newName });
+            
+            const tasksQuery1 = query(collection(db, "tasks"), where("category", "==", oldCategory.name));
+            const tasksQuery2 = query(collection(db, `artifacts/${appId}/public/data/work-pages`), where("category", "==", oldCategory.name));
+
+            try {
+                const [tasksSnapshot1, tasksSnapshot2] = await Promise.all([
+                    getDocs(tasksQuery1),
+                    getDocs(tasksQuery2)
+                ]);
+
+                tasksSnapshot1.forEach(taskDoc => batch.update(taskDoc.ref, { category: newName }));
+                tasksSnapshot2.forEach(taskDoc => batch.update(taskDoc.ref, { category: newName }));
+
+                await batch.commit();
+            } catch (err) {
+                console.error("카테고리 이름 변경 실패:", err);
+                showInfo("카테고리 이름 변경에 실패했습니다.");
+            }
+        };
+
+        const setupEventListeners = () => {
+            document.body.addEventListener('click', e => {
+                const editBtn = e.target.closest('.edit-task-btn');
+                if (editBtn) {
+                    const taskRow = editBtn.closest('.task-row');
+                    const task = state.tasks.find(t => t.id === taskRow.dataset.taskId);
+                    if (task) openTaskModal(task);
+                    return;
+                }
+
+                const deleteBtn = e.target.closest('.delete-task-btn');
+                if (deleteBtn) {
+                    const taskRow = deleteBtn.closest('.task-row');
+                    openDeleteConfirmModal(taskRow.dataset.taskId, 'task', taskRow.dataset.taskSource);
+                    return;
+                }
+                
+                const toggleBtn = e.target.closest('.category-toggle-btn');
+                if (toggleBtn) {
+                    const categoryName = toggleBtn.dataset.categoryName;
+                    const index = state.collapsedCategories.indexOf(categoryName);
+                    if (index > -1) {
+                        state.collapsedCategories.splice(index, 1);
+                    } else {
+                        state.collapsedCategories.push(categoryName);
+                    }
+                    debouncedRenderAll();
+                    return;
+                }
+            });
+
+            // --- 드래그 앤 드롭 이벤트 리스너 ---
+            let draggedItem = null;
+
+            DOM.timelineContainer.addEventListener('dragstart', e => {
+                if (e.target.classList.contains('task-row')) {
+                    draggedItem = e.target;
+                    setTimeout(() => {
+                        e.target.classList.add('dragging');
+                    }, 0);
+                }
+            });
+
+            DOM.timelineContainer.addEventListener('dragend', e => {
+                if (draggedItem) {
+                    draggedItem.classList.remove('dragging');
+                    draggedItem = null;
+                }
+            });
+
+            DOM.timelineContainer.addEventListener('dragover', e => {
+                e.preventDefault();
+                const container = e.target.closest('div[data-category]');
+                if (!container) return;
+
+                const afterElement = getDragAfterElement(container, e.clientY);
+                const draggable = document.querySelector('.dragging');
+                if (draggable && draggable.closest('div[data-category]') === container) { // 같은 카테고리 내에서만 이동
+                     if (afterElement == null) {
+                        container.appendChild(draggable);
+                    } else {
+                        container.insertBefore(draggable, afterElement);
+                    }
+                }
+            });
+
+            DOM.timelineContainer.addEventListener('drop', async e => {
+                e.preventDefault();
+                const container = e.target.closest('div[data-category]');
+                if (!container) return;
+
+                const taskRows = [...container.querySelectorAll('.task-row')];
+                const batch = writeBatch(db);
+
+                taskRows.forEach((row, index) => {
+                    const taskId = row.dataset.taskId;
+                    const taskSource = row.dataset.taskSource;
+
+                    if (taskSource === 'old') {
+                        const taskData = state.tasks.find(t => t.id === taskId);
+                        if (!taskData) return;
+
+                        const { id, source, name, ...dataToSave } = taskData;
+                        const newTaskRef = doc(db, 'tasks', taskId);
+                        batch.set(newTaskRef, { ...dataToSave, priority: index, assignees: taskData.assignees || [] });
+
+                        const oldTaskRef = doc(db, `artifacts/${appId}/public/data/work-pages`, taskId);
+                        batch.delete(oldTaskRef);
+                    } else {
+                        const taskRef = doc(db, 'tasks', taskId);
+                        batch.update(taskRef, { priority: index });
+                    }
+                });
+
+                try {
+                    await batch.commit();
+                } catch (err) {
+                    console.error("업무 순서 변경 실패:", err);
+                    showInfo("업무 순서 변경에 실패했습니다. 페이지를 새로고침 해주세요.");
+                    debouncedRenderAll(); // 에러 발생 시 원래 순서로 되돌리기
+                }
+            });
+
+            function getDragAfterElement(container, y) {
+                const draggableElements = [...container.querySelectorAll('.task-row:not(.dragging)')];
+
+                return draggableElements.reduce((closest, child) => {
+                    const box = child.getBoundingClientRect();
+                    const offset = y - box.top - box.height / 2;
+                    if (offset < 0 && offset > closest.offset) {
+                        return { offset: offset, element: child };
+                    } else {
+                        return closest;
+                    }
+                }, { offset: Number.NEGATIVE_INFINITY }).element;
+            }
+
+
+            DOM.categoryList.addEventListener('click', e => {
+                const target = e.target;
+                const categoryItem = target.closest('[data-id]');
+                if (!categoryItem) return;
+                
+                const categoryId = categoryItem.dataset.id;
+                
+                if (target.closest('.edit-category-btn')) {
+                    categoryItem.querySelector('.category-name-text').classList.add('hidden');
+                    categoryItem.querySelector('.category-name-input').classList.remove('hidden');
+                    categoryItem.querySelector('.edit-category-btn').classList.add('hidden');
+                    categoryItem.querySelector('.save-category-btn').classList.remove('hidden');
+                    categoryItem.querySelector('.category-name-input').focus();
+                }
+                else if (target.closest('.save-category-btn')) {
+                    const newName = categoryItem.querySelector('.category-name-input').value.trim();
+                    handleCategoryNameUpdate(categoryId, newName);
+                }
+                else if (target.closest('.delete-category-btn')) {
+                    openDeleteConfirmModal(categoryId, 'category');
+                }
+                else if (target.closest('.move-category-up-btn')) {
+                    handleCategoryPriorityChange(categoryId, 'up');
+                }
+                else if (target.closest('.move-category-down-btn')) {
+                    handleCategoryPriorityChange(categoryId, 'down');
+                }
+            });
+            
+            DOM.categoryList.addEventListener('keydown', e => {
+                if (e.key === 'Enter') {
+                    const input = e.target.closest('.category-name-input');
+                    if (input && !input.classList.contains('hidden')) {
+                        e.preventDefault();
+                        const categoryItem = input.closest('[data-id]');
+                        const categoryId = categoryItem.dataset.id;
+                        const newName = input.value.trim();
+                        handleCategoryNameUpdate(categoryId, newName);
+                    }
+                }
+            });
+            
+            document.getElementById('prev-btn').addEventListener('click', () => {
+                state.viewDate.setDate(state.viewDate.getDate() - 7);
+                debouncedRenderAll();
+            });
+            document.getElementById('next-btn').addEventListener('click', () => {
+                state.viewDate.setDate(state.viewDate.getDate() + 7);
+                debouncedRenderAll();
+            });
+            document.getElementById('today-btn').addEventListener('click', () => {
+                state.viewDate = new Date();
+                debouncedRenderAll();
+            });
+
+            document.getElementById('manage-category-btn').addEventListener('click', () => openModal(DOM.categoryModal));
+            document.getElementById('add-task-btn').addEventListener('click', () => openTaskModal());
+            document.getElementById('confirm-delete-btn').addEventListener('click', handleDeleteConfirmed);
+            document.getElementById('add-category-form').addEventListener('submit', handleAddCategoryFormSubmit);
+            DOM.taskForm.addEventListener('submit', handleTaskFormSubmit);
+
+            document.querySelectorAll('.close-modal-btn').forEach(btn => {
+                btn.addEventListener('click', () => closeModal(btn.closest('.fixed')));
+            });
+            
+            document.getElementById('info-modal-close-btn').addEventListener('click', () => closeModal(DOM.infoModal));
+
+            // 모달 외부 클릭 시 닫기
+            document.querySelectorAll('[role="dialog"]').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal(modal);
+                    }
+                });
+            });
+
+            DOM.darkModeToggle.addEventListener('click', () => {
+                const html = document.documentElement;
+                html.classList.toggle('dark');
+                const isDark = html.classList.contains('dark');
+                StorageUtils.set('theme', isDark ? 'dark' : 'light');
+                DOM.darkModeToggle.querySelector('i').className = isDark ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+            });
+            
+            // 툴팁 이벤트 리스너
+            DOM.timelineContainer.addEventListener('mouseover', e => {
+                const taskBar = e.target.closest('.timeline-task-bar');
+                if (!taskBar) return;
+                
+                const taskId = taskBar.dataset.taskId;
+                const task = state.tasks.find(t => t.id === taskId);
+                if (!task) return;
+
+                DOM.tooltip.classList.remove('hidden');
+                document.getElementById('tooltip-title').textContent = task.title;
+                document.getElementById('tooltip-assignees').textContent = (task.assignees || []).join(', ');
+            });
+
+            DOM.timelineContainer.addEventListener('mouseout', e => {
+                const taskBar = e.target.closest('.timeline-task-bar');
+                if (!taskBar) return;
+                DOM.tooltip.classList.add('hidden');
+            });
+            
+            DOM.timelineContainer.addEventListener('mousemove', e => {
+                if (!DOM.tooltip.classList.contains('hidden')) {
+                    DOM.tooltip.style.left = `${e.pageX + 15}px`;
+                    DOM.tooltip.style.top = `${e.pageY + 15}px`;
+                }
+            });
+
+            document.getElementById('add-schedule-btn').addEventListener('click', () => {
+                 const schedulesContainer = document.getElementById('schedules-container');
+                 const index = schedulesContainer.children.length;
+                 addScheduleBlock(schedulesContainer, {}, index);
+            });
+        };
+
+        const setupDataListeners = () => {
+            let categoriesLoaded = false, tasksLoaded = false, oldTasksLoaded = false;
+            let newTasks = [], oldTasks = [];
+            let initialCollapseStateSet = false;
+
+            const combineAndRender = () => {
+                if (categoriesLoaded && tasksLoaded && oldTasksLoaded) {
+                     state.tasks = [...newTasks, ...oldTasks];
+                     
+                     if (!initialCollapseStateSet) {
+                        initialCollapseStateSet = true;
+
+                        const tasksWithTimestamp = newTasks.filter(t => t.createdAt && t.createdAt.toMillis);
+                        const recentTasks = [...tasksWithTimestamp]
+                            .sort((a, b) => b.createdAt.toMillis() - a.createdAt.toMillis())
+                            .slice(0, 5);
+                        
+                        state.individuallyShownTasks = new Set(recentTasks.map(t => t.id));
+                        state.collapsedCategories = state.categories.map(c => c.name);
+                     }
+                     debouncedRenderAll();
+                }
+            };
+
+            const categoriesUnsubscribe = onSnapshot(
+                query(collection(db, "categories"), orderBy("priority")), 
+                snapshot => {
+                    state.categories = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    categoriesLoaded = true;
+                    combineAndRender();
+                },
+                error => ErrorHandler.handle(error, 'categories subscription')
+            );
+            unsubscribeFunctions.push(categoriesUnsubscribe);
+            
+            const tasksUnsubscribe = onSnapshot(
+                query(collection(db, "tasks")), 
+                snapshot => {
+                    newTasks = snapshot.docs.map(doc => {
+                        const data = doc.data();
+                        return { id: doc.id, source: 'new', ...data, category: data.category || '기본' };
+                    });
+                    tasksLoaded = true;
+                    combineAndRender();
+                },
+                error => ErrorHandler.handle(error, 'tasks subscription')
+            );
+            unsubscribeFunctions.push(tasksUnsubscribe);
+
+            const oldTasksUnsubscribe = onSnapshot(
+                collection(db, `artifacts/${appId}/public/data/work-pages`), 
+                snapshot => {
+                    oldTasks = snapshot.docs.map(doc => {
+                        const data = doc.data();
+                        const schedule = {
+                            startDate: data.date,
+                            endDate: data.endDate || data.date,
+                            status: data.status || 'completed',
+                            progress: data.progress || (data.status === 'completed' ? 100 : 0)
+                        };
+                        return { 
+                            id: doc.id, 
+                            source: 'old', 
+                            category: data.category || '기본', 
+                            title: data.title,
+                            url: data.url,
+                            assignees: data.name ? [data.name] : [],
+                            schedules: [schedule],
+                            priority: null 
+                        };
+                    });
+                    oldTasksLoaded = true;
+                    combineAndRender();
+                },
+                error => ErrorHandler.handle(error, 'old tasks subscription')
+            );
+            unsubscribeFunctions.push(oldTasksUnsubscribe);
+        };
+
+        const initializeDefaultCategories = async () => {
+            const categoriesRef = collection(db, "categories");
+            const snapshot = await getDocs(categoriesRef);
+            if (snapshot.empty) {
+                const batch = writeBatch(db);
+                const defaultCategories = ['Frontend', 'Backend', 'Design', '기본'];
+                defaultCategories.forEach((name, index) => {
+                    const docRef = doc(categoriesRef);
+                    batch.set(docRef, { 
+                        name, 
+                        createdAt: serverTimestamp(),
+                        priority: index
+                    });
+                });
+                await batch.commit();
+            }
+        };
+
+        const init = () => {
+            // Firebase 초기화 오류 처리
+            if (initializationError) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'fixed inset-0 bg-red-100 text-red-800 flex flex-col items-center justify-center p-4 text-center';
+                errorDiv.innerHTML = `
+                    <div class="mb-4">
+                        <i class="fa-solid fa-exclamation-triangle text-4xl mb-2"></i>
+                        <h2 class="text-xl font-bold mb-2">서비스 초기화 실패</h2>
+                        <p class="mb-4">${ERROR_MESSAGES.FIREBASE_INIT_FAILED}</p>
+                        <button onclick="location.reload()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                            새로고침
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(errorDiv);
+                return;
+            }
+            
+            if (!db) return;
+            
+            // 테마 설정 초기화
+            const theme = StorageUtils.get('theme');
+            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                DOM.darkModeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
+            }
+            
+            // 인증 상태 변경 감지
+            const authUnsubscribe = onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    userId = user.uid;
+                    if (!state.isAuthReady) {
+                        state.isAuthReady = true;
+                        try {
+                            await initializeDefaultCategories();
+                            setupEventListeners();
+                            setupDataListeners();
+                        } catch (error) {
+                            ErrorHandler.handle(error, 'initialization');
+                        }
+                    }
+                } else {
+                    try {
+                        await signInAnonymously(auth);
+                    } catch (error) {
+                        ErrorHandler.handle(error, 'anonymous auth');
+                    }
+                }
+            });
+            
+            unsubscribeFunctions.push(authUnsubscribe);
+        };
+        
+        // 페이지 종료 시 리소스 정리
+        window.addEventListener('beforeunload', () => {
+            // 모든 Firebase 구독 해제
+            unsubscribeFunctions.forEach(fn => {
+                try {
+                    fn();
+                } catch (error) {
+                    console.warn('Unsubscribe error:', error);
+                }
+            });
+            
+            // 로컬 스토리지에 상태 저장
+            StorageUtils.set('collapsedCategories', state.collapsedCategories);
+            StorageUtils.set('individuallyShownTasks', Array.from(state.individuallyShownTasks));
+        });
+        
+        // DOM 로드 완료 후 초기화
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+
+    </script>
+</body>
+</html>

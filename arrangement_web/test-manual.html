@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GGP CAMERA 수동 테스트 페이지</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-item { 
+            border: 1px solid #ddd; 
+            margin: 10px 0; 
+            padding: 15px; 
+            border-radius: 8px;
+        }
+        .test-pass { background-color: #d4edda; border-color: #c3e6cb; }
+        .test-fail { background-color: #f8d7da; border-color: #f5c6cb; }
+        .test-pending { background-color: #fff3cd; border-color: #ffeaa7; }
+        button { 
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        .results { margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 GGP CAMERA 업무 현황 보드 - 수동 테스트</h1>
+    
+    <div class="test-item test-pending">
+        <h3>1. 기본 로딩 테스트</h3>
+        <p>메인 페이지가 정상적으로 로드되는지 확인합니다.</p>
+        <button onclick="testPageLoad()">테스트 실행</button>
+        <div id="test1-result"></div>
+    </div>
+
+    <div class="test-item test-pending">
+        <h3>2. 환경 설정 테스트</h3>
+        <p>Firebase 설정과 환경 변수가 올바르게 로드되는지 확인합니다.</p>
+        <button onclick="testEnvironment()">테스트 실행</button>
+        <div id="test2-result"></div>
+    </div>
+
+    <div class="test-item test-pending">
+        <h3>3. 모듈 로딩 테스트</h3>
+        <p>필요한 JavaScript 모듈들이 정상적으로 로드되는지 확인합니다.</p>
+        <button onclick="testModules()">테스트 실행</button>
+        <div id="test3-result"></div>
+    </div>
+
+    <div class="test-item test-pending">
+        <h3>4. 반응형 디자인 테스트</h3>
+        <p>다양한 화면 크기에서 UI가 적절히 조정되는지 확인합니다.</p>
+        <button onclick="testResponsive()">테스트 실행</button>
+        <div id="test4-result"></div>
+    </div>
+
+    <div class="test-item test-pending">
+        <h3>5. 전체 통합 테스트</h3>
+        <p>메인 페이지로 이동하여 실제 애플리케이션을 테스트합니다.</p>
+        <button onclick="openMainApp()">메인 앱 열기</button>
+        <div id="test5-result"></div>
+    </div>
+
+    <div class="results" id="overall-results">
+        <h3>📊 전체 테스트 결과</h3>
+        <p>각 테스트를 실행하면 여기에 결과가 표시됩니다.</p>
+    </div>
+
+    <script>
+        let testResults = [];
+
+        function updateResult(testId, status, message) {
+            const element = document.getElementById(`test${testId}-result`);
+            const testItem = element.closest('.test-item');
+            
+            element.innerHTML = `<p><strong>결과:</strong> ${message}</p>`;
+            
+            testItem.className = 'test-item';
+            if (status === 'pass') {
+                testItem.classList.add('test-pass');
+            } else if (status === 'fail') {
+                testItem.classList.add('test-fail');
+            }
+            
+            testResults[testId - 1] = { status, message };
+            updateOverallResults();
+        }
+
+        function updateOverallResults() {
+            const passCount = testResults.filter(r => r && r.status === 'pass').length;
+            const failCount = testResults.filter(r => r && r.status === 'fail').length;
+            const totalCount = testResults.filter(r => r).length;
+            
+            document.getElementById('overall-results').innerHTML = `
+                <h3>📊 전체 테스트 결과</h3>
+                <p>완료: ${totalCount}/5, 성공: ${passCount}, 실패: ${failCount}</p>
+                ${totalCount === 5 ? `<p><strong>전체 성공률: ${Math.round((passCount/totalCount)*100)}%</strong></p>` : ''}
+            `;
+        }
+
+        async function testPageLoad() {
+            try {
+                const startTime = performance.now();
+                const response = await fetch('./index.html');
+                const endTime = performance.now();
+                
+                if (response.ok) {
+                    const content = await response.text();
+                    const hasTitle = content.includes('GGP CAMERA 업무 현황');
+                    const hasFirebase = content.includes('firebase');
+                    
+                    if (hasTitle && hasFirebase) {
+                        updateResult(1, 'pass', `페이지 로드 성공! (${Math.round(endTime - startTime)}ms)`);
+                    } else {
+                        updateResult(1, 'fail', '페이지 내용이 올바르지 않습니다.');
+                    }
+                } else {
+                    updateResult(1, 'fail', `HTTP 오류: ${response.status}`);
+                }
+            } catch (error) {
+                updateResult(1, 'fail', `네트워크 오류: ${error.message}`);
+            }
+        }
+
+        async function testEnvironment() {
+            try {
+                const response = await fetch('./env-config.js');
+                if (response.ok) {
+                    const content = await response.text();
+                    const hasConfig = content.includes('ENV_CONFIG') && content.includes('DEVELOPMENT');
+                    
+                    if (hasConfig) {
+                        updateResult(2, 'pass', '환경 설정 파일이 정상적으로 존재합니다.');
+                    } else {
+                        updateResult(2, 'fail', '환경 설정 내용이 올바르지 않습니다.');
+                    }
+                } else {
+                    updateResult(2, 'fail', '환경 설정 파일을 찾을 수 없습니다.');
+                }
+            } catch (error) {
+                updateResult(2, 'fail', `오류: ${error.message}`);
+            }
+        }
+
+        async function testModules() {
+            const modules = ['config.js', 'utils.js'];
+            let allExist = true;
+            let messages = [];
+            
+            for (const module of modules) {
+                try {
+                    const response = await fetch(`./${module}`);
+                    if (response.ok) {
+                        messages.push(`✓ ${module}`);
+                    } else {
+                        allExist = false;
+                        messages.push(`✗ ${module} (${response.status})`);
+                    }
+                } catch (error) {
+                    allExist = false;
+                    messages.push(`✗ ${module} (네트워크 오류)`);
+                }
+            }
+            
+            if (allExist) {
+                updateResult(3, 'pass', `모든 모듈 로드 성공: ${messages.join(', ')}`);
+            } else {
+                updateResult(3, 'fail', `일부 모듈 로드 실패: ${messages.join(', ')}`);
+            }
+        }
+
+        function testResponsive() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            let deviceType;
+            if (width <= 768) {
+                deviceType = '모바일';
+            } else if (width <= 1024) {
+                deviceType = '태블릿';
+            } else {
+                deviceType = '데스크톱';
+            }
+            
+            const hasViewport = document.querySelector('meta[name="viewport"]');
+            
+            if (hasViewport) {
+                updateResult(4, 'pass', `${deviceType} 화면 (${width}x${height})에서 반응형 메타 태그 확인됨`);
+            } else {
+                updateResult(4, 'fail', '반응형 디자인을 위한 viewport 메타 태그가 없습니다.');
+            }
+        }
+
+        function openMainApp() {
+            const popup = window.open('./index.html', '_blank', 'width=1200,height=800');
+            if (popup) {
+                updateResult(5, 'pass', '메인 애플리케이션이 새 탭에서 열렸습니다. 직접 테스트해보세요.');
+                
+                // 5초 후 팝업 상태 확인
+                setTimeout(() => {
+                    if (popup.closed) {
+                        updateResult(5, 'fail', '메인 애플리케이션이 예기치 않게 닫혔습니다.');
+                    }
+                }, 5000);
+            } else {
+                updateResult(5, 'fail', '팝업이 차단되었습니다. 브라우저 설정을 확인하세요.');
+            }
+        }
+
+        // 페이지 로드 시 자동으로 일부 테스트 실행
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('테스트 페이지 준비 완료');
+        });
+    </script>
+</body>
+</html>
