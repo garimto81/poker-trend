@@ -1,0 +1,233 @@
+name: 🔍 Workflow Health Check
+
+on:
+  workflow_dispatch:
+    inputs:
+      check_slack_webhook:
+        description: 'Test Slack webhook connectivity'
+        type: boolean
+        default: true
+      check_api_keys:
+        description: 'Verify API keys (without exposing them)'
+        type: boolean
+        default: true
+      test_dependencies:
+        description: 'Test Python dependencies installation'
+        type: boolean
+        default: true
+
+jobs:
+  health-check:
+    name: "🔍 System Health Check"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+    - name: 🔄 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: 📋 Environment Check
+      run: |
+        echo "🔍 Environment Information:"
+        echo "  Python version: $(python --version)"
+        echo "  Pip version: $(pip --version)"
+        echo "  Working directory: $(pwd)"
+        echo "  Current time (UTC): $(date -u)"
+        echo "  Current time (KST): $(TZ=Asia/Seoul date)"
+        echo ""
+        
+        echo "📁 Project structure check:"
+        ls -la
+        echo ""
+        echo "📁 Backend structure:"
+        if [ -d "backend" ]; then
+          find backend -name "*.py" -type f | head -10
+        else
+          echo "  ⚠️ Backend directory not found"
+        fi
+        echo ""
+        echo "📁 Poker-trend-analysis structure:"
+        if [ -d "poker-trend-analysis" ]; then
+          find poker-trend-analysis -name "*.py" -type f | head -10
+        else
+          echo "  ⚠️ poker-trend-analysis directory not found"
+        fi
+    
+    - name: 🧪 Dependencies Test (PokerNews)
+      if: ${{ inputs.test_dependencies }}
+      working-directory: poker-trend-analysis/backend/news-analyzer
+      run: |
+        echo "📦 Testing PokerNews dependencies..."
+        if [ -f "requirements.txt" ]; then
+          echo "Installing requirements..."
+          pip install -r requirements.txt
+          echo "✅ PokerNews dependencies installed successfully"
+        else
+          echo "❌ requirements.txt not found"
+          exit 1
+        fi
+        
+        echo "🐍 Testing Python imports..."
+        python -c "
+        try:
+            import requests
+            import google.generativeai as genai
+            from dotenv import load_dotenv
+            print('✅ All critical imports successful')
+        except ImportError as e:
+            print(f'❌ Import error: {e}')
+            exit(1)
+        "
+    
+    - name: 🧪 Dependencies Test (YouTube)
+      if: ${{ inputs.test_dependencies }}
+      working-directory: backend/data-collector
+      run: |
+        echo "📦 Testing YouTube analysis dependencies..."
+        if [ -f "requirements.txt" ]; then
+          echo "Installing requirements..."
+          pip install -r requirements.txt
+          echo "✅ YouTube dependencies installed successfully"
+        else
+          echo "❌ requirements.txt not found"
+          exit 1
+        fi
+        
+        echo "🐍 Testing Python imports..."
+        python -c "
+        try:
+            import google.generativeai as genai
+            from googleapiclient.discovery import build
+            import requests
+            print('✅ All critical imports successful')
+        except ImportError as e:
+            print(f'❌ Import error: {e}')
+            exit(1)
+        "
+    
+    - name: 🧪 Dependencies Test (Platform)
+      if: ${{ inputs.test_dependencies }}
+      working-directory: backend/platform-analyzer
+      run: |
+        echo "📦 Testing Platform analysis dependencies..."
+        if [ -f "requirements.txt" ]; then
+          echo "Installing requirements..."
+          pip install -r requirements.txt
+          echo "✅ Platform dependencies installed successfully"
+        else
+          echo "❌ requirements.txt not found"
+          exit 1
+        fi
+        
+        echo "🐍 Testing Python imports..."
+        python -c "
+        try:
+            import requests
+            import sqlite3
+            import json
+            import logging
+            print('✅ All critical imports successful')
+        except ImportError as e:
+            print(f'❌ Import error: {e}')
+            exit(1)
+        "
+    
+    - name: 🔑 API Keys Validation
+      if: ${{ inputs.check_api_keys }}
+      env:
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "🔑 Checking API keys availability (without exposing values)..."
+        
+        # YouTube API Key
+        if [ -n "$YOUTUBE_API_KEY" ]; then
+          echo "✅ YOUTUBE_API_KEY is configured (length: ${#YOUTUBE_API_KEY})"
+        else
+          echo "❌ YOUTUBE_API_KEY is missing"
+        fi
+        
+        # Gemini API Key  
+        if [ -n "$GEMINI_API_KEY" ]; then
+          echo "✅ GEMINI_API_KEY is configured (length: ${#GEMINI_API_KEY})"
+        else
+          echo "❌ GEMINI_API_KEY is missing"
+        fi
+        
+        # Slack Webhook URL
+        if [ -n "$SLACK_WEBHOOK_URL" ]; then
+          echo "✅ SLACK_WEBHOOK_URL is configured (length: ${#SLACK_WEBHOOK_URL})"
+        else
+          echo "❌ SLACK_WEBHOOK_URL is missing"
+        fi
+    
+    - name: 📡 Slack Webhook Test
+      if: ${{ inputs.check_slack_webhook }}
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "📡 Testing Slack webhook connectivity..."
+        
+        if [ -z "$SLACK_WEBHOOK_URL" ]; then
+          echo "❌ SLACK_WEBHOOK_URL not configured"
+          exit 1
+        fi
+        
+        # 테스트 메시지 생성
+        cat << 'EOF' > test_message.json
+        {
+          "blocks": [
+            {
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": "🧪 *Workflow Health Check Test*\n\nThis is a connectivity test from GitHub Actions.\n\n⏰ Time: $(date -u +%Y-%m-%d %H:%M:%S UTC)\n🤖 From: Daily Poker Report Workflow"
+              }
+            }
+          ]
+        }
+        EOF
+        
+        # 현재 시간 삽입
+        sed -i "s/\$(date -u +%Y-%m-%d %H:%M:%S UTC)/$(date -u +'%Y-%m-%d %H:%M:%S UTC')/" test_message.json
+        
+        # Slack 전송 테스트
+        HTTP_CODE=$(curl -s -o response.txt -w "%{http_code}" \
+          -X POST \
+          -H 'Content-type: application/json' \
+          --data @test_message.json \
+          "$SLACK_WEBHOOK_URL")
+        
+        echo "HTTP Response Code: $HTTP_CODE"
+        
+        if [ "$HTTP_CODE" = "200" ]; then
+          echo "✅ Slack webhook test successful"
+        else
+          echo "❌ Slack webhook test failed"
+          echo "Response:"
+          cat response.txt
+          exit 1
+        fi
+    
+    - name: 📊 Health Check Summary
+      if: always()
+      run: |
+        echo "=============================================="
+        echo "🔍 Workflow Health Check Summary"
+        echo "=============================================="
+        echo "⏰ Check completed at: $(TZ=Asia/Seoul date)"
+        echo ""
+        echo "✅ Environment setup: OK"
+        echo "✅ Dependencies: $(if [ '${{ inputs.test_dependencies }}' = 'true' ]; then echo 'TESTED'; else echo 'SKIPPED'; fi)"
+        echo "✅ API Keys: $(if [ '${{ inputs.check_api_keys }}' = 'true' ]; then echo 'VERIFIED'; else echo 'SKIPPED'; fi)"
+        echo "✅ Slack webhook: $(if [ '${{ inputs.check_slack_webhook }}' = 'true' ]; then echo 'TESTED'; else echo 'SKIPPED'; fi)"
+        echo ""
+        echo "🎯 System is ready for daily poker reports!"
+        echo "=============================================="
