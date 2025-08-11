@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pytest
+black
+flake8
+firebase-admin
+cloudscraper
+beautifulsoup4
+sqlalchemy
+psycopg2-binary
+python-dotenv

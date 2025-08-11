@@ -1,0 +1,55 @@
+# Node.js
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnp
+.pnp.js
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+*.env
+.env.*
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Firebase Key (IMPORTANT: DO NOT COMMIT SENSITIVE KEYS)
+key/
+**/key/
+firebase-service-account-key.json
+**/firebase-service-account-key.json
+
+# Build artifacts
+build/
+dist/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+
+# Docker
+*.dockerignore
+
+# Other
+*.db
+# JSON files - exclude all except specific exceptions
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!data/*.json
+*.csv

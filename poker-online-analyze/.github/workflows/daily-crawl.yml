@@ -1,0 +1,43 @@
+name: Daily Poker Data Crawl
+
+on:
+  schedule:
+    # 매일 UTC 18:00 (한국시간 오전 3시)에 실행
+    - cron: '0 18 * * *'
+  workflow_dispatch: # 수동 실행 가능
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        cd backend
+        pip install --upgrade pip
+        pip install fastapi firebase-admin cloudscraper beautifulsoup4 lxml requests google-auth google-auth-oauthlib google-auth-httplib2
+    
+    - name: Create Firebase key from secret
+      env:
+        FIREBASE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+      run: |
+        mkdir -p backend/key
+        echo "$FIREBASE_KEY" > backend/key/firebase-service-account-key.json
+    
+    - name: Run crawler
+      run: |
+        cd backend
+        python github_actions_crawler_firestore.py
+    
+    - name: Clean up
+      if: always()
+      run: |
+        rm -rf backend/key
