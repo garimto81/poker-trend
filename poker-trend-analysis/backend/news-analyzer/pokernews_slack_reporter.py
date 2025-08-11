@@ -47,14 +47,15 @@ class PokerNewsSlackReporter:
         
         logger.info("PokerNews Slack 리포터 초기화 완료")
     
-    def run_daily_report(self) -> Dict:
+    def run_report(self) -> Dict:
         """
-        일일 리포트 실행
+        리포트 실행 (일간/주간/월간)
         
         Returns:
             실행 결과
         """
-        logger.info("=== PokerNews 일일 리포트 시작 ===")
+        report_type = os.getenv('REPORT_TYPE', 'daily')
+        logger.info(f"=== PokerNews {report_type} 리포트 시작 ===")
         
         try:
             # 1. 뉴스 수집
@@ -122,12 +123,24 @@ class PokerNewsSlackReporter:
         """Slack 메시지 생성"""
         current_date = datetime.now().strftime("%Y년 %m월 %d일")
         
+        # 리포트 타입 확인
+        report_type = os.getenv('REPORT_TYPE', 'daily')
+        data_start = os.getenv('DATA_PERIOD_START', '')
+        data_end = os.getenv('DATA_PERIOD_END', '')
+        
+        # 리포트 타입에 따른 헤더 설정
+        header_text = {
+            'daily': '📰 PokerNews 일간 트렌드 분석',
+            'weekly': '📰 PokerNews 주간 트렌드 분석',
+            'monthly': '📰 PokerNews 월간 트렌드 분석'
+        }.get(report_type, '📰 PokerNews 트렌드 분석')
+        
         blocks = [
             {
                 "type": "header",
                 "text": {
                     "type": "plain_text",
-                    "text": f"📰 PokerNews 일일 트렌드 분석",
+                    "text": header_text,
                     "emoji": True
                 }
             },
@@ -136,7 +149,7 @@ class PokerNewsSlackReporter:
                 "elements": [
                     {
                         "type": "mrkdwn",
-                        "text": f"📅 *{current_date}* | 🔍 분석 기사: *{len(articles)}개*"
+                        "text": f"📅 *{data_start if data_start else current_date}{(' ~ ' + data_end) if data_end and data_start != data_end else ''}* | 🔍 분석 기사: *{len(articles)}개*"
                     }
                 ]
             },
@@ -441,11 +454,14 @@ class PokerNewsSlackReporter:
 def main():
     """메인 실행 함수"""
     reporter = PokerNewsSlackReporter()
-    result = reporter.run_daily_report()
+    result = reporter.run_report()
+    
+    report_type = os.getenv('REPORT_TYPE', 'daily')
+    type_text = {'daily': '일간', 'weekly': '주간', 'monthly': '월간'}.get(report_type, '일일')
     
     # 결과 출력
     if result['status'] == 'success':
-        print("✅ PokerNews 일일 리포트 전송 완료!")
+        print(f"✅ PokerNews {type_text} 리포트 전송 완료!")
         print(f"   - 수집된 기사: {result.get('articles_collected', 0)}개")
         print(f"   - 오늘의 기사: {result.get('today_articles', 0)}개")
         print(f"   - Slack 전송: {'성공' if result.get('slack_sent') else '실패'}")
