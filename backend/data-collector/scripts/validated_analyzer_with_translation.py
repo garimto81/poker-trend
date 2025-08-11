@@ -360,7 +360,7 @@ class ValidatedAnalyzerWithTranslation:
         """번역이 포함된 분석 프롬프트"""
         
         video_summary = []
-        for i, video in enumerate(top_videos[:10], 1):
+        for i, video in enumerate(top_videos[:5], 1):
             engagement_rate = round((video.get('like_count', 0) / max(video.get('view_count', 1), 1) * 100), 2)
             video_summary.append(f"""
 {i}위: "{video.get('title', '')}"
@@ -406,8 +406,8 @@ class ValidatedAnalyzerWithTranslation:
         logger.info("Generating AI insights with Korean translations...")
         
         try:
-            # 주간 리포트는 TOP 10 분석
-            top_videos = sorted(videos, key=lambda x: x.get('view_count', 0), reverse=True)[:10]
+            # TOP 5 분석
+            top_videos = sorted(videos, key=lambda x: x.get('view_count', 0), reverse=True)[:5]
             prompt = self.create_analysis_prompt_with_translation(top_videos)
             
             response = self.gemini_model.generate_content(prompt)
@@ -419,8 +419,8 @@ class ValidatedAnalyzerWithTranslation:
     
     def create_slack_report_with_validation(self, videos, ai_insights, validation_stats):
         """검증 통계 포함 Slack 리포트"""
-        # 주간 리포트는 TOP 10
-        top_videos = sorted(videos, key=lambda x: x.get('view_count', 0), reverse=True)[:10]
+        # TOP 5 표시
+        top_videos = sorted(videos, key=lambda x: x.get('view_count', 0), reverse=True)[:5]
         total_views = sum(v.get('view_count', 0) for v in videos)
         
         # 리포트 타입 및 기간 확인
@@ -543,8 +543,8 @@ class ValidatedAnalyzerWithTranslation:
         # 2. AI 인사이트 생성 (번역 포함)
         ai_insights = self.generate_insights_with_translation(videos)
         
-        # 3. TOP 10 추출 (주간 리포트)
-        top_videos = sorted(videos, key=lambda x: x.get('view_count', 0), reverse=True)[:10]
+        # 3. TOP 5 추출
+        top_videos = sorted(videos, key=lambda x: x.get('view_count', 0), reverse=True)[:5]
         
         # 4. 리포트 생성
         report_data = {

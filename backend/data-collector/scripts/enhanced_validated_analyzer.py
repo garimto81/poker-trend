@@ -363,8 +363,8 @@ class EnhancedValidatedAnalyzer:
     
     def create_slack_report_enhanced(self, videos, ai_insights, validation_stats):
         """강화된 검증 통계 포함 Slack 리포트"""
-        # 월간 리포트는 TOP 15
-        top_videos = sorted(videos, key=lambda x: x.get('view_count', 0), reverse=True)[:15]
+        # TOP 5 표시
+        top_videos = sorted(videos, key=lambda x: x.get('view_count', 0), reverse=True)[:5]
         total_views = sum(v.get('view_count', 0) for v in videos)
         
         # 리포트 타입 및 기간 확인
