@@ -1,4 +1,4 @@
-name: 🎰 통합 포커 보고 스케줄링 시스템
+name: 🎰 통합 포커 보고 스케줄링 시스템 V2
 
 # 통일된 스케줄링 규칙:
 # 1. 월간 보고서: 매월 첫째주 월요일 - 지난달 데이터 분석
@@ -10,7 +10,7 @@ name: 🎰 통합 포커 보고 스케줄링 시스템
 on:
   # schedule:
   #   # 매일 오전 10시 (KST) = UTC 01:00 (평일만 실행)
-  #   - cron: '0 1 * * 1-5'  # 월-금요일만 실행 - 기본 버전 비활성화
+  #   - cron: '0 1 * * 1-5'  # 월-금요일만 실행 - V2 비활성화
     
   workflow_dispatch:  # 수동 실행만 가능
     inputs:
@@ -259,12 +259,6 @@ jobs:
       with:
         python-version: '3.11'
     
-    - name: 📦 Install dependencies
-      run: |
-        cd poker-trend-analysis/backend/news-analyzer
-        pip install --upgrade pip
-        pip install -r requirements.txt
-        
     - name: 📰 Run PokerNews Analysis
       id: news-analysis
       env:
@@ -277,9 +271,23 @@ jobs:
         echo "🚀 PokerNews 분석 시작..."
         echo "📊 리포트 타입: $REPORT_TYPE"
         echo "📅 데이터 기간: $DATA_PERIOD_START ~ $DATA_PERIOD_END"
+        echo "📂 현재 위치: $(pwd)"
+        
+        # 디렉토리 확인
+        if [ ! -d "poker-trend-analysis/backend/news-analyzer" ]; then
+          echo "❌ 디렉토리를 찾을 수 없습니다: poker-trend-analysis/backend/news-analyzer"
+          echo "📁 현재 디렉토리 구조:"
+          ls -la
+          exit 1
+        fi
         
         # 올바른 디렉토리로 이동
         cd poker-trend-analysis/backend/news-analyzer
+        echo "📂 작업 디렉토리: $(pwd)"
+        
+        # 의존성 설치
+        pip install --upgrade pip
+        pip install -r requirements.txt
         
         # Python 스크립트 실행 (리포트 타입별 분석 지원)
         if python pokernews_slack_reporter.py > pokernews_output.log 2>&1; then
@@ -288,16 +296,16 @@ jobs:
           echo "slack_sent=true" >> $GITHUB_OUTPUT
           
           echo "📋 PokerNews 분석 결과:"
-          cat pokernews_output.log
+          cat pokernews_output.log || echo "로그 파일을 읽을 수 없습니다"
         else
           echo "❌ PokerNews 분석 실패"
           echo "status=failed" >> $GITHUB_OUTPUT
           echo "slack_sent=false" >> $GITHUB_OUTPUT
           
           echo "📋 PokerNews 에러 로그:"
-          cat pokernews_output.log
+          cat pokernews_output.log || echo "로그 파일을 읽을 수 없습니다"
           
-          error_msg=$(cat pokernews_output.log | tail -5)
+          error_msg=$(cat pokernews_output.log 2>/dev/null | tail -5 || echo "Unknown error")
           echo "error_message=$error_msg" >> $GITHUB_OUTPUT
           
           exit 1
@@ -331,14 +339,7 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-        cache: 'pip'
     
-    - name: 📦 Install dependencies
-      run: |
-        cd backend/data-collector
-        pip install --upgrade pip
-        pip install -r requirements.txt
-        
     - name: 🎥 Run YouTube Analysis
       id: youtube-analysis
       env:
@@ -353,9 +354,23 @@ jobs:
         echo "📊 리포트 타입: $REPORT_TYPE"
         echo "📅 데이터 기간: $DATA_PERIOD_START ~ $DATA_PERIOD_END"
         echo "⏰ 이전 작업 (PokerNews) 상태: ${{ needs.pokernews-analysis.outputs.status || 'skipped' }}"
+        echo "📂 현재 위치: $(pwd)"
+        
+        # 디렉토리 확인
+        if [ ! -d "backend/data-collector" ]; then
+          echo "❌ 디렉토리를 찾을 수 없습니다: backend/data-collector"
+          echo "📁 현재 디렉토리 구조:"
+          ls -la
+          exit 1
+        fi
         
         # 올바른 디렉토리로 이동
         cd backend/data-collector
+        echo "📂 작업 디렉토리: $(pwd)"
+        
+        # 의존성 설치
+        pip install --upgrade pip
+        pip install -r requirements.txt
         
         # 3초 대기 (Slack API rate limit 고려)
         sleep 3
@@ -382,16 +397,16 @@ jobs:
           echo "slack_sent=true" >> $GITHUB_OUTPUT
           
           echo "📋 YouTube 분석 결과:"
-          cat youtube_output.log
+          cat youtube_output.log || echo "로그 파일을 읽을 수 없습니다"
         else
           echo "❌ YouTube 분석 실패"
           echo "status=failed" >> $GITHUB_OUTPUT
           echo "slack_sent=false" >> $GITHUB_OUTPUT
           
           echo "📋 YouTube 에러 로그:"
-          cat youtube_output.log
+          cat youtube_output.log || echo "로그 파일을 읽을 수 없습니다"
           
-          error_msg=$(cat youtube_output.log | tail -5)
+          error_msg=$(cat youtube_output.log 2>/dev/null | tail -5 || echo "Unknown error")
           echo "error_message=$error_msg" >> $GITHUB_OUTPUT
           
           exit 1
@@ -425,14 +440,7 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-        cache: 'pip'
     
-    - name: 📦 Install dependencies
-      run: |
-        cd backend/platform-analyzer
-        pip install --upgrade pip
-        pip install -r requirements.txt
-        
     - name: 📊 Run Platform Analysis
       id: platform-analysis
       env:
@@ -447,44 +455,81 @@ jobs:
         echo "⏰ 이전 작업 상태:"
         echo "  - PokerNews: ${{ needs.pokernews-analysis.outputs.status || 'skipped' }}"
         echo "  - YouTube: ${{ needs.youtube-analysis.outputs.status || 'skipped' }}"
+        echo "📂 현재 위치: $(pwd)"
         
-        # 현재 위치 확인
-        echo "📂 현재 디렉토리: $(pwd)"
+        # 디렉토리 구조 확인
         echo "📁 디렉토리 구조 확인:"
-        ls -la backend/platform-analyzer/ || echo "backend/platform-analyzer not found"
+        ls -la
+        
+        # backend/platform-analyzer 디렉토리 확인
+        if [ ! -d "backend/platform-analyzer" ]; then
+          echo "❌ 디렉토리를 찾을 수 없습니다: backend/platform-analyzer"
+          exit 1
+        fi
+        
+        # scripts 디렉토리 확인
+        if [ ! -d "backend/platform-analyzer/scripts" ]; then
+          echo "❌ 디렉토리를 찾을 수 없습니다: backend/platform-analyzer/scripts"
+          echo "📁 platform-analyzer 내용:"
+          ls -la backend/platform-analyzer/
+          exit 1
+        fi
         
         # 올바른 디렉토리로 이동
-        cd backend/platform-analyzer/scripts
+        cd backend/platform-analyzer
+        echo "📂 Platform analyzer 디렉토리: $(pwd)"
+        
+        # 의존성 설치
+        pip install --upgrade pip
+        pip install -r requirements.txt
+        
+        # scripts 디렉토리로 이동
+        cd scripts
         echo "📂 작업 디렉토리: $(pwd)"
+        
+        # 필요한 파일 확인
+        echo "📁 스크립트 파일 확인:"
+        ls -la firebase_rest_api_fetcher.py show_daily_comparison.py final_slack_reporter.py || echo "필요한 파일이 없습니다"
         
         # 5초 대기 (이전 Slack 메시지들과의 간격 확보)
         sleep 5
         
         # Firebase REST API 데이터 수집
-        python firebase_rest_api_fetcher.py > platform_output.log 2>&1
+        echo "🔥 Firebase 데이터 수집 중..."
+        if python firebase_rest_api_fetcher.py > platform_output.log 2>&1; then
+          echo "✅ Firebase 데이터 수집 성공"
+        else
+          echo "⚠️ Firebase 데이터 수집 실패 (계속 진행)"
+          cat platform_output.log || echo "로그 없음"
+        fi
         
         # 일일 비교 분석  
-        python show_daily_comparison.py >> platform_output.log 2>&1
+        echo "📊 일일 비교 분석 중..."
+        if python show_daily_comparison.py >> platform_output.log 2>&1; then
+          echo "✅ 일일 비교 분석 성공"
+        else
+          echo "⚠️ 일일 비교 분석 실패 (계속 진행)"
+          cat platform_output.log || echo "로그 없음"
+        fi
         
         # Slack 리포트 전송
-        python final_slack_reporter.py >> platform_output.log 2>&1
-        
-        if [[ $? -eq 0 ]]; then
+        echo "📤 Slack 리포트 전송 중..."
+        if python final_slack_reporter.py >> platform_output.log 2>&1; then
           echo "✅ Platform 분석 완료"
           echo "status=success" >> $GITHUB_OUTPUT
           echo "slack_sent=true" >> $GITHUB_OUTPUT
           
           echo "📋 Platform 분석 결과:"
-          cat platform_output.log
+          cat platform_output.log || echo "로그 파일을 읽을 수 없습니다"
         else
           echo "❌ Platform 분석 실패"
           echo "status=failed" >> $GITHUB_OUTPUT
           echo "slack_sent=false" >> $GITHUB_OUTPUT
           
           echo "📋 Platform 에러 로그:"
-          cat platform_output.log
+          cat platform_output.log || echo "로그 파일을 읽을 수 없습니다"
           
-          error_msg=$(cat platform_output.log | tail -5)
+          error_msg=$(cat platform_output.log 2>/dev/null | tail -5 || echo "Unknown error")
           echo "error_message=$error_msg" >> $GITHUB_OUTPUT
           
           exit 1
@@ -497,308 +542,3 @@ jobs:
         name: platform-reports-${{ needs.schedule-determination.outputs.report_type }}-${{ github.run_id }}
         path: backend/platform-analyzer/scripts/*.json
         retention-days: 30
-
-  # Job 5: 통합 완료 보고서
-  completion-report:
-    name: "📋 통합 완료 보고서"
-    runs-on: ubuntu-latest
-    needs: [schedule-determination, pokernews-analysis, youtube-analysis, platform-analysis]
-    if: always() && needs.schedule-determination.outputs.report_type != 'none'
-    timeout-minutes: 5
-
-    steps:
-    - name: 🔄 Checkout code
-      uses: actions/checkout@v4
-      
-    - name: 📊 통합 완료 보고서 생성
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        REPORT_TYPE: ${{ needs.schedule-determination.outputs.report_type }}
-        SCHEDULE_DESC: ${{ needs.schedule-determination.outputs.schedule_description }}
-        DATA_START: ${{ needs.schedule-determination.outputs.data_period_start }}
-        DATA_END: ${{ needs.schedule-determination.outputs.data_period_end }}
-        
-        POKERNEWS_STATUS: ${{ needs.pokernews-analysis.outputs.status || 'skipped' }}
-        POKERNEWS_SLACK: ${{ needs.pokernews-analysis.outputs.slack_sent || 'false' }}
-        POKERNEWS_ERROR: ${{ needs.pokernews-analysis.outputs.error_message || '' }}
-        
-        YOUTUBE_STATUS: ${{ needs.youtube-analysis.outputs.status || 'skipped' }}
-        YOUTUBE_SLACK: ${{ needs.youtube-analysis.outputs.slack_sent || 'false' }}
-        YOUTUBE_ERROR: ${{ needs.youtube-analysis.outputs.error_message || '' }}
-        
-        PLATFORM_STATUS: ${{ needs.platform-analysis.outputs.status || 'skipped' }}
-        PLATFORM_SLACK: ${{ needs.platform-analysis.outputs.slack_sent || 'false' }}
-        PLATFORM_ERROR: ${{ needs.platform-analysis.outputs.error_message || '' }}
-        
-      run: |
-        echo "📋 통합 완료 보고서 생성 중..."
-        
-        # 실행 완료 시간 (KST)
-        COMPLETION_TIME=$(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S %Z')
-        
-        # 전체 성공 여부 및 성공률 계산
-        SUCCESS_COUNT=0
-        TOTAL_ENABLED=0
-        OVERALL_SUCCESS="true"
-        
-        # 성공한 작업 수 계산
-        if [[ "${{ needs.schedule-determination.outputs.should_run_pokernews }}" == "true" ]]; then
-          ((TOTAL_ENABLED++))
-          if [[ "$POKERNEWS_STATUS" == "success" ]]; then
-            ((SUCCESS_COUNT++))
-          else
-            OVERALL_SUCCESS="false"
-          fi
-        fi
-        
-        if [[ "${{ needs.schedule-determination.outputs.should_run_youtube }}" == "true" ]]; then
-          ((TOTAL_ENABLED++))
-          if [[ "$YOUTUBE_STATUS" == "success" ]]; then
-            ((SUCCESS_COUNT++))
-          else
-            OVERALL_SUCCESS="false"
-          fi
-        fi
-        
-        if [[ "${{ needs.schedule-determination.outputs.should_run_platform }}" == "true" ]]; then
-          ((TOTAL_ENABLED++))
-          if [[ "$PLATFORM_STATUS" == "success" ]]; then
-            ((SUCCESS_COUNT++))
-          else
-            OVERALL_SUCCESS="false"
-          fi
-        fi
-        
-        # 성공률 계산
-        if [[ $TOTAL_ENABLED -gt 0 ]]; then
-          SUCCESS_RATE=$(( SUCCESS_COUNT * 100 / TOTAL_ENABLED ))
-        else
-          SUCCESS_RATE=0
-        fi
-        
-        # 상태별 이모지 함수
-        get_status_emoji() {
-          case "$1" in
-            "success") echo "✅" ;;
-            "failed") echo "❌" ;;
-            "skipped") echo "⏭️" ;;
-            *) echo "❓" ;;
-          esac
-        }
-        
-        POKERNEWS_EMOJI=$(get_status_emoji "$POKERNEWS_STATUS")
-        YOUTUBE_EMOJI=$(get_status_emoji "$YOUTUBE_STATUS")
-        PLATFORM_EMOJI=$(get_status_emoji "$PLATFORM_STATUS")
-        
-        # 전체 상태 결정
-        if [[ "$OVERALL_SUCCESS" == "true" && "$SUCCESS_COUNT" -eq "$TOTAL_ENABLED" && "$TOTAL_ENABLED" -gt 0 ]]; then
-          OVERALL_EMOJI="🎉"
-          OVERALL_TEXT="모든 분석이 성공적으로 완료되었습니다!"
-          OVERALL_COLOR="#36a64f"  # green
-        elif [[ "$SUCCESS_COUNT" -gt 0 ]]; then
-          OVERALL_EMOJI="⚠️"
-          OVERALL_TEXT="일부 분석이 완료되었습니다 (${SUCCESS_COUNT}/${TOTAL_ENABLED})"
-          OVERALL_COLOR="#ff9500"  # orange
-        else
-          OVERALL_EMOJI="🚫"
-          OVERALL_TEXT="모든 분석이 실패했습니다"
-          OVERALL_COLOR="#ff0000"  # red
-        fi
-        
-        # Slack 알림 전송
-        if [[ -n "$SLACK_WEBHOOK_URL" ]]; then
-          echo "🚀 통합 완료 보고서를 Slack으로 전송 중..."
-          
-          # Slack 메시지 생성
-          cat << EOF > completion_report.json
-        {
-          "blocks": [
-            {
-              "type": "header",
-              "text": {
-                "type": "plain_text",
-                "text": "${OVERALL_EMOJI} 통합 포커 보고 시스템 완료",
-                "emoji": true
-              }
-            },
-            {
-              "type": "section",
-              "text": {
-                "type": "mrkdwn",
-                "text": "*📅 완료 시간:* ${COMPLETION_TIME}\\n*📊 리포트 타입:* ${REPORT_TYPE}\\n*📈 데이터 기간:* ${DATA_START} ~ ${DATA_END}\\n*🎯 전체 결과:* ${OVERALL_TEXT}"
-              }
-            },
-            {
-              "type": "section",
-              "text": {
-                "type": "mrkdwn",
-                "text": "*📈 성공률: ${SUCCESS_RATE}%* (${SUCCESS_COUNT}/${TOTAL_ENABLED})"
-              }
-            },
-            {
-              "type": "divider"
-            },
-            {
-              "type": "section",
-              "text": {
-                "type": "mrkdwn",
-                "text": "*📊 단계별 실행 결과*"
-              }
-            },
-            {
-              "type": "section",
-              "fields": [
-                {
-                  "type": "mrkdwn",
-                  "text": "*📰 PokerNews*\\n${POKERNEWS_EMOJI} ${POKERNEWS_STATUS}"
-                },
-                {
-                  "type": "mrkdwn",
-                  "text": "*🎥 YouTube*\\n${YOUTUBE_EMOJI} ${YOUTUBE_STATUS}"
-                }
-              ]
-            },
-            {
-              "type": "section",
-              "fields": [
-                {
-                  "type": "mrkdwn",
-                  "text": "*📊 Platform*\\n${PLATFORM_EMOJI} ${PLATFORM_STATUS}"
-                },
-                {
-                  "type": "mrkdwn",
-                  "text": "*⏱️ 실행 시간*\\n약 $(( ${{ github.run_number }} % 60 )) 분"
-                }
-              ]
-            }
-          ]
-        }
-        EOF
-          
-          # 에러 정보 추가 (실패한 작업이 있는 경우)
-          if [[ "$SUCCESS_COUNT" -lt "$TOTAL_ENABLED" ]]; then
-            echo "⚠️ 에러 정보를 보고서에 포함 중..."
-          fi
-          
-          # Slack 전송
-          curl -X POST -H 'Content-type: application/json' \
-               --data @completion_report.json \
-               "$SLACK_WEBHOOK_URL"
-          
-          if [[ $? -eq 0 ]]; then
-            echo "✅ 통합 완료 보고서가 Slack으로 전송되었습니다"
-          else
-            echo "❌ Slack 전송 실패"
-          fi
-        else
-          echo "⚠️ SLACK_WEBHOOK_URL이 설정되지 않음 - Slack 알림 건너뛰기"
-        fi
-        
-        # 콘솔 요약 출력
-        echo "=================================================================="
-        echo "🎰 통합 포커 보고 스케줄링 시스템 - 실행 완료 요약"
-        echo "=================================================================="
-        echo "⏰ 완료 시간: $COMPLETION_TIME"
-        echo "📊 리포트 타입: $REPORT_TYPE"
-        echo "📅 데이터 기간: $DATA_START ~ $DATA_END"
-        echo "🎯 전체 상태: $OVERALL_TEXT"
-        echo ""
-        echo "📋 단계별 결과:"
-        echo "  📰 PokerNews: $POKERNEWS_STATUS"
-        echo "  🎥 YouTube: $YOUTUBE_STATUS"
-        echo "  📊 Platform: $PLATFORM_STATUS"
-        echo ""
-        echo "📈 성공률: $SUCCESS_RATE% ($SUCCESS_COUNT/$TOTAL_ENABLED)"
-        echo "🔗 실행 로그: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-        echo "=================================================================="
-
-    - name: 📄 통합 실행 요약 저장
-      if: always()
-      run: |
-        # 실행 요약을 JSON으로 저장
-        cat << EOF > unified-execution-summary.json
-        {
-          "workflow_run_id": "${{ github.run_id }}",
-          "execution_time": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-          "completion_time_kst": "$(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S %Z')",
-          "report_type": "${{ needs.schedule-determination.outputs.report_type }}",
-          "schedule_description": "${{ needs.schedule-determination.outputs.schedule_description }}",
-          "data_period": {
-            "start": "${{ needs.schedule-determination.outputs.data_period_start }}",
-            "end": "${{ needs.schedule-determination.outputs.data_period_end }}"
-          },
-          "execution_results": {
-            "pokernews": {
-              "enabled": "${{ needs.schedule-determination.outputs.should_run_pokernews }}",
-              "status": "${{ needs.pokernews-analysis.outputs.status || 'skipped' }}",
-              "slack_sent": "${{ needs.pokernews-analysis.outputs.slack_sent || 'false' }}"
-            },
-            "youtube": {
-              "enabled": "${{ needs.schedule-determination.outputs.should_run_youtube }}",
-              "status": "${{ needs.youtube-analysis.outputs.status || 'skipped' }}",
-              "slack_sent": "${{ needs.youtube-analysis.outputs.slack_sent || 'false' }}"
-            },
-            "platform": {
-              "enabled": "${{ needs.schedule-determination.outputs.should_run_platform }}",
-              "status": "${{ needs.platform-analysis.outputs.status || 'skipped' }}",
-              "slack_sent": "${{ needs.platform-analysis.outputs.slack_sent || 'false' }}"
-            }
-          },
-          "overall_success": $(if [[ "${{ needs.pokernews-analysis.outputs.status || 'skipped' }}" != "failed" && "${{ needs.youtube-analysis.outputs.status || 'skipped' }}" != "failed" && "${{ needs.platform-analysis.outputs.status || 'skipped' }}" != "failed" ]]; then echo "true"; else echo "false"; fi)
-        }
-        EOF
-        
-    - name: 📤 Upload 통합 실행 요약
-      uses: actions/upload-artifact@v4
-      with:
-        name: unified-execution-summary-${{ needs.schedule-determination.outputs.report_type }}-${{ github.run_id }}
-        path: unified-execution-summary.json
-        retention-days: 90
-
-  # Job 6: 실패 알림 (전체 워크플로우 실패 시)
-  failure-notification:
-    name: "🚨 실패 알림"
-    runs-on: ubuntu-latest
-    needs: [schedule-determination, pokernews-analysis, youtube-analysis, platform-analysis]
-    if: failure() && needs.schedule-determination.outputs.report_type != 'none'
-    timeout-minutes: 5
-    
-    steps:
-    - name: 🚨 워크플로우 실패 알림 전송
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      run: |
-        if [[ -n "$SLACK_WEBHOOK_URL" ]]; then
-          REPORT_TYPE="${{ needs.schedule-determination.outputs.report_type || 'unknown' }}"
-          SCHEDULE_DESC="${{ needs.schedule-determination.outputs.schedule_description || '알 수 없음' }}"
-          FAILURE_TIME=$(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S %Z')
-          
-          curl -X POST -H 'Content-type: application/json' \
-               --data "{
-                 \"blocks\": [
-                   {
-                     \"type\": \"header\",
-                     \"text\": {
-                       \"type\": \"plain_text\",
-                       \"text\": \"🚨 통합 포커 보고 시스템 실패\",
-                       \"emoji\": true
-                     }
-                   },
-                   {
-                     \"type\": \"section\",
-                     \"text\": {
-                       \"type\": \"mrkdwn\",
-                       \"text\": \"*❌ 워크플로우가 실패했습니다*\\n\\n*📅 실행 시간:* ${FAILURE_TIME}\\n*📊 리포트 타입:* ${REPORT_TYPE}\\n*📋 스케줄:* ${SCHEDULE_DESC}\\n\\n*🔗 <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|GitHub Actions 로그 확인>*\"
-                     }
-                   },
-                   {
-                     \"type\": \"section\",
-                     \"text\": {
-                       \"type\": \"mrkdwn\",
-                       \"text\": \"*⚠️ 단계별 상태:*\\n• PokerNews: ${{ needs.pokernews-analysis.outputs.status || 'unknown' }}\\n• YouTube: ${{ needs.youtube-analysis.outputs.status || 'unknown' }}\\n• Platform: ${{ needs.platform-analysis.outputs.status || 'unknown' }}\"
-                     }
-                   }
-                 ]
-               }" \
-               "$SLACK_WEBHOOK_URL"
-        fi

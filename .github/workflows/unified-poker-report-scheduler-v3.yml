@@ -8,11 +8,11 @@ name: 🎰 통합 포커 보고 스케줄링 시스템 V3
 # 5. 실행 시간: 매일 오전 10시 (KST) 순차 실행
 
 on:
-  schedule:
-    # 매일 오전 10시 (KST) = UTC 01:00 (평일만 실행)
-    - cron: '0 1 * * 1-5'  # 월-금요일만 실행
+  # schedule:
+  #   # 매일 오전 10시 (KST) = UTC 01:00 (평일만 실행)
+  #   - cron: '0 1 * * 1-5'  # 월-금요일만 실행 - V3 비활성화
     
-  workflow_dispatch:
+  workflow_dispatch:  # 수동 실행만 가능
     inputs:
       force_report_type:
         description: '강제 리포트 타입 (자동 결정 무시)'
@@ -482,45 +482,38 @@ jobs:
         echo "📁 디렉토리 구조:"
         ls -la
         
-        # backend/platform-analyzer/scripts 경로로 이동
-        if [ -d "backend/platform-analyzer/scripts" ]; then
-          cd backend/platform-analyzer
-        elif [ -d "platform-analyzer/scripts" ]; then
-          cd platform-analyzer
+        # 절대경로 기반 안전한 경로 이동
+        echo "📂 현재 작업 디렉토리: $(pwd)"
+        echo "📁 GITHUB_WORKSPACE: ${GITHUB_WORKSPACE:-$(pwd)}"
+        
+        # 직접 scripts 디렉토리로 이동 (절대경로 사용)
+        TARGET_DIR="backend/platform-analyzer/scripts"
+        if [ -d "$TARGET_DIR" ]; then
+          cd "$TARGET_DIR"
+          echo "✅ 성공: $TARGET_DIR 로 이동"
         else
-          echo "⚠️ platform-analyzer 디렉토리를 직접 찾을 수 없음, 수동 검색 시작..."
-          
-          # backend 디렉토리가 있는지 확인
-          if [ -d "backend" ]; then
-            cd backend
-            if [ -d "platform-analyzer" ]; then
-              cd platform-analyzer
-            else
-              echo "❌ backend 내 platform-analyzer를 찾을 수 없습니다"
-              ls -la
-              exit 1
-            fi
-          else
-            echo "❌ backend 디렉토리를 찾을 수 없습니다"
-            find . -name "platform-analyzer" -type d 2>/dev/null || echo "검색 실패"
-            exit 1
-          fi
+          echo "❌ 타겟 디렉토리 '$TARGET_DIR' 를 찾을 수 없습니다"
+          echo "📁 현재 디렉토리 내용:"
+          ls -la
+          echo "📁 backend 디렉토리 확인:"
+          ls -la backend/ 2>/dev/null || echo "backend 디렉토리 없음"
+          echo "📁 platform-analyzer 디렉토리 확인:"  
+          ls -la backend/platform-analyzer/ 2>/dev/null || echo "platform-analyzer 디렉토리 없음"
+          exit 1
         fi
         
-        echo "📂 Platform analyzer 디렉토리: $(pwd)"
+        echo "📂 Platform analyzer scripts 디렉토리: $(pwd)"
+        
+        # 상위 디렉토리로 이동하여 requirements.txt 설치
+        cd ..
+        echo "📂 requirements.txt 설치 위치: $(pwd)"
         
         # 의존성 설치
         pip install --upgrade pip
         pip install -r requirements.txt
         
-        # scripts 디렉토리로 이동
-        if [ -d "scripts" ]; then
-          cd scripts
-        else
-          echo "❌ scripts 디렉토리를 찾을 수 없습니다"
-          ls -la
-          exit 1
-        fi
+        # 다시 scripts 디렉토리로 이동
+        cd scripts
         
         echo "📂 작업 디렉토리: $(pwd)"
         

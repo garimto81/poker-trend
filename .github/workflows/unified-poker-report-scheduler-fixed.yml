@@ -8,11 +8,11 @@ name: 🎰 통합 포커 보고 스케줄링 시스템 (경로 수정)
 # 5. 실행 시간: 매일 오전 10시 (KST) 순차 실행
 
 on:
-  schedule:
-    # 매일 오전 10시 (KST) = UTC 01:00 (평일만 실행)
-    - cron: '0 1 * * 1-5'  # 월-금요일만 실행
+  # schedule:
+  #   # 매일 오전 10시 (KST) = UTC 01:00 (평일만 실행)
+  #   - cron: '0 1 * * 1-5'  # 월-금요일만 실행 - Fixed 버전 비활성화
     
-  workflow_dispatch:
+  workflow_dispatch:  # 수동 실행만 가능
     inputs:
       force_report_type:
         description: '강제 리포트 타입 (자동 결정 무시)'

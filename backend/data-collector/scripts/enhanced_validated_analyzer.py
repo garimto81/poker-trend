@@ -19,8 +19,14 @@ import google.generativeai as genai
 from googleapiclient.discovery import build
 import re
 import sys
-sys.path.append(str(Path(__file__).parent.parent / 'src'))
-from validators.poker_content_validator import PokerContentValidator
+
+# GitHub Actions 환경과 로컬 환경 모두 지원하는 경로 설정
+script_dir = Path(__file__).resolve().parent
+project_root = script_dir.parent  # backend/data-collector
+sys.path.insert(0, str(project_root))
+
+# 이제 정상적으로 import 가능
+from src.validators.poker_content_validator import PokerContentValidator
 
 # 환경 변수 로드
 env_path = Path(__file__).parent.parent / '.env'
