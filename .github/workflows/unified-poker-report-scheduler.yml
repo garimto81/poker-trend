@@ -247,6 +247,8 @@ jobs:
         DATA_PERIOD_END: ${{ needs.schedule-determination.outputs.data_end }}
       run: |
         echo "📊 Platform 분석 시작"
+        echo "📅 리포트 타입: $REPORT_TYPE"
+        echo "📆 데이터 기간: $DATA_PERIOD_START ~ $DATA_PERIOD_END"
         
         # 작업 디렉토리 이동
         cd backend/platform-analyzer
@@ -254,11 +256,12 @@ jobs:
         # 의존성 설치
         pip install -r requirements.txt
         
-        # 스크립트 실행
+        # 새로운 자동화 스크립트 실행
         cd scripts
-        python firebase_rest_api_fetcher.py || true
-        python show_daily_comparison.py || true
-        python final_slack_reporter.py || true
+        
+        # 자동화된 플랫폼 분석 및 Slack 리포트
+        python platform_slack_reporter.py || true
+        
         echo "✅ Platform 분석 단계 완료"
 
   # Job 5: 완료 보고

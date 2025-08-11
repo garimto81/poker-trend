@@ -1,0 +1,170 @@
+{
+  "report_type": "daily",
+  "data_period": {
+    "start": "",
+    "end": ""
+  },
+  "generated_at": "2025-08-11T15:59:14.951465",
+  "summary": {
+    "total_platforms": 10,
+    "total_online_players": 294973,
+    "total_cash_players": 92122,
+    "market_leader": "GGNetwork",
+    "market_leader_share": 27.63
+  },
+  "top_platforms": [
+    {
+      "date": "2025-08-11",
+      "platform_name": "GGNetwork",
+      "online_players": 81515,
+      "cash_players": 27127,
+      "tournament_players": 18499,
+      "peak_24h": 114198,
+      "seven_day_avg": 77981,
+      "growth_rate": 5.53992062837586,
+      "tier": 5,
+      "market_share": 27.63
+    },
+    {
+      "date": "2025-08-11",
+      "platform_name": "PokerStars",
+      "online_players": 45634,
+      "cash_players": 14045,
+      "tournament_players": 12183,
+      "peak_24h": 58229,
+      "seven_day_avg": 44911,
+      "growth_rate": -0.40249144930104497,
+      "tier": 2,
+      "market_share": 15.47
+    },
+    {
+      "date": "2025-08-11",
+      "platform_name": "iPoker",
+      "online_players": 37580,
+      "cash_players": 11671,
+      "tournament_players": 9938,
+      "peak_24h": 51357,
+      "seven_day_avg": 34387,
+      "growth_rate": -1.1300624381372475,
+      "tier": 2,
+      "market_share": 12.74
+    },
+    {
+      "date": "2025-08-11",
+      "platform_name": "PartyPoker",
+      "online_players": 28162,
+      "cash_players": 9154,
+      "tournament_players": 6885,
+      "peak_24h": 35603,
+      "seven_day_avg": 27242,
+      "growth_rate": -4.2793575821608085,
+      "tier": 3,
+      "market_share": 9.55
+    },
+    {
+      "date": "2025-08-11",
+      "platform_name": "888poker",
+      "online_players": 24680,
+      "cash_players": 6922,
+      "tournament_players": 5676,
+      "peak_24h": 33016,
+      "seven_day_avg": 23212,
+      "growth_rate": -2.4401776443567096,
+      "tier": 3,
+      "market_share": 8.37
+    },
+    {
+      "date": "2025-08-11",
+      "platform_name": "Winamax",
+      "online_players": 21081,
+      "cash_players": 5764,
+      "tournament_players": 5359,
+      "peak_24h": 27053,
+      "seven_day_avg": 19154,
+      "growth_rate": -1.2946380770564367,
+      "tier": 3,
+      "market_share": 7.15
+    },
+    {
+      "date": "2025-08-11",
+      "platform_name": "Winning Poker",
+      "online_players": 18738,
+      "cash_players": 5495,
+      "tournament_players": 4256,
+      "peak_24h": 25180,
+      "seven_day_avg": 18243,
+      "growth_rate": -4.321346532678194,
+      "tier": 4,
+      "market_share": 6.35
+    },
+    {
+      "date": "2025-08-11",
+      "platform_name": "Chico Poker",
+      "online_players": 15256,
+      "cash_players": 4984,
+      "tournament_players": 3662,
+      "peak_24h": 21628,
+      "seven_day_avg": 14487,
+      "growth_rate": 0.8732869234189149,
+      "tier": 4,
+      "market_share": 5.17
+    },
+    {
+      "date": "2025-08-11",
+      "platform_name": "BetOnline",
+      "online_players": 12118,
+      "cash_players": 3716,
+      "tournament_players": 3292,
+      "peak_24h": 16844,
+      "seven_day_avg": 11357,
+      "growth_rate": 1.8011276662353106,
+      "tier": 4,
+      "market_share": 4.11
+    },
+    {
+      "date": "2025-08-11",
+      "platform_name": "TigerGaming",
+      "online_players": 10209,
+      "cash_players": 3244,
+      "tournament_players": 2785,
+      "peak_24h": 13001,
+      "seven_day_avg": 9387,
+      "growth_rate": 1.9558275359862778,
+      "tier": 4,
+      "market_share": 3.46
+    }
+  ],
+  "competition_analysis": {
+    "report_type": "daily",
+    "analysis_date": "2025-08-11",
+    "leader": {
+      "name": "GGNetwork",
+      "share": 27.63,
+      "players": 81515,
+      "growth": 5.53992062837586
+    },
+    "second": {
+      "name": "PokerStars",
+      "share": 15.47,
+      "players": 45634,
+      "growth": -0.40249144930104497
+    },
+    "third": {
+      "name": "iPoker",
+      "share": 12.74,
+      "players": 37580,
+      "growth": -1.1300624381372475
+    },
+    "market_concentration": 1473.34,
+    "competition_intensity": "경쟁적",
+    "gap_2_3": 8054,
+    "gap_2_3_percentage": 21.4,
+    "total_market_size": 294973
+  },
+  "insights": [
+    "📈 GGNetwork이 5.5% 성장률로 가장 빠르게 성장 중",
+    "💰 GGNetwork이 캐시 게임 27,127명으로 1위 (33.3%)",
+    "⚔️ 2-3위 격차가 21.4%로 2위 자리가 안정적",
+    "🎮 GGNetwork 24시간 피크: 114,198명"
+  ]
+}

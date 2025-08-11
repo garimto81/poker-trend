@@ -1,0 +1,156 @@
+{
+  "report_type": "daily",
+  "data_period": {
+    "start": "2025-08-10",
+    "end": "2025-08-10"
+  },
+  "generated_at": "2025-08-11T16:55:44.722990",
+  "data_source": "Firebase (PokerStars US/Ontario excluded)",
+  "summary": {
+    "total_platforms": 37,
+    "total_online_players": 171706,
+    "total_cash_players": 16921,
+    "market_leader": "888poker",
+    "market_leader_share": 0.0
+  },
+  "top_platforms": [
+    {
+      "platform_name": "888poker",
+      "date": "2025-08-10",
+      "online_players": 0,
+      "cash_players": 267,
+      "tournament_players": 0,
+      "peak_24h": 826,
+      "seven_day_avg": 400,
+      "collected_at": "2025-08-10T18:34:16.974907Z",
+      "market_share": 0.0
+    },
+    {
+      "platform_name": "888poker.ca",
+      "date": "2025-08-10",
+      "online_players": 0,
+      "cash_players": 24,
+      "tournament_players": 0,
+      "peak_24h": 60,
+      "seven_day_avg": 18,
+      "collected_at": "2025-08-10T18:34:16.979369Z",
+      "market_share": 0.0
+    },
+    {
+      "platform_name": "9stacks",
+      "date": "2025-08-10",
+      "online_players": 5,
+      "cash_players": 0,
+      "tournament_players": 2,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "collected_at": "2025-08-10T18:34:16.982219Z",
+      "market_share": 0.0
+    },
+    {
+      "platform_name": "A23 Poker",
+      "date": "2025-08-10",
+      "online_players": 0,
+      "cash_players": 0,
+      "tournament_players": 0,
+      "peak_24h": 250,
+      "seven_day_avg": 120,
+      "collected_at": "2025-08-10T18:34:16.977152Z",
+      "market_share": 0.0
+    },
+    {
+      "platform_name": "Aconcagua Poker",
+      "date": "2025-08-10",
+      "online_players": 2,
+      "cash_players": 0,
+      "tournament_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "collected_at": "2025-08-10T18:34:16.982449Z",
+      "market_share": 0.0
+    },
+    {
+      "platform_name": "AconcaguaPoker.es",
+      "date": "2025-08-10",
+      "online_players": 19,
+      "cash_players": 7,
+      "tournament_players": 4,
+      "peak_24h": 41,
+      "seven_day_avg": 16,
+      "collected_at": "2025-08-10T18:34:16.980065Z",
+      "market_share": 0.01
+    },
+    {
+      "platform_name": "Adjarabet",
+      "date": "2025-08-10",
+      "online_players": 0,
+      "cash_players": 0,
+      "tournament_players": 0,
+      "peak_24h": 25,
+      "seven_day_avg": 10,
+      "collected_at": "2025-08-10T18:34:16.980792Z",
+      "market_share": 0.0
+    },
+    {
+      "platform_name": "BetMGM MI",
+      "date": "2025-08-10",
+      "online_players": 0,
+      "cash_players": 402,
+      "tournament_players": 0,
+      "peak_24h": 673,
+      "seven_day_avg": 375,
+      "collected_at": "2025-08-10T18:34:16.975404Z",
+      "market_share": 0.0
+    },
+    {
+      "platform_name": "BetMGM PA",
+      "date": "2025-08-10",
+      "online_players": 0,
+      "cash_players": 0,
+      "tournament_players": 0,
+      "peak_24h": 23,
+      "seven_day_avg": 5,
+      "collected_at": "2025-08-10T18:34:16.981270Z",
+      "market_share": 0.0
+    },
+    {
+      "platform_name": "Blockchain Poker",
+      "date": "2025-08-10",
+      "online_players": 66,
+      "cash_players": 0,
+      "tournament_players": 26,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "collected_at": "2025-08-10T18:34:16.982915Z",
+      "market_share": 0.04
+    }
+  ],
+  "competition_analysis": {
+    "report_type": "daily",
+    "analysis_date": "2025-08-10",
+    "leader": {
+      "name": "888poker",
+      "share": 0.0,
+      "players": 0
+    },
+    "second": {
+      "name": "888poker.ca",
+      "share": 0.0,
+      "players": 0
+    },
+    "third": {
+      "name": "9stacks",
+      "share": 0.0,
+      "players": 5
+    },
+    "market_concentration": 0.0,
+    "competition_intensity": "경쟁 치열",
+    "total_market_size": 92
+  },
+  "insights": [
+    "[LEADER] 888poker leads with 0.0% market share",
+    "[CASH] BetMGM MI dominates cash games: 402 players",
+    "[DATA] Based on Firebase data from 2025-08-10 (excluding contaminated sites)",
+    "[PEAK] 888poker 24h peak: 826 players"
+  ]
+}

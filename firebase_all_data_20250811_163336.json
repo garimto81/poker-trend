@@ -1,0 +1,2549 @@
+{
+  "collected_at": "2025-08-11T16:33:36.120812",
+  "total_sites": 60,
+  "active_sites": 24,
+  "total_online": 302326,
+  "total_cash": 19227,
+  "sites": [
+    {
+      "id": "888 US",
+      "name": "888 US",
+      "category": "UNKNOWN",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "2025-07-27T16:56:20.165Z",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": []
+    },
+    {
+      "id": "888poker",
+      "name": "888poker",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 267,
+      "peak_24h": 826,
+      "seven_day_avg": 400,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.974907Z",
+          "players_online": 0,
+          "cash_players": 267,
+          "peak_24h": 826,
+          "seven_day_avg": 400
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.395001Z",
+          "players_online": 0,
+          "cash_players": 267,
+          "peak_24h": 826,
+          "seven_day_avg": 400
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.992777Z",
+          "players_online": 0,
+          "cash_players": 267,
+          "peak_24h": 826,
+          "seven_day_avg": 400
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.064234Z",
+          "players_online": 0,
+          "cash_players": 267,
+          "peak_24h": 826,
+          "seven_day_avg": 400
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.778513Z",
+          "players_online": 0,
+          "cash_players": 267,
+          "peak_24h": 826,
+          "seven_day_avg": 400
+        }
+      ]
+    },
+    {
+      "id": "888poker.ca",
+      "name": "888poker.ca",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 24,
+      "peak_24h": 60,
+      "seven_day_avg": 18,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.979369Z",
+          "players_online": 0,
+          "cash_players": 24,
+          "peak_24h": 60,
+          "seven_day_avg": 18
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.399649Z",
+          "players_online": 0,
+          "cash_players": 24,
+          "peak_24h": 60,
+          "seven_day_avg": 18
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.997837Z",
+          "players_online": 0,
+          "cash_players": 12,
+          "peak_24h": 60,
+          "seven_day_avg": 18
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.070079Z",
+          "players_online": 0,
+          "cash_players": 12,
+          "peak_24h": 90,
+          "seven_day_avg": 18
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.783408Z",
+          "players_online": 0,
+          "cash_players": 12,
+          "peak_24h": 72,
+          "seven_day_avg": 18
+        }
+      ]
+    },
+    {
+      "id": "9stacks",
+      "name": "9stacks",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 5,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.982219Z",
+          "players_online": 5,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.402608Z",
+          "players_online": 5,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-08T18:36:29.000446Z",
+          "players_online": 5,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.072056Z",
+          "players_online": 5,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.786683Z",
+          "players_online": 5,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        }
+      ]
+    },
+    {
+      "id": "A23 Poker",
+      "name": "A23 Poker",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 250,
+      "seven_day_avg": 120,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.977152Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 250,
+          "seven_day_avg": 120
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.397616Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 250,
+          "seven_day_avg": 120
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.995568Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 250,
+          "seven_day_avg": 120
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.067073Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 250,
+          "seven_day_avg": 120
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.781228Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 250,
+          "seven_day_avg": 120
+        }
+      ]
+    },
+    {
+      "id": "Aconcagua Poker",
+      "name": "Aconcagua Poker",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 2,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.982449Z",
+          "players_online": 2,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.402843Z",
+          "players_online": 2,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-08T18:36:29.000837Z",
+          "players_online": 2,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.072312Z",
+          "players_online": 2,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.786906Z",
+          "players_online": 2,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        }
+      ]
+    },
+    {
+      "id": "AconcaguaPoker.es",
+      "name": "AconcaguaPoker.es",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 19,
+      "cash_players": 7,
+      "peak_24h": 41,
+      "seven_day_avg": 16,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.980065Z",
+          "players_online": 19,
+          "cash_players": 7,
+          "peak_24h": 41,
+          "seven_day_avg": 16
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.400616Z",
+          "players_online": 33,
+          "cash_players": 18,
+          "peak_24h": 50,
+          "seven_day_avg": 16
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.997551Z",
+          "players_online": 49,
+          "cash_players": 17,
+          "peak_24h": 69,
+          "seven_day_avg": 18
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.069110Z",
+          "players_online": 51,
+          "cash_players": 20,
+          "peak_24h": 44,
+          "seven_day_avg": 18
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.784089Z",
+          "players_online": 61,
+          "cash_players": 35,
+          "peak_24h": 49,
+          "seven_day_avg": 18
+        }
+      ]
+    },
+    {
+      "id": "Adjarabet",
+      "name": "Adjarabet",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 25,
+      "seven_day_avg": 10,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.980792Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 25,
+          "seven_day_avg": 10
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.401379Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 25,
+          "seven_day_avg": 10
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.999267Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 25,
+          "seven_day_avg": 10
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.070830Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 25,
+          "seven_day_avg": 10
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.784800Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 25,
+          "seven_day_avg": 10
+        }
+      ]
+    },
+    {
+      "id": "BetMGM MI",
+      "name": "BetMGM MI",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 402,
+      "peak_24h": 673,
+      "seven_day_avg": 375,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.975404Z",
+          "players_online": 0,
+          "cash_players": 402,
+          "peak_24h": 673,
+          "seven_day_avg": 375
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.395281Z",
+          "players_online": 0,
+          "cash_players": 402,
+          "peak_24h": 673,
+          "seven_day_avg": 375
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.993276Z",
+          "players_online": 0,
+          "cash_players": 271,
+          "peak_24h": 673,
+          "seven_day_avg": 375
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.064730Z",
+          "players_online": 0,
+          "cash_players": 234,
+          "peak_24h": 658,
+          "seven_day_avg": 375
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.779001Z",
+          "players_online": 0,
+          "cash_players": 308,
+          "peak_24h": 612,
+          "seven_day_avg": 375
+        }
+      ]
+    },
+    {
+      "id": "BetMGM ON",
+      "name": "BetMGM ON",
+      "category": "UNKNOWN",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "2025-07-27T16:56:20.165Z",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": []
+    },
+    {
+      "id": "BetMGM PA",
+      "name": "BetMGM PA",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 23,
+      "seven_day_avg": 5,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.981270Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 23,
+          "seven_day_avg": 5
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.401867Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 27,
+          "seven_day_avg": 5
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.999756Z",
+          "players_online": 0,
+          "cash_players": 6,
+          "peak_24h": 34,
+          "seven_day_avg": 5
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.071831Z",
+          "players_online": 0,
+          "cash_players": 15,
+          "peak_24h": 34,
+          "seven_day_avg": 4
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.785752Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 37,
+          "seven_day_avg": 4
+        }
+      ]
+    },
+    {
+      "id": "Betcoin Poker",
+      "name": "Betcoin Poker",
+      "category": "UNKNOWN",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "2025-07-27T16:56:20.165Z",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": []
+    },
+    {
+      "id": "Blockchain Poker",
+      "name": "Blockchain Poker",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 66,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.982915Z",
+          "players_online": 66,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.403313Z",
+          "players_online": 66,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-08T18:36:29.001555Z",
+          "players_online": 66,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.072765Z",
+          "players_online": 66,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.787359Z",
+          "players_online": 66,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        }
+      ]
+    },
+    {
+      "id": "Bunga365",
+      "name": "Bunga365",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 110,
+      "seven_day_avg": 45,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.978390Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 110,
+          "seven_day_avg": 45
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.398882Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 110,
+          "seven_day_avg": 45
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.996813Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 110,
+          "seven_day_avg": 45
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.068361Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 110,
+          "seven_day_avg": 45
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.782440Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 110,
+          "seven_day_avg": 45
+        }
+      ]
+    },
+    {
+      "id": "Chico Poker",
+      "name": "Chico Poker",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 953,
+      "cash_players": 179,
+      "peak_24h": 618,
+      "seven_day_avg": 375,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.975663Z",
+          "players_online": 953,
+          "cash_players": 179,
+          "peak_24h": 618,
+          "seven_day_avg": 375
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.395783Z",
+          "players_online": 1370,
+          "cash_players": 239,
+          "peak_24h": 644,
+          "seven_day_avg": 375
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.993800Z",
+          "players_online": 1761,
+          "cash_players": 319,
+          "peak_24h": 609,
+          "seven_day_avg": 375
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.064971Z",
+          "players_online": 1721,
+          "cash_players": 366,
+          "peak_24h": 593,
+          "seven_day_avg": 375
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.779240Z",
+          "players_online": 1778,
+          "cash_players": 376,
+          "peak_24h": 612,
+          "seven_day_avg": 375
+        }
+      ]
+    },
+    {
+      "id": "Cubeia",
+      "name": "Cubeia",
+      "category": "UNKNOWN",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "2025-07-27T16:56:20.165Z",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": []
+    },
+    {
+      "id": "First Fidelity",
+      "name": "First Fidelity",
+      "category": "UNKNOWN",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "2025-07-27T16:56:20.165Z",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": []
+    },
+    {
+      "id": "GGNetwork",
+      "name": "GGNetwork",
+      "category": "GG_POKER",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 153008,
+      "cash_players": 10404,
+      "peak_24h": 13603,
+      "seven_day_avg": 10000,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.973026Z",
+          "players_online": 153008,
+          "cash_players": 10404,
+          "peak_24h": 13603,
+          "seven_day_avg": 10000
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.393095Z",
+          "players_online": 153008,
+          "cash_players": 10404,
+          "peak_24h": 13603,
+          "seven_day_avg": 10000
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.991178Z",
+          "players_online": 153008,
+          "cash_players": 10404,
+          "peak_24h": 13603,
+          "seven_day_avg": 10500
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.062624Z",
+          "players_online": 153008,
+          "cash_players": 10404,
+          "peak_24h": 13603,
+          "seven_day_avg": 10500
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.776955Z",
+          "players_online": 153008,
+          "cash_players": 10404,
+          "peak_24h": 13603,
+          "seven_day_avg": 10500
+        }
+      ]
+    },
+    {
+      "id": "GGPoker ON",
+      "name": "GGPoker ON",
+      "category": "GG_POKER",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 688,
+      "cash_players": 106,
+      "peak_24h": 650,
+      "seven_day_avg": 375,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.975154Z",
+          "players_online": 688,
+          "cash_players": 106,
+          "peak_24h": 650,
+          "seven_day_avg": 375
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.395536Z",
+          "players_online": 882,
+          "cash_players": 250,
+          "peak_24h": 751,
+          "seven_day_avg": 375
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.993521Z",
+          "players_online": 1618,
+          "cash_players": 416,
+          "peak_24h": 677,
+          "seven_day_avg": 375
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.065252Z",
+          "players_online": 1699,
+          "cash_players": 463,
+          "peak_24h": 690,
+          "seven_day_avg": 375
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.779507Z",
+          "players_online": 1721,
+          "cash_players": 472,
+          "peak_24h": 692,
+          "seven_day_avg": 350
+        }
+      ]
+    },
+    {
+      "id": "GamblerGames",
+      "name": "GamblerGames",
+      "category": "UNKNOWN",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "2025-07-27T16:56:20.165Z",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": []
+    },
+    {
+      "id": "Gamezy",
+      "name": "Gamezy",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 325,
+      "seven_day_avg": 160,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.976390Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 325,
+          "seven_day_avg": 160
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.396832Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 325,
+          "seven_day_avg": 160
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.994835Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 325,
+          "seven_day_avg": 160
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.066275Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 325,
+          "seven_day_avg": 160
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.780513Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 325,
+          "seven_day_avg": 160
+        }
+      ]
+    },
+    {
+      "id": "Grand Poker",
+      "name": "Grand Poker",
+      "category": "UNKNOWN",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "2025-07-27T16:56:20.165Z",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": []
+    },
+    {
+      "id": "IDNPoker",
+      "name": "IDNPoker",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 5528,
+      "cash_players": 1400,
+      "peak_24h": 2366,
+      "seven_day_avg": 1450,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.973602Z",
+          "players_online": 5528,
+          "cash_players": 1400,
+          "peak_24h": 2366,
+          "seven_day_avg": 1450
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.393668Z",
+          "players_online": 5528,
+          "cash_players": 1400,
+          "peak_24h": 2366,
+          "seven_day_avg": 1450
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.991757Z",
+          "players_online": 9877,
+          "cash_players": 2298,
+          "peak_24h": 2366,
+          "seven_day_avg": 1450
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.063204Z",
+          "players_online": 9848,
+          "cash_players": 2338,
+          "peak_24h": 2442,
+          "seven_day_avg": 1450
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.777514Z",
+          "players_online": 8195,
+          "cash_players": 2069,
+          "peak_24h": 2472,
+          "seven_day_avg": 1450
+        }
+      ]
+    },
+    {
+      "id": "Khelo365",
+      "name": "Khelo365",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 26,
+      "cash_players": 10,
+      "peak_24h": 33,
+      "seven_day_avg": 12,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.980557Z",
+          "players_online": 26,
+          "cash_players": 10,
+          "peak_24h": 33,
+          "seven_day_avg": 12
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.401137Z",
+          "players_online": 36,
+          "cash_players": 23,
+          "peak_24h": 26,
+          "seven_day_avg": 12
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.999032Z",
+          "players_online": 44,
+          "cash_players": 24,
+          "peak_24h": 26,
+          "seven_day_avg": 12
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.070593Z",
+          "players_online": 39,
+          "cash_players": 13,
+          "peak_24h": 30,
+          "seven_day_avg": 12
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.784572Z",
+          "players_online": 46,
+          "cash_players": 27,
+          "peak_24h": 28,
+          "seven_day_avg": 10
+        }
+      ]
+    },
+    {
+      "id": "MPL Poker",
+      "name": "MPL Poker",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 900,
+      "seven_day_avg": 525,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.974112Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 900,
+          "seven_day_avg": 525
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.394471Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 900,
+          "seven_day_avg": 525
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.992263Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 900,
+          "seven_day_avg": 525
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.063963Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 900,
+          "seven_day_avg": 525
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.778257Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 900,
+          "seven_day_avg": 525
+        }
+      ]
+    },
+    {
+      "id": "Merge Gaming",
+      "name": "Merge Gaming",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 20,
+      "seven_day_avg": 10,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.981029Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 10
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.401622Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 10
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.999497Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 10
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.071067Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 10
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.785028Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 10
+        }
+      ]
+    },
+    {
+      "id": "MobilePokerClub",
+      "name": "MobilePokerClub",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 55,
+      "seven_day_avg": 20,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.979131Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 55,
+          "seven_day_avg": 20
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.399399Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 55,
+          "seven_day_avg": 20
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.997311Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 55,
+          "seven_day_avg": 20
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.068865Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 55,
+          "seven_day_avg": 20
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.782916Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 55,
+          "seven_day_avg": 20
+        }
+      ]
+    },
+    {
+      "id": "NoLimitCoin Poker",
+      "name": "NoLimitCoin Poker",
+      "category": "UNKNOWN",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "2025-07-27T16:56:20.165Z",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": []
+    },
+    {
+      "id": "OK Poker",
+      "name": "OK Poker",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 23,
+      "peak_24h": 196,
+      "seven_day_avg": 110,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.977396Z",
+          "players_online": 0,
+          "cash_players": 23,
+          "peak_24h": 196,
+          "seven_day_avg": 110
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.397364Z",
+          "players_online": 0,
+          "cash_players": 23,
+          "peak_24h": 196,
+          "seven_day_avg": 130
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.995326Z",
+          "players_online": 0,
+          "cash_players": 23,
+          "peak_24h": 196,
+          "seven_day_avg": 140
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.066530Z",
+          "players_online": 0,
+          "cash_players": 23,
+          "peak_24h": 196,
+          "seven_day_avg": 150
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.780746Z",
+          "players_online": 0,
+          "cash_players": 23,
+          "peak_24h": 196,
+          "seven_day_avg": 150
+        }
+      ]
+    },
+    {
+      "id": "PaiWangLuo (Bodog)",
+      "name": "PaiWangLuo (Bodog)",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 1500,
+      "seven_day_avg": 800,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.973861Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 1500,
+          "seven_day_avg": 800
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.393928Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 1500,
+          "seven_day_avg": 800
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.992011Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 1500,
+          "seven_day_avg": 800
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.063460Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 1500,
+          "seven_day_avg": 800
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.777764Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 1500,
+          "seven_day_avg": 800
+        }
+      ]
+    },
+    {
+      "id": "Party Borgata (NJ)",
+      "name": "Party Borgata (NJ)",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 18,
+      "peak_24h": 18,
+      "seven_day_avg": 0,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.981999Z",
+          "players_online": 0,
+          "cash_players": 18,
+          "peak_24h": 18,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.400366Z",
+          "players_online": 0,
+          "cash_players": 18,
+          "peak_24h": 18,
+          "seven_day_avg": 18
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.998533Z",
+          "players_online": 0,
+          "cash_players": 18,
+          "peak_24h": 18,
+          "seven_day_avg": 18
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.069606Z",
+          "players_online": 0,
+          "cash_players": 18,
+          "peak_24h": 18,
+          "seven_day_avg": 18
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.783153Z",
+          "players_online": 0,
+          "cash_players": 18,
+          "peak_24h": 18,
+          "seven_day_avg": 18
+        }
+      ]
+    },
+    {
+      "id": "PartyPoker Europe",
+      "name": "PartyPoker Europe",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 12,
+      "peak_24h": 12,
+      "seven_day_avg": 0,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-03T18:36:38.297794Z",
+          "players_online": 0,
+          "cash_players": 12,
+          "peak_24h": 12,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-02T18:36:00.790868Z",
+          "players_online": 0,
+          "cash_players": 12,
+          "peak_24h": 12,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-01T18:38:57.073213Z",
+          "players_online": 0,
+          "cash_players": 12,
+          "peak_24h": 12,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-07-31T18:39:25.897122Z",
+          "players_online": 0,
+          "cash_players": 12,
+          "peak_24h": 12,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-07-31T09:55:23.581596Z",
+          "players_online": 0,
+          "cash_players": 12,
+          "peak_24h": 12,
+          "seven_day_avg": 0
+        }
+      ]
+    },
+    {
+      "id": "PeoplesNetwork.it",
+      "name": "PeoplesNetwork.it",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 174,
+      "cash_players": 3,
+      "peak_24h": 3,
+      "seven_day_avg": 0,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-03T18:36:38.298028Z",
+          "players_online": 174,
+          "cash_players": 3,
+          "peak_24h": 3,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-02T18:36:00.791102Z",
+          "players_online": 174,
+          "cash_players": 3,
+          "peak_24h": 3,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-01T18:38:57.073469Z",
+          "players_online": 174,
+          "cash_players": 3,
+          "peak_24h": 3,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-07-31T18:39:25.897374Z",
+          "players_online": 174,
+          "cash_players": 3,
+          "peak_24h": 3,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-07-31T09:55:23.581849Z",
+          "players_online": 174,
+          "cash_players": 3,
+          "peak_24h": 3,
+          "seven_day_avg": 0
+        }
+      ]
+    },
+    {
+      "id": "Pocket52",
+      "name": "Pocket52",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 300,
+      "seven_day_avg": 150,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.976903Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 300,
+          "seven_day_avg": 150
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.397114Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 300,
+          "seven_day_avg": 150
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.995087Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 300,
+          "seven_day_avg": 150
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.066816Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 300,
+          "seven_day_avg": 150
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.780987Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 300,
+          "seven_day_avg": 150
+        }
+      ]
+    },
+    {
+      "id": "PokerDangal",
+      "name": "PokerDangal",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 40,
+      "seven_day_avg": 14,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.980299Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 40,
+          "seven_day_avg": 14
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.400870Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 40,
+          "seven_day_avg": 14
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.998795Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 40,
+          "seven_day_avg": 14
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.070343Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 40,
+          "seven_day_avg": 14
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.784334Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 40,
+          "seven_day_avg": 14
+        }
+      ]
+    },
+    {
+      "id": "PokerKlas",
+      "name": "PokerKlas",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 515,
+      "seven_day_avg": 280,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.975906Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 515,
+          "seven_day_avg": 280
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.396054Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 515,
+          "seven_day_avg": 280
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.994045Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 515,
+          "seven_day_avg": 280
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.065511Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 515,
+          "seven_day_avg": 280
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.779995Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 515,
+          "seven_day_avg": 280
+        }
+      ]
+    },
+    {
+      "id": "PokerMIRA",
+      "name": "PokerMIRA",
+      "category": "UNKNOWN",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "2025-07-27T16:56:20.165Z",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": []
+    },
+    {
+      "id": "PokerMatch",
+      "name": "PokerMatch",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 308,
+      "cash_players": 84,
+      "peak_24h": 151,
+      "seven_day_avg": 60,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.978156Z",
+          "players_online": 308,
+          "cash_players": 84,
+          "peak_24h": 151,
+          "seven_day_avg": 60
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.398396Z",
+          "players_online": 493,
+          "cash_players": 91,
+          "peak_24h": 143,
+          "seven_day_avg": 55
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.996564Z",
+          "players_online": 728,
+          "cash_players": 80,
+          "peak_24h": 116,
+          "seven_day_avg": 55
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.068089Z",
+          "players_online": 498,
+          "cash_players": 48,
+          "peak_24h": 128,
+          "seven_day_avg": 55
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.782196Z",
+          "players_online": 515,
+          "cash_players": 75,
+          "peak_24h": 134,
+          "seven_day_avg": 55
+        }
+      ]
+    },
+    {
+      "id": "PokerSaint",
+      "name": "PokerSaint",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 20,
+      "seven_day_avg": 5,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.981509Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 5
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.402128Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 5
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.999993Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 5
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.071331Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 5
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.785262Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 5
+        }
+      ]
+    },
+    {
+      "id": "PokerStars Ontario",
+      "name": "PokerStars Ontario",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 55540,
+      "cash_players": 27,
+      "peak_24h": 245,
+      "seven_day_avg": 110,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.977661Z",
+          "players_online": 55540,
+          "cash_players": 27,
+          "peak_24h": 245,
+          "seven_day_avg": 110
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.397876Z",
+          "players_online": 55540,
+          "cash_players": 90,
+          "peak_24h": 274,
+          "seven_day_avg": 110
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.995832Z",
+          "players_online": 55540,
+          "cash_players": 119,
+          "peak_24h": 243,
+          "seven_day_avg": 110
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.067343Z",
+          "players_online": 55540,
+          "cash_players": 81,
+          "peak_24h": 224,
+          "seven_day_avg": 110
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.781485Z",
+          "players_online": 55540,
+          "cash_players": 124,
+          "peak_24h": 243,
+          "seven_day_avg": 110
+        }
+      ]
+    },
+    {
+      "id": "PokerStars PA",
+      "name": "PokerStars PA",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 2,
+      "peak_24h": 2,
+      "seven_day_avg": 35,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.978647Z",
+          "players_online": 0,
+          "cash_players": 2,
+          "peak_24h": 2,
+          "seven_day_avg": 35
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.398646Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 2,
+          "seven_day_avg": 45
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.996324Z",
+          "players_online": 0,
+          "cash_players": 2,
+          "peak_24h": 2,
+          "seven_day_avg": 70
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.067844Z",
+          "players_online": 0,
+          "cash_players": 47,
+          "peak_24h": 84,
+          "seven_day_avg": 85
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.781963Z",
+          "players_online": 0,
+          "cash_players": 75,
+          "peak_24h": 75,
+          "seven_day_avg": 80
+        }
+      ]
+    },
+    {
+      "id": "PokerStars US",
+      "name": "PokerStars US",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 55540,
+      "cash_players": 200,
+      "peak_24h": 400,
+      "seven_day_avg": 160,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.976652Z",
+          "players_online": 55540,
+          "cash_players": 200,
+          "peak_24h": 400,
+          "seven_day_avg": 160
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.396573Z",
+          "players_online": 55540,
+          "cash_players": 200,
+          "peak_24h": 400,
+          "seven_day_avg": 160
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.994574Z",
+          "players_online": 55540,
+          "cash_players": 126,
+          "peak_24h": 400,
+          "seven_day_avg": 160
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.066011Z",
+          "players_online": 55540,
+          "cash_players": 142,
+          "peak_24h": 445,
+          "seven_day_avg": 160
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.780245Z",
+          "players_online": 55540,
+          "cash_players": 68,
+          "peak_24h": 394,
+          "seven_day_avg": 160
+        }
+      ]
+    },
+    {
+      "id": "PokerStars.it",
+      "name": "PokerStars.it",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 11145,
+      "cash_players": 34,
+      "peak_24h": 34,
+      "seven_day_avg": 180,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-04T18:40:28.330851Z",
+          "players_online": 11145,
+          "cash_players": 34,
+          "peak_24h": 34,
+          "seven_day_avg": 180
+        },
+        {
+          "collected_at": "2025-08-03T18:36:38.291524Z",
+          "players_online": 11145,
+          "cash_players": 34,
+          "peak_24h": 34,
+          "seven_day_avg": 180
+        },
+        {
+          "collected_at": "2025-08-02T18:36:00.784605Z",
+          "players_online": 11145,
+          "cash_players": 34,
+          "peak_24h": 34,
+          "seven_day_avg": 180
+        },
+        {
+          "collected_at": "2025-08-01T18:38:57.066621Z",
+          "players_online": 11145,
+          "cash_players": 34,
+          "peak_24h": 34,
+          "seven_day_avg": 180
+        },
+        {
+          "collected_at": "2025-07-31T18:39:25.890516Z",
+          "players_online": 11145,
+          "cash_players": 34,
+          "peak_24h": 34,
+          "seven_day_avg": 180
+        }
+      ]
+    },
+    {
+      "id": "Pokerdom",
+      "name": "Pokerdom",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 2693,
+      "cash_players": 555,
+      "peak_24h": 841,
+      "seven_day_avg": 525,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.974358Z",
+          "players_online": 2693,
+          "cash_players": 555,
+          "peak_24h": 841,
+          "seven_day_avg": 525
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.394202Z",
+          "players_online": 3585,
+          "cash_players": 617,
+          "peak_24h": 931,
+          "seven_day_avg": 525
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.992512Z",
+          "players_online": 4006,
+          "cash_players": 804,
+          "peak_24h": 879,
+          "seven_day_avg": 525
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.063713Z",
+          "players_online": 3876,
+          "cash_players": 784,
+          "peak_24h": 972,
+          "seven_day_avg": 525
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.778013Z",
+          "players_online": 3747,
+          "cash_players": 874,
+          "peak_24h": 997,
+          "seven_day_avg": 525
+        }
+      ]
+    },
+    {
+      "id": "Pokio",
+      "name": "Pokio",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 3039,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.984216Z",
+          "players_online": 3039,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.404641Z",
+          "players_online": 3039,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-08T18:36:29.002873Z",
+          "players_online": 3039,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.074098Z",
+          "players_online": 3039,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.788640Z",
+          "players_online": 3039,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        }
+      ]
+    },
+    {
+      "id": "Ray.fi",
+      "name": "Ray.fi",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 927,
+      "cash_players": 546,
+      "peak_24h": 581,
+      "seven_day_avg": 0,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-06T18:38:41.786463Z",
+          "players_online": 927,
+          "cash_players": 546,
+          "peak_24h": 581,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-05T18:41:29.175223Z",
+          "players_online": 927,
+          "cash_players": 546,
+          "peak_24h": 581,
+          "seven_day_avg": 240
+        },
+        {
+          "collected_at": "2025-08-04T18:40:28.330605Z",
+          "players_online": 927,
+          "cash_players": 546,
+          "peak_24h": 581,
+          "seven_day_avg": 240
+        },
+        {
+          "collected_at": "2025-08-03T18:36:38.291287Z",
+          "players_online": 927,
+          "cash_players": 546,
+          "peak_24h": 581,
+          "seven_day_avg": 240
+        },
+        {
+          "collected_at": "2025-08-02T18:36:00.784346Z",
+          "players_online": 927,
+          "cash_players": 546,
+          "peak_24h": 581,
+          "seven_day_avg": 240
+        }
+      ]
+    },
+    {
+      "id": "Silver Sands",
+      "name": "Silver Sands",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 20,
+      "seven_day_avg": 5,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.981764Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 5
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.402378Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 5
+        },
+        {
+          "collected_at": "2025-08-08T18:36:29.000230Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 5
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.071581Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 5
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.785515Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 20,
+          "seven_day_avg": 5
+        }
+      ]
+    },
+    {
+      "id": "SkyPoker",
+      "name": "SkyPoker",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 220,
+      "seven_day_avg": 100,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.977913Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 220,
+          "seven_day_avg": 100
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.398145Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 220,
+          "seven_day_avg": 100
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.996080Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 220,
+          "seven_day_avg": 100
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.067598Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 220,
+          "seven_day_avg": 100
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.781729Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 220,
+          "seven_day_avg": 100
+        }
+      ]
+    },
+    {
+      "id": "Stretch",
+      "name": "Stretch",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 347,
+      "cash_players": 30,
+      "peak_24h": 177,
+      "seven_day_avg": 0,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-03T18:36:38.297541Z",
+          "players_online": 347,
+          "cash_players": 30,
+          "peak_24h": 177,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-02T18:36:00.786276Z",
+          "players_online": 347,
+          "cash_players": 30,
+          "peak_24h": 177,
+          "seven_day_avg": 110
+        },
+        {
+          "collected_at": "2025-08-01T18:38:57.068424Z",
+          "players_online": 347,
+          "cash_players": 30,
+          "peak_24h": 177,
+          "seven_day_avg": 110
+        },
+        {
+          "collected_at": "2025-07-31T18:39:25.892299Z",
+          "players_online": 347,
+          "cash_players": 30,
+          "peak_24h": 177,
+          "seven_day_avg": 110
+        },
+        {
+          "collected_at": "2025-07-31T09:55:23.576806Z",
+          "players_online": 347,
+          "cash_players": 30,
+          "peak_24h": 177,
+          "seven_day_avg": 110
+        }
+      ]
+    },
+    {
+      "id": "SwC Poker",
+      "name": "SwC Poker",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 134,
+      "cash_players": 28,
+      "peak_24h": 49,
+      "seven_day_avg": 30,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.978889Z",
+          "players_online": 134,
+          "cash_players": 28,
+          "peak_24h": 49,
+          "seven_day_avg": 30
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.399149Z",
+          "players_online": 134,
+          "cash_players": 28,
+          "peak_24h": 49,
+          "seven_day_avg": 30
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.997050Z",
+          "players_online": 134,
+          "cash_players": 28,
+          "peak_24h": 49,
+          "seven_day_avg": 30
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.068619Z",
+          "players_online": 134,
+          "cash_players": 28,
+          "peak_24h": 49,
+          "seven_day_avg": 30
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.782676Z",
+          "players_online": 134,
+          "cash_players": 28,
+          "peak_24h": 49,
+          "seven_day_avg": 28
+        }
+      ]
+    },
+    {
+      "id": "TEST_SITE_20250730_114642",
+      "name": "TEST_SITE_20250730_114642",
+      "category": "TEST",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 100,
+      "cash_players": 50,
+      "peak_24h": 150,
+      "seven_day_avg": 120,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-07-30T02:46:42.534551Z",
+          "players_online": 100,
+          "cash_players": 50,
+          "peak_24h": 150,
+          "seven_day_avg": 120
+        }
+      ]
+    },
+    {
+      "id": "Unibet",
+      "name": "Unibet",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 750,
+      "seven_day_avg": 400,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.974652Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 750,
+          "seven_day_avg": 400
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.394744Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 750,
+          "seven_day_avg": 400
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.993026Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 750,
+          "seven_day_avg": 400
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.064484Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 750,
+          "seven_day_avg": 400
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.778752Z",
+          "players_online": 0,
+          "cash_players": 0,
+          "peak_24h": 750,
+          "seven_day_avg": 400
+        }
+      ]
+    },
+    {
+      "id": "WPT Global",
+      "name": "WPT Global",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 5237,
+      "cash_players": 3019,
+      "peak_24h": 3424,
+      "seven_day_avg": 2500,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.973319Z",
+          "players_online": 5237,
+          "cash_players": 3019,
+          "peak_24h": 3424,
+          "seven_day_avg": 2500
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.393403Z",
+          "players_online": 6199,
+          "cash_players": 2452,
+          "peak_24h": 3500,
+          "seven_day_avg": 2500
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.991472Z",
+          "players_online": 6667,
+          "cash_players": 3343,
+          "peak_24h": 3604,
+          "seven_day_avg": 2500
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.062908Z",
+          "players_online": 7407,
+          "cash_players": 3469,
+          "peak_24h": 3835,
+          "seven_day_avg": 2400
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.777241Z",
+          "players_online": 7323,
+          "cash_players": 3556,
+          "peak_24h": 3835,
+          "seven_day_avg": 2400
+        }
+      ]
+    },
+    {
+      "id": "WSOP MI",
+      "name": "WSOP MI",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 0,
+      "cash_players": 393,
+      "peak_24h": 393,
+      "seven_day_avg": 260,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-10T18:34:16.976148Z",
+          "players_online": 0,
+          "cash_players": 393,
+          "peak_24h": 393,
+          "seven_day_avg": 260
+        },
+        {
+          "collected_at": "2025-08-09T18:35:09.396312Z",
+          "players_online": 0,
+          "cash_players": 393,
+          "peak_24h": 393,
+          "seven_day_avg": 280
+        },
+        {
+          "collected_at": "2025-08-08T18:36:28.994323Z",
+          "players_online": 0,
+          "cash_players": 393,
+          "peak_24h": 393,
+          "seven_day_avg": 280
+        },
+        {
+          "collected_at": "2025-08-07T18:40:46.065763Z",
+          "players_online": 0,
+          "cash_players": 393,
+          "peak_24h": 393,
+          "seven_day_avg": 280
+        },
+        {
+          "collected_at": "2025-08-06T18:38:41.779749Z",
+          "players_online": 0,
+          "cash_players": 393,
+          "peak_24h": 561,
+          "seven_day_avg": 280
+        }
+      ]
+    },
+    {
+      "id": "WSOP PA",
+      "name": "WSOP PA",
+      "category": "UNKNOWN",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "2025-07-27T16:56:20.165Z",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": []
+    },
+    {
+      "id": "WSOP US",
+      "name": "WSOP US",
+      "category": "UNKNOWN",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "2025-07-27T16:56:20.165Z",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": []
+    },
+    {
+      "id": "Winamax.fr",
+      "name": "Winamax.fr",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 1605,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-03T18:36:38.300857Z",
+          "players_online": 1605,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-02T18:36:00.793944Z",
+          "players_online": 1605,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-01T18:38:57.076426Z",
+          "players_online": 1605,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-07-31T18:39:25.900373Z",
+          "players_online": 1605,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-07-31T09:55:23.584686Z",
+          "players_online": 1605,
+          "cash_players": 0,
+          "peak_24h": 0,
+          "seven_day_avg": 0
+        }
+      ]
+    },
+    {
+      "id": "Wwin",
+      "name": "Wwin",
+      "category": "UNKNOWN",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "2025-07-27T16:56:20.165Z",
+      "players_online": 0,
+      "cash_players": 0,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "traffic_logs": []
+    },
+    {
+      "id": "iPoker Europe",
+      "name": "iPoker Europe",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 2660,
+      "cash_players": 501,
+      "peak_24h": 716,
+      "seven_day_avg": 0,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-06T18:38:41.786214Z",
+          "players_online": 2660,
+          "cash_players": 501,
+          "peak_24h": 716,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-05T18:41:29.174483Z",
+          "players_online": 2660,
+          "cash_players": 501,
+          "peak_24h": 716,
+          "seven_day_avg": 325
+        },
+        {
+          "collected_at": "2025-08-04T18:40:28.329821Z",
+          "players_online": 2660,
+          "cash_players": 501,
+          "peak_24h": 716,
+          "seven_day_avg": 325
+        },
+        {
+          "collected_at": "2025-08-03T18:36:38.290557Z",
+          "players_online": 2660,
+          "cash_players": 501,
+          "peak_24h": 716,
+          "seven_day_avg": 325
+        },
+        {
+          "collected_at": "2025-08-02T18:36:00.783612Z",
+          "players_online": 2660,
+          "cash_players": 501,
+          "peak_24h": 716,
+          "seven_day_avg": 325
+        }
+      ]
+    },
+    {
+      "id": "iPoker.it",
+      "name": "iPoker.it",
+      "category": "COMPETITOR",
+      "url": "",
+      "network": "",
+      "region": "Global",
+      "created_at": "",
+      "players_online": 2582,
+      "cash_players": 903,
+      "peak_24h": 958,
+      "seven_day_avg": 0,
+      "traffic_logs": [
+        {
+          "collected_at": "2025-08-06T18:38:41.785984Z",
+          "players_online": 2582,
+          "cash_players": 903,
+          "peak_24h": 958,
+          "seven_day_avg": 0
+        },
+        {
+          "collected_at": "2025-08-05T18:41:29.172996Z",
+          "players_online": 2582,
+          "cash_players": 903,
+          "peak_24h": 958,
+          "seven_day_avg": 475
+        },
+        {
+          "collected_at": "2025-08-04T18:40:28.328246Z",
+          "players_online": 2582,
+          "cash_players": 903,
+          "peak_24h": 958,
+          "seven_day_avg": 450
+        },
+        {
+          "collected_at": "2025-08-03T18:36:38.289113Z",
+          "players_online": 2582,
+          "cash_players": 903,
+          "peak_24h": 958,
+          "seven_day_avg": 450
+        },
+        {
+          "collected_at": "2025-08-02T18:36:00.782109Z",
+          "players_online": 2582,
+          "cash_players": 903,
+          "peak_24h": 958,
+          "seven_day_avg": 450
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "report_type": "weekly",
+  "data_period": {
+    "start": "2025-08-04",
+    "end": "2025-08-10"
+  },
+  "generated_at": "2025-08-11T17:05:01.691760",
+  "data_source": "Firebase (PokerStars US/Ontario excluded)",
+  "summary": {
+    "total_platforms": 41,
+    "total_online_players": 196480,
+    "total_cash_players": 20308,
+    "market_leader": "GGNetwork",
+    "market_leader_share": 77.87
+  },
+  "top_platforms": [
+    {
+      "platform_name": "GGNetwork",
+      "online_players": 153008,
+      "cash_players": 10404,
+      "tournament_players": 57041,
+      "peak_24h": 13603,
+      "seven_day_avg": 10357,
+      "data_points": 7,
+      "date_range": "2025-08-04 ~ 2025-08-10",
+      "market_share": 77.87
+    },
+    {
+      "platform_name": "PokerStars.it",
+      "online_players": 11145,
+      "cash_players": 34,
+      "tournament_players": 4444,
+      "peak_24h": 34,
+      "seven_day_avg": 180,
+      "data_points": 1,
+      "date_range": "2025-08-04 ~ 2025-08-04",
+      "market_share": 5.67
+    },
+    {
+      "platform_name": "IDNPoker",
+      "online_players": 8498,
+      "cash_players": 2004,
+      "tournament_players": 2597,
+      "peak_24h": 2472,
+      "seven_day_avg": 1450,
+      "data_points": 7,
+      "date_range": "2025-08-04 ~ 2025-08-10",
+      "market_share": 4.33
+    },
+    {
+      "platform_name": "WPT Global",
+      "online_players": 7074,
+      "cash_players": 3320,
+      "tournament_players": 1500,
+      "peak_24h": 3835,
+      "seven_day_avg": 2428,
+      "data_points": 7,
+      "date_range": "2025-08-04 ~ 2025-08-10",
+      "market_share": 3.6
+    },
+    {
+      "platform_name": "Pokerdom",
+      "online_players": 3724,
+      "cash_players": 751,
+      "tournament_players": 1189,
+      "peak_24h": 997,
+      "seven_day_avg": 528,
+      "data_points": 7,
+      "date_range": "2025-08-04 ~ 2025-08-10",
+      "market_share": 1.9
+    },
+    {
+      "platform_name": "Pokio",
+      "online_players": 3039,
+      "cash_players": 0,
+      "tournament_players": 1215,
+      "peak_24h": 0,
+      "seven_day_avg": 0,
+      "data_points": 7,
+      "date_range": "2025-08-04 ~ 2025-08-10",
+      "market_share": 1.55
+    },
+    {
+      "platform_name": "iPoker Europe",
+      "online_players": 2660,
+      "cash_players": 501,
+      "tournament_players": 863,
+      "peak_24h": 716,
+      "seven_day_avg": 216,
+      "data_points": 3,
+      "date_range": "2025-08-04 ~ 2025-08-06",
+      "market_share": 1.35
+    },
+    {
+      "platform_name": "iPoker.it",
+      "online_players": 2582,
+      "cash_players": 903,
+      "tournament_players": 671,
+      "peak_24h": 958,
+      "seven_day_avg": 308,
+      "data_points": 3,
+      "date_range": "2025-08-04 ~ 2025-08-06",
+      "market_share": 1.31
+    },
+    {
+      "platform_name": "Chico Poker",
+      "online_players": 1577,
+      "cash_players": 300,
+      "tournament_players": 510,
+      "peak_24h": 682,
+      "seven_day_avg": 371,
+      "data_points": 7,
+      "date_range": "2025-08-04 ~ 2025-08-10",
+      "market_share": 0.8
+    },
+    {
+      "platform_name": "GGPoker ON",
+      "online_players": 1417,
+      "cash_players": 368,
+      "tournament_players": 419,
+      "peak_24h": 751,
+      "seven_day_avg": 364,
+      "data_points": 7,
+      "date_range": "2025-08-04 ~ 2025-08-10",
+      "market_share": 0.72
+    }
+  ],
+  "competition_analysis": {
+    "report_type": "weekly",
+    "analysis_date": "2025-08-04 ~ 2025-08-10",
+    "leader": {
+      "name": "GGNetwork",
+      "share": 77.87,
+      "players": 153008
+    },
+    "second": {
+      "name": "PokerStars.it",
+      "share": 5.67,
+      "players": 11145
+    },
+    "third": {
+      "name": "IDNPoker",
+      "share": 4.33,
+      "players": 8498
+    },
+    "market_concentration": 6138.3,
+    "competition_intensity": "매우 집중",
+    "total_market_size": 194724
+  },
+  "insights": [
+    "[LEADER] GGNetwork leads with 77.87% market share",
+    "[CASH] GGNetwork dominates cash games: 10,404 players",
+    "[DATA] Based on Firebase data from 2025-08-04 (excluding contaminated sites)",
+    "[WEEKLY] Average market size: 194,724 players online"
+  ]
+}
