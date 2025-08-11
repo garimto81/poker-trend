@@ -1,0 +1,422 @@
+{
+  "text": "📊 포커 시장 종합 분석 리포트 (TOP 3 포함)",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "📊 포커 시장 종합 분석 리포트",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*분석 기간:* 2025-08-06 vs 2025-08-07\n*분석 시간:* 2025-08-07 15:49"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*종합 평가: 30/100점 ⚠️*\n개선 필요"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*📈 시장 전체 변화*"
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*🌐 총 온라인 플레이어*\n193,949 → 193,949"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*변화*\n➡️ +0.0% (+0명)"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*💰 총 캐시 플레이어*\n18,065 → 18,065"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*변화*\n➡️ +0.0% (+0명)"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*💵 캐시 비율*\n9.3% (+0.0%p)"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*활성 사이트*\n42개"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*🌐 온라인 플레이어 TOP 3*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "🥇 *GGNetwork*\n오늘: 153,008명 | 어제: 153,008명\n변화: ➡️ +0.0% (+0명)"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "🥈 *PokerStars Ontario*\n오늘: 7,500명 | 어제: 7,500명\n변화: ➡️ +0.0% (+0명)"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "🥉 *PokerStars US*\n오늘: 7,500명 | 어제: 7,500명\n변화: ➡️ +0.0% (+0명)"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*💰 캐시 플레이어 TOP 3*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "🥇 *GGNetwork*\n오늘: 10,404명 | 어제: 10,404명\n변화: ➡️ +0.0% (+0명)"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "🥈 *WPT Global*\n오늘: 1,727명 | 어제: 1,727명\n변화: ➡️ +0.0% (+0명)"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "🥉 *iPoker.it*\n오늘: 903명 | 어제: 903명\n변화: ➡️ +0.0% (+0명)"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*📊 트렌드 분석*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*방향:* 📉 downtrend\n*모멘텀:* 💔 bearish\n*주간 성장:* 온라인 -63.4% | 캐시 -15.3%\n*변동성:* 온라인 47.7% | 캐시 11.6%"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*💡 주요 인사이트*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "• 🥇 온라인 1위: GGNetwork (153,008명, +0.0%)\n• 💰 캐시 1위: GGNetwork (10,404명, +0.0%)\n• 📊 주간 트렌드: 하락세 지속"
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "📊 Enhanced Analysis | ⏰ 2025-08-07 15:49"
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "analysis_type": "enhanced_dual_metrics",
+    "period": "2025-08-06 vs 2025-08-07",
+    "top_sites": {
+      "online_top3": [
+        {
+          "rank": 1,
+          "site_name": "GGNetwork",
+          "players_today": 153008,
+          "players_yesterday": 153008,
+          "change": 0,
+          "change_pct": 0.0,
+          "rank_change": 0,
+          "trend": "➡️ 보합"
+        },
+        {
+          "rank": 2,
+          "site_name": "PokerStars Ontario",
+          "players_today": 7500,
+          "players_yesterday": 7500,
+          "change": 0,
+          "change_pct": 0.0,
+          "rank_change": 0,
+          "trend": "➡️ 보합"
+        },
+        {
+          "rank": 3,
+          "site_name": "PokerStars US",
+          "players_today": 7500,
+          "players_yesterday": 7500,
+          "change": 0,
+          "change_pct": 0.0,
+          "rank_change": 0,
+          "trend": "➡️ 보합"
+        }
+      ],
+      "cash_top3": [
+        {
+          "rank": 1,
+          "site_name": "GGNetwork",
+          "cash_today": 10404,
+          "cash_yesterday": 10404,
+          "change": 0,
+          "change_pct": 0.0,
+          "rank_change": 0,
+          "trend": "➡️ 보합"
+        },
+        {
+          "rank": 2,
+          "site_name": "WPT Global",
+          "cash_today": 1727,
+          "cash_yesterday": 1727,
+          "change": 0,
+          "change_pct": 0.0,
+          "rank_change": 0,
+          "trend": "➡️ 보합"
+        },
+        {
+          "rank": 3,
+          "site_name": "iPoker.it",
+          "cash_today": 903,
+          "cash_yesterday": 903,
+          "change": 0,
+          "change_pct": 0.0,
+          "rank_change": 0,
+          "trend": "➡️ 보합"
+        }
+      ],
+      "online_leader": {
+        "rank": 1,
+        "site_name": "GGNetwork",
+        "players_today": 153008,
+        "players_yesterday": 153008,
+        "change": 0,
+        "change_pct": 0.0,
+        "rank_change": 0,
+        "trend": "➡️ 보합"
+      },
+      "cash_leader": {
+        "rank": 1,
+        "site_name": "GGNetwork",
+        "cash_today": 10404,
+        "cash_yesterday": 10404,
+        "change": 0,
+        "change_pct": 0.0,
+        "rank_change": 0,
+        "trend": "➡️ 보합"
+      }
+    },
+    "daily_changes": {
+      "market_changes": {
+        "total_online": {
+          "yesterday": 193949,
+          "today": 193949,
+          "change": 0,
+          "change_pct": 0.0,
+          "trend": "➡️ 보합"
+        },
+        "total_cash": {
+          "yesterday": 18065,
+          "today": 18065,
+          "change": 0,
+          "change_pct": 0.0,
+          "trend": "➡️ 보합"
+        },
+        "avg_online": {
+          "yesterday": 4617.833333333333,
+          "today": 4617.833333333333,
+          "change": 0.0,
+          "change_pct": 0.0
+        },
+        "avg_cash": {
+          "yesterday": 430.1190476190476,
+          "today": 430.1190476190476,
+          "change": 0.0,
+          "change_pct": 0.0
+        }
+      },
+      "cash_ratio": {
+        "yesterday": 9.314304275866336,
+        "today": 9.314304275866336,
+        "change": 0.0,
+        "trend": "declining"
+      },
+      "top_gainers": [
+        {
+          "site_name": "GGPoker ON",
+          "old_avg": 2508.0,
+          "new_avg": 2508.0,
+          "change": 0.0,
+          "change_pct": 0.0
+        },
+        {
+          "site_name": "iPoker.it",
+          "old_avg": 2582.0,
+          "new_avg": 2582.0,
+          "change": 0.0,
+          "change_pct": 0.0
+        },
+        {
+          "site_name": "Party Borgata (NJ)",
+          "old_avg": 0.0,
+          "new_avg": 0.0,
+          "change": 0.0,
+          "change_pct": 0
+        },
+        {
+          "site_name": "SkyPoker",
+          "old_avg": 0.0,
+          "new_avg": 0.0,
+          "change": 0.0,
+          "change_pct": 0
+        },
+        {
+          "site_name": "Gamezy",
+          "old_avg": 0.0,
+          "new_avg": 0.0,
+          "change": 0.0,
+          "change_pct": 0
+        }
+      ],
+      "top_losers": [
+        {
+          "site_name": "PokerStars Ontario",
+          "old_avg": 7500.0,
+          "new_avg": 7500.0,
+          "change": 0.0,
+          "change_pct": 0.0
+        },
+        {
+          "site_name": "WSOP MI",
+          "old_avg": 0.0,
+          "new_avg": 0.0,
+          "change": 0.0,
+          "change_pct": 0
+        },
+        {
+          "site_name": "BetMGM MI",
+          "old_avg": 0.0,
+          "new_avg": 0.0,
+          "change": 0.0,
+          "change_pct": 0
+        },
+        {
+          "site_name": "Ray.fi",
+          "old_avg": 927.0,
+          "new_avg": 927.0,
+          "change": 0.0,
+          "change_pct": 0.0
+        },
+        {
+          "site_name": "PokerStars US",
+          "old_avg": 7500.0,
+          "new_avg": 7500.0,
+          "change": 0.0,
+          "change_pct": 0.0
+        }
+      ],
+      "active_sites": {
+        "yesterday": 42,
+        "today": 42,
+        "change": 0
+      }
+    },
+    "trend_analysis": {
+      "trend_direction": "downtrend",
+      "weekly_growth": {
+        "online": -63.42089480176079,
+        "cash": -15.267354596622889
+      },
+      "volatility": {
+        "online": 47.74474401281748,
+        "cash": 11.575532245499751
+      },
+      "momentum": "bearish",
+      "trend_strength": {
+        "online": 45213.35714285713,
+        "cash": 658.3571428571436
+      },
+      "data_points": 8
+    },
+    "comprehensive_score": {
+      "score": 30,
+      "max_score": 100,
+      "grade": "D",
+      "interpretation": "개선 필요"
+    },
+    "insights": [
+      "🥇 온라인 1위: GGNetwork (153,008명, +0.0%)",
+      "💰 캐시 1위: GGNetwork (10,404명, +0.0%)",
+      "📊 주간 트렌드: 하락세 지속"
+    ],
+    "raw_data": {
+      "yesterday": [],
+      "today": []
+    },
+    "timestamp": "2025-08-07T15:49:15.273487"
+  }
+}

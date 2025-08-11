@@ -1,0 +1,1090 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="poker-header">
+    <h1><i class="fas fa-spade-suit text-primary"></i> 포커 대회 영상 분석기</h1>
+    <p>YouTube 링크나 비디오 파일을 업로드하여 포커 핸드의 길이를 자동으로 분석하세요</p>
+</div>
+
+<!-- 분석 폼 -->
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card card-custom">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-video me-2"></i>
+                    영상 분석 시작
+                </h5>
+                
+                <form id="analysisForm">
+                    <!-- URL 입력 탭 -->
+                    <ul class="nav nav-tabs" id="inputTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="url-tab" data-bs-toggle="tab" data-bs-target="#url-pane" type="button">
+                                <i class="fas fa-link me-2"></i>비디오 URL
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="browse-tab" data-bs-toggle="tab" data-bs-target="#browse-pane" type="button">
+                                <i class="fas fa-folder-open me-2"></i>파일 탐색
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="file-tab" data-bs-toggle="tab" data-bs-target="#file-pane" type="button">
+                                <i class="fas fa-upload me-2"></i>파일 업로드
+                            </button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content mt-3" id="inputTabsContent">
+                        <!-- URL 입력 -->
+                        <div class="tab-pane fade show active" id="url-pane">
+                            <div class="mb-3">
+                                <label for="videoUrl" class="form-label">비디오 URL</label>
+                                <input type="url" class="form-control" id="videoUrl" name="video_url" 
+                                       placeholder="https://www.youtube.com/watch?v=... 또는 직접 비디오 링크">
+                                <div class="form-text">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    YouTube, Twitch, 직접 비디오 링크 등을 입력하세요 (스트리밍으로 바로 처리)
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 파일 탐색 -->
+                        <div class="tab-pane fade" id="browse-pane">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">드라이브 선택</label>
+                                        <select class="form-select" id="driveSelect">
+                                            <option value="">드라이브를 선택하세요...</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label">현재 경로</label>
+                                        <input type="text" class="form-control" id="currentPath" readonly>
+                                        <div class="btn-group mt-2 w-100">
+                                            <button type="button" class="btn btn-outline-secondary btn-sm" id="parentDirBtn">
+                                                <i class="fas fa-level-up-alt me-1"></i>상위 폴더
+                                            </button>
+                                            <button type="button" class="btn btn-outline-secondary btn-sm" id="refreshBtn">
+                                                <i class="fas fa-sync me-1"></i>새로고침
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-8">
+                                    <div class="mb-3">
+                                        <label class="form-label">파일 목록</label>
+                                        <div class="border rounded p-2" style="height: 300px; overflow-y: auto;">
+                                            <div id="fileList">
+                                                <div class="text-muted text-center p-3">
+                                                    <i class="fas fa-folder-open fa-2x mb-2"></i>
+                                                    <br>드라이브를 선택하여 탐색을 시작하세요
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label">선택된 파일</label>
+                                        <input type="text" class="form-control" id="selectedFile" readonly 
+                                               placeholder="비디오 파일을 선택하세요">
+                                    </div>
+                                    
+                                    <div id="fileInfo" class="alert alert-info" style="display: none;">
+                                        <h6><i class="fas fa-info-circle me-2"></i>파일 정보</h6>
+                                        <p class="mb-1"><strong>크기:</strong> <span id="fileSize">-</span></p>
+                                        <p class="mb-1"><strong>형식:</strong> <span id="fileFormat">-</span></p>
+                                        <p class="mb-0"><strong>경로:</strong> <span id="filePath">-</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-text mt-2">
+                                <i class="fas fa-info-circle me-1"></i>
+                                로컬 네트워크 환경에서 비디오 파일을 직접 선택할 수 있습니다
+                            </div>
+                        </div>
+                        
+                        <!-- 파일 업로드 -->
+                        <div class="tab-pane fade" id="file-pane">
+                            <div class="mb-3">
+                                <label for="videoFile" class="form-label">비디오 파일</label>
+                                <input type="file" class="form-control" id="videoFile" name="video_file" 
+                                       accept=".mp4,.avi,.mov,.mkv,.flv,.webm">
+                                <div class="form-text">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    지원 형식: MP4, AVI, MOV, MKV, FLV, WEBM (로컬 파일만)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 분석 옵션 -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">분석 정밀도</label>
+                            <select class="form-select" id="precision">
+                                <option value="normal">일반 (빠름)</option>
+                                <option value="high" selected>높음 (권장)</option>
+                                <option value="ultra">매우 높음 (느림)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">핸드 길이 분류</label>
+                            <select class="form-select" id="classification">
+                                <option value="standard" selected>표준 (5단계)</option>
+                                <option value="detailed">상세 (10단계)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- 분석 모드 선택 -->
+                    <div class="mt-4 p-3 bg-light rounded">
+                        <h6 class="mb-3"><i class="fas fa-brain me-2"></i>분석 모드 선택</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="analysisMode" id="autoMode" value="auto">
+                                    <label class="form-check-label" for="autoMode">
+                                        <strong>🤖 자동 모드 (기존)</strong><br>
+                                        <small class="text-muted">시스템이 휴리스틱으로 핸드를 자동 감지</small>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="analysisMode" id="smartMode" value="smart" checked>
+                                    <label class="form-check-label" for="smartMode">
+                                        <strong>🧠 스마트 모드 (NEW!)</strong><br>
+                                        <small class="text-muted">UI 시작/종료만 알려주면 시스템이 화면 위치를 자동 감지</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 기존 분석 옵션 -->
+                    <div class="mt-3 p-3 bg-light rounded">
+                        <h6 class="mb-2"><i class="fas fa-cog me-2"></i>추가 옵션</h6>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="fastMode" name="fast_mode">
+                            <label class="form-check-label" for="fastMode">
+                                <strong>고속 분석 모드</strong> 
+                                <span class="text-muted">(10분 영상을 1-2분 내에 분석, 정확도는 약간 낮음)</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary-custom btn-lg">
+                            <i class="fas fa-play me-2"></i>
+                            분석 시작
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 진행 상황 표시 (숨김) -->
+<div id="progressSection" class="mt-4" style="display: none;">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-cog fa-spin me-2"></i>
+                        분석 진행 중
+                    </h5>
+                    
+                    <div id="progressInfo" class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span id="progressMessage">분석 준비 중...</span>
+                            <span id="progressPercent">0%</span>
+                        </div>
+                        <div class="progress progress-custom">
+                            <div id="progressBar" class="progress-bar progress-bar-custom" 
+                                 style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="videoInfo" style="display: none;" class="alert alert-info alert-custom">
+                        <h6><i class="fas fa-video me-2"></i>영상 정보</h6>
+                        <p class="mb-1"><strong>제목:</strong> <span id="videoTitle">-</span></p>
+                        <p class="mb-1"><strong>길이:</strong> <span id="videoDuration">-</span></p>
+                        <p class="mb-0"><strong>처리 방식:</strong> <span id="processingType">스트리밍 분석</span></p>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <button id="cancelBtn" class="btn btn-outline-danger">
+                            <i class="fas fa-stop me-2"></i>
+                            취소
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 기능 소개 -->
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card card-custom h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-brain fa-3x text-primary mb-3"></i>
+                <h5>스트리밍 분석</h5>
+                <p>다운로드 없이 URL에서 직접 스트리밍하여 빠르고 효율적으로 분석합니다.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-custom h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-chart-pie fa-3x text-success mb-3"></i>
+                <h5>상세한 통계</h5>
+                <p>핸드 길이별 분류, 평균 시간, 분포도 등 다양한 통계를 제공합니다.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-custom h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-download fa-3x text-info mb-3"></i>
+                <h5>결과 다운로드</h5>
+                <p>분석 결과를 JSON 형태로 다운로드하여 추가 분석에 활용할 수 있습니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let currentTaskId = null;
+let progressInterval = null;
+
+document.getElementById('analysisForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData();
+    const activeTab = document.querySelector('.nav-link.active').id;
+    
+    // 고속 모드 옵션 추가
+    const fastMode = document.getElementById('fastMode').checked;
+    formData.append('fast_mode', fastMode);
+    
+    if (activeTab === 'url-tab') {
+        const url = document.getElementById('videoUrl').value.trim();
+        if (!url) {
+            alert('비디오 URL을 입력하세요.');
+            return;
+        }
+        formData.append('video_url', url);
+        startAnalysis(formData);
+        
+    } else if (activeTab === 'browse-tab') {
+        const selectedFile = document.getElementById('selectedFile').value.trim();
+        if (!selectedFile) {
+            alert('파일을 선택하세요.');
+            return;
+        }
+        // 로컬 파일 분석 시작
+        startLocalFileAnalysis(selectedFile);
+        
+    } else if (activeTab === 'file-tab') {
+        const file = document.getElementById('videoFile').files[0];
+        if (!file) {
+            alert('비디오 파일을 선택하세요.');
+            return;
+        }
+        formData.append('video_file', file);
+        startAnalysis(formData);
+    }
+});
+
+function startAnalysis(formData) {
+    // 스마트 모드 확인
+    const smartModeSelected = document.getElementById('smartMode').checked;
+    
+    if (smartModeSelected) {
+        // 스마트 모드로 전환
+        startSmartAnalysis(formData);
+        return;
+    }
+    
+    // UI 변경
+    document.getElementById('analysisForm').style.display = 'none';
+    document.getElementById('progressSection').style.display = 'block';
+    
+    fetch('/analyze', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        
+        currentTaskId = data.task_id;
+        startProgressTracking();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('분석 시작 실패: ' + error.message);
+        resetUI();
+    });
+}
+
+function startProgressTracking() {
+    progressInterval = setInterval(() => {
+        fetch(`/progress/${currentTaskId}`)
+        .then(response => response.json())
+        .then(data => {
+            updateProgress(data);
+            
+            if (data.status === 'completed') {
+                clearInterval(progressInterval);
+                showResults();
+            } else if (data.status === 'error') {
+                clearInterval(progressInterval);
+                alert('분석 실패: ' + data.message);
+                resetUI();
+            }
+        })
+        .catch(error => {
+            console.error('Progress tracking error:', error);
+        });
+    }, 2000); // 2초마다 확인
+}
+
+function updateProgress(data) {
+    const progressBar = document.getElementById('progressBar');
+    const progressPercent = document.getElementById('progressPercent');
+    const progressMessage = document.getElementById('progressMessage');
+    
+    const progress = data.progress || 0;
+    progressBar.style.width = progress + '%';
+    progressPercent.textContent = progress + '%';
+    progressMessage.textContent = data.message || '처리 중...';
+    
+    // 비디오 정보 표시
+    if (data.video_info) {
+        const videoInfo = document.getElementById('videoInfo');
+        const videoTitle = document.getElementById('videoTitle');
+        const videoDuration = document.getElementById('videoDuration');
+        const processingType = document.getElementById('processingType');
+        
+        videoTitle.textContent = data.video_info.title;
+        videoDuration.textContent = formatDuration(data.video_info.duration);
+        
+        // 처리 방식 표시
+        if (data.video_info.source_type === 'youtube') {
+            processingType.textContent = 'YouTube 스트리밍 분석';
+        } else if (data.video_info.source_type === 'direct') {
+            processingType.textContent = '직접 URL 스트리밍 분석';
+        } else {
+            processingType.textContent = '로컬 파일 분석';
+        }
+        
+        videoInfo.style.display = 'block';
+    }
+}
+
+function showResults() {
+    window.location.href = `/results/${currentTaskId}`;
+}
+
+function resetUI() {
+    document.getElementById('analysisForm').style.display = 'block';
+    document.getElementById('progressSection').style.display = 'none';
+    
+    // 폼 초기화
+    document.getElementById('analysisForm').reset();
+    
+    if (progressInterval) {
+        clearInterval(progressInterval);
+        progressInterval = null;
+    }
+    currentTaskId = null;
+}
+
+function formatDuration(seconds) {
+    if (!seconds) return '-';
+    
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    
+    if (hours > 0) {
+        return `${hours}시간 ${minutes}분 ${secs}초`;
+    } else {
+        return `${minutes}분 ${secs}초`;
+    }
+}
+
+// 취소 버튼
+document.getElementById('cancelBtn').addEventListener('click', function() {
+    if (confirm('분석을 취소하시겠습니까?')) {
+        if (progressInterval) {
+            clearInterval(progressInterval);
+        }
+        resetUI();
+    }
+});
+
+// 파일 브라우저 기능
+let currentDirectory = null;
+
+// 로컬 파일 분석 시작
+function startLocalFileAnalysis(filePath) {
+    // UI 변경
+    document.getElementById('analysisForm').style.display = 'none';
+    document.getElementById('progressSection').style.display = 'block';
+    
+    fetch('/analyze-local-file', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            file_path: filePath
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        
+        currentTaskId = data.task_id;
+        startProgressTracking();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('분석 시작 실패: ' + error.message);
+        resetUI();
+    });
+}
+
+// 드라이브 목록 로드
+function loadDrives() {
+    fetch('/api/file-browser/drives')
+    .then(response => response.json())
+    .then(data => {
+        const driveSelect = document.getElementById('driveSelect');
+        driveSelect.innerHTML = '<option value="">드라이브를 선택하세요...</option>';
+        
+        data.drives.forEach(drive => {
+            const option = document.createElement('option');
+            option.value = drive.path;
+            option.textContent = drive.name;
+            driveSelect.appendChild(option);
+        });
+    })
+    .catch(error => {
+        console.error('드라이브 로드 실패:', error);
+    });
+}
+
+// 디렉토리 내용 로드
+function loadDirectory(path) {
+    if (!path) return;
+    
+    fetch(`/api/file-browser/list?path=${encodeURIComponent(path)}`)
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        
+        currentDirectory = data.current_path;
+        document.getElementById('currentPath').value = currentDirectory;
+        
+        const fileList = document.getElementById('fileList');
+        fileList.innerHTML = '';
+        
+        if (data.items.length === 0) {
+            fileList.innerHTML = '<div class="text-muted text-center p-3">빈 폴더입니다</div>';
+            return;
+        }
+        
+        data.items.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'file-item p-2 border-bottom';
+            itemDiv.style.cursor = 'pointer';
+            
+            let icon = '';
+            let className = '';
+            
+            if (item.type === 'parent') {
+                icon = 'fas fa-level-up-alt';
+                className = 'text-secondary';
+            } else if (item.type === 'directory') {
+                icon = 'fas fa-folder';
+                className = 'text-primary';
+            } else if (item.is_video) {
+                icon = 'fas fa-video';
+                className = 'text-success';
+            } else {
+                icon = 'fas fa-file';
+                className = 'text-muted';
+            }
+            
+            const sizeText = item.type === 'file' ? formatFileSize(item.size) : '';
+            
+            itemDiv.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="${icon} me-2 ${className}"></i>
+                    <span class="flex-grow-1">${item.name}</span>
+                    ${sizeText ? `<small class="text-muted">${sizeText}</small>` : ''}
+                </div>
+            `;
+            
+            // 클릭 이벤트
+            itemDiv.addEventListener('click', function() {
+                if (item.type === 'directory' || item.type === 'parent') {
+                    loadDirectory(item.path);
+                } else if (item.is_video) {
+                    selectFile(item.path);
+                }
+            });
+            
+            // 비디오 파일인 경우 하이라이트
+            if (item.is_video) {
+                itemDiv.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#e8f5e8';
+                });
+                itemDiv.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            }
+            
+            fileList.appendChild(itemDiv);
+        });
+    })
+    .catch(error => {
+        console.error('디렉토리 로드 실패:', error);
+        document.getElementById('fileList').innerHTML = 
+            `<div class="text-danger text-center p-3">오류: ${error.message}</div>`;
+    });
+}
+
+// 파일 선택
+function selectFile(filePath) {
+    document.getElementById('selectedFile').value = filePath;
+    
+    // 파일 정보 로드
+    fetch(`/api/file-browser/file-info?path=${encodeURIComponent(filePath)}`)
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        
+        document.getElementById('fileSize').textContent = formatFileSize(data.size);
+        document.getElementById('fileFormat').textContent = data.extension.toUpperCase();
+        document.getElementById('filePath').textContent = data.path;
+        document.getElementById('fileInfo').style.display = 'block';
+    })
+    .catch(error => {
+        console.error('파일 정보 로드 실패:', error);
+        document.getElementById('fileInfo').style.display = 'none';
+    });
+}
+
+// 파일 크기 포맷팅
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 B';
+    
+    const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+    let size = bytes;
+    let unitIndex = 0;
+    
+    while (size >= 1024 && unitIndex < units.length - 1) {
+        size /= 1024;
+        unitIndex++;
+    }
+    
+    return `${size.toFixed(1)} ${units[unitIndex]}`;
+}
+
+// 이벤트 리스너 등록
+document.getElementById('driveSelect').addEventListener('change', function() {
+    const selectedDrive = this.value;
+    if (selectedDrive) {
+        loadDirectory(selectedDrive);
+    }
+});
+
+document.getElementById('parentDirBtn').addEventListener('click', function() {
+    if (currentDirectory) {
+        const parentPath = currentDirectory.split(/[\/\\]/).slice(0, -1).join('/') || '/';
+        loadDirectory(parentPath);
+    }
+});
+
+document.getElementById('refreshBtn').addEventListener('click', function() {
+    if (currentDirectory) {
+        loadDirectory(currentDirectory);
+    }
+});
+
+// 탭 변경시 드라이브 로드
+document.getElementById('browse-tab').addEventListener('shown.bs.tab', function() {
+    loadDrives();
+});
+
+// ============================================
+// 스마트 모드 기능
+// ============================================
+
+let smartUIDetector = null;
+let smartVideoFile = null;
+
+// 스마트 분석 시작
+function startSmartAnalysis(formData) {
+    // 비디오 파일 추출
+    for (let [key, value] of formData.entries()) {
+        if (key === 'video_file' && value instanceof File) {
+            smartVideoFile = value;
+            break;
+        }
+    }
+    
+    if (!smartVideoFile) {
+        alert('스마트 모드는 현재 파일 업로드만 지원합니다.');
+        return;
+    }
+    
+    // UI 변경
+    document.getElementById('analysisForm').style.display = 'none';
+    showSmartInterface();
+}
+
+// 스마트 인터페이스 표시
+function showSmartInterface() {
+    const progressSection = document.getElementById('progressSection');
+    progressSection.style.display = 'block';
+    
+    // 기존 progress 내용을 스마트 인터페이스로 교체
+    progressSection.innerHTML = `
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">🧠 스마트 UI 감지 모드</h3>
+                        <p class="text-center text-muted mb-4">UI가 나타나면 "UI 감지 시작", 사라지면 "UI 감지 종료"를 클릭하세요</p>
+                        
+                        <!-- 비디오 플레이어 -->
+                        <div class="text-center mb-4" style="position: relative;">
+                            <div style="position: relative; display: inline-block; max-width: 800px;">
+                                <video id="smartVideoPlayer" controls 
+                                       style="width: 100%; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                                </video>
+                                <canvas id="analysisOverlay" 
+                                        style="position: absolute; top: 0; left: 0; pointer-events: none; border-radius: 10px;">
+                                </canvas>
+                            </div>
+                            
+                            <!-- 스마트 컨트롤 -->
+                            <div style="margin: 20px 0;">
+                                <button id="smartDetectBtn" onclick="toggleSmartDetection()" 
+                                        class="btn btn-danger btn-lg" style="min-width: 200px;">
+                                    🔍 UI 감지 시작
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 분석 결과 -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>📊 화면 영역 분석</h5>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0;">
+                                    <div class="detection-cell" id="smart-cell-0" style="background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center; border: 2px solid transparent; font-size: 12px;">좌상단<br><span id="smart-score-0">0%</span></div>
+                                    <div class="detection-cell" id="smart-cell-1" style="background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center; border: 2px solid transparent; font-size: 12px;">상단<br><span id="smart-score-1">0%</span></div>
+                                    <div class="detection-cell" id="smart-cell-2" style="background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center; border: 2px solid transparent; font-size: 12px;">우상단<br><span id="smart-score-2">0%</span></div>
+                                    <div class="detection-cell" id="smart-cell-3" style="background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center; border: 2px solid transparent; font-size: 12px;">좌측<br><span id="smart-score-3">0%</span></div>
+                                    <div class="detection-cell" id="smart-cell-4" style="background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center; border: 2px solid transparent; font-size: 12px;">중앙<br><span id="smart-score-4">0%</span></div>
+                                    <div class="detection-cell" id="smart-cell-5" style="background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center; border: 2px solid transparent; font-size: 12px;">우측<br><span id="smart-score-5">0%</span></div>
+                                    <div class="detection-cell" id="smart-cell-6" style="background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center; border: 2px solid transparent; font-size: 12px;">좌하단<br><span id="smart-score-6">0%</span></div>
+                                    <div class="detection-cell" id="smart-cell-7" style="background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center; border: 2px solid transparent; font-size: 12px;">하단<br><span id="smart-score-7">0%</span></div>
+                                    <div class="detection-cell" id="smart-cell-8" style="background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center; border: 2px solid transparent; font-size: 12px;">우하단<br><span id="smart-score-8">0%</span></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>🎯 감지 상태</h5>
+                                <div id="smartStatus" class="alert alert-info">
+                                    비디오를 재생하고 UI가 나타나면 "UI 감지 시작" 버튼을 클릭하세요
+                                </div>
+                                
+                                <h5>📝 학습된 UI 패턴</h5>
+                                <div id="learnedUIPatterns" style="max-height: 200px; overflow-y: auto; background: #f8f9fa; padding: 10px; border-radius: 8px;">
+                                    아직 학습된 패턴이 없습니다
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 결과 섹션 -->
+                        <div id="smartResults" style="display: none; margin-top: 30px;">
+                            <h4>🎯 분석 결과</h4>
+                            <div class="row text-center">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3 class="text-primary" id="smartTotalUI">0</h3>
+                                            <p>감지된 UI</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3 class="text-success" id="smartPredictedHands">0</h3>
+                                            <p>예측 핸드 수</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3 class="text-info" id="smartAccuracy">95</h3>
+                                            <p>예상 정확도(%)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-3">
+                                <button class="btn btn-success" onclick="exportSmartResults()">
+                                    📥 스마트 분석 결과 다운로드
+                                </button>
+                                <button class="btn btn-secondary ms-2" onclick="resetSmartUI()">
+                                    🔙 다시 시작
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // 비디오 설정
+    const smartVideoPlayer = document.getElementById('smartVideoPlayer');
+    smartVideoPlayer.src = URL.createObjectURL(smartVideoFile);
+    
+    // 스마트 감지기 초기화
+    smartVideoPlayer.addEventListener('loadedmetadata', () => {
+        const overlay = document.getElementById('analysisOverlay');
+        overlay.width = smartVideoPlayer.videoWidth;
+        overlay.height = smartVideoPlayer.videoHeight;
+        
+        smartUIDetector = new SmartUIDetector(smartVideoPlayer, overlay);
+    });
+}
+
+// 스마트 UI 감지기 클래스
+class SmartUIDetector {
+    constructor(video, canvas) {
+        this.video = video;
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.isDetecting = false;
+        this.detectionStart = null;
+        this.frameAnalysisInterval = null;
+        this.uiPatterns = [];
+        this.tempCanvas = document.createElement('canvas');
+        this.tempCtx = this.tempCanvas.getContext('2d');
+    }
+    
+    startDetection() {
+        this.isDetecting = true;
+        this.detectionStart = this.video.currentTime;
+        
+        // 실시간 분석 시작
+        this.frameAnalysisInterval = setInterval(() => {
+            this.analyzeFrame();
+        }, 200); // 0.2초마다
+        
+        updateSmartStatus('🔄 UI 감지 중... 화면을 9개 영역으로 나누어 분석하고 있습니다.');
+    }
+    
+    stopDetection() {
+        if (!this.isDetecting) return;
+        
+        this.isDetecting = false;
+        clearInterval(this.frameAnalysisInterval);
+        
+        const detectionEnd = this.video.currentTime;
+        const duration = detectionEnd - this.detectionStart;
+        
+        if (duration >= 3) {
+            this.learnUIPattern(this.detectionStart, detectionEnd);
+            updateSmartStatus('✅ UI 패턴 학습 완료: ' + formatTime(this.detectionStart) + ' - ' + formatTime(detectionEnd) + ' (' + Math.floor(duration) + '초)');
+            this.updateResults();
+        } else {
+            updateSmartStatus('⚠️ 감지 시간이 너무 짧습니다 (최소 3초 이상)');
+        }
+        
+        this.resetGrid();
+    }
+    
+    analyzeFrame() {
+        if (!this.isDetecting || this.video.paused) return;
+        
+        // 비디오를 임시 캔버스에 그리기
+        this.tempCanvas.width = this.video.videoWidth;
+        this.tempCanvas.height = this.video.videoHeight;
+        this.tempCtx.drawImage(this.video, 0, 0);
+        
+        const imageData = this.tempCtx.getImageData(0, 0, this.tempCanvas.width, this.tempCanvas.height);
+        const regionScores = this.analyzeRegions(imageData);
+        
+        this.updateDetectionGrid(regionScores);
+        this.drawAnalysisOverlay(regionScores);
+    }
+    
+    analyzeRegions(imageData) {
+        const regions = [];
+        const width = imageData.width;
+        const height = imageData.height;
+        const data = imageData.data;
+        
+        // 3x3 그리드로 나누기
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                const startX = Math.floor(col * width / 3);
+                const endX = Math.floor((col + 1) * width / 3);
+                const startY = Math.floor(row * height / 3);
+                const endY = Math.floor((row + 1) * height / 3);
+                
+                const regionScore = this.analyzeRegion(data, width, startX, endX, startY, endY);
+                regions.push(regionScore);
+            }
+        }
+        
+        return regions;
+    }
+    
+    analyzeRegion(data, width, startX, endX, startY, endY) {
+        let totalPixels = 0;
+        let edgePixels = 0;
+        let colorCounts = {};
+        
+        for (let y = startY; y < endY; y++) {
+            for (let x = startX; x < endX; x++) {
+                const idx = (y * width + x) * 4;
+                const r = data[idx];
+                const g = data[idx + 1];
+                const b = data[idx + 2];
+                
+                totalPixels++;
+                
+                // 색상 그룹화
+                const colorKey = Math.floor(r/64)*64 + ',' + Math.floor(g/64)*64 + ',' + Math.floor(b/64)*64;
+                colorCounts[colorKey] = (colorCounts[colorKey] || 0) + 1;
+                
+                // 간단한 엣지 감지
+                if (x > startX && y > startY) {
+                    const prevIdx = ((y-1) * width + (x-1)) * 4;
+                    const diff = Math.abs(r - data[prevIdx]) + Math.abs(g - data[prevIdx + 1]) + Math.abs(b - data[prevIdx + 2]);
+                    if (diff > 60) edgePixels++;
+                }
+            }
+        }
+        
+        // UI 특성 계산
+        const maxColorCount = Math.max(...Object.values(colorCounts));
+        const uniformityScore = maxColorCount / totalPixels;
+        const edgeScore = edgePixels / totalPixels;
+        
+        // UI 점수 (균일도가 높고 엣지가 많으면 UI 가능성 높음)
+        const uiScore = (uniformityScore * 0.7 + edgeScore * 0.3) * 100;
+        return Math.min(uiScore, 100);
+    }
+    
+    updateDetectionGrid(scores) {
+        scores.forEach((score, idx) => {
+            const cell = document.getElementById('smart-cell-' + idx);
+            const scoreSpan = document.getElementById('smart-score-' + idx);
+            
+            if (cell && scoreSpan) {
+                scoreSpan.textContent = Math.floor(score) + '%';
+                
+                if (score > 50) {
+                    cell.style.borderColor = '#dc3545';
+                    cell.style.backgroundColor = 'rgba(220, 53, 69, 0.2)';
+                } else {
+                    cell.style.borderColor = 'transparent';
+                    cell.style.backgroundColor = '#f8f9fa';
+                }
+            }
+        });
+    }
+    
+    drawAnalysisOverlay(scores) {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        const cellWidth = this.canvas.width / 3;
+        const cellHeight = this.canvas.height / 3;
+        
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                const idx = row * 3 + col;
+                const score = scores[idx];
+                
+                const x = col * cellWidth;
+                const y = row * cellHeight;
+                
+                // 그리드 라인
+                this.ctx.strokeStyle = '#ffc107';
+                this.ctx.lineWidth = 1;
+                this.ctx.strokeRect(x, y, cellWidth, cellHeight);
+                
+                // UI 감지 시 강조
+                if (score > 50) {
+                    this.ctx.fillStyle = 'rgba(220, 53, 69, 0.3)';
+                    this.ctx.fillRect(x, y, cellWidth, cellHeight);
+                }
+                
+                // 점수 표시
+                this.ctx.fillStyle = '#fff';
+                this.ctx.font = '16px Arial';
+                this.ctx.fillText(Math.floor(score) + '%', x + 5, y + 20);
+            }
+        }
+    }
+    
+    learnUIPattern(startTime, endTime) {
+        const pattern = {
+            id: Date.now(),
+            startTime: startTime,
+            endTime: endTime,
+            duration: endTime - startTime,
+            confidence: 0.9
+        };
+        
+        this.uiPatterns.push(pattern);
+        this.updateLearnedPatterns();
+    }
+    
+    updateLearnedPatterns() {
+        const container = document.getElementById('learnedUIPatterns');
+        if (!container) return;
+        
+        if (this.uiPatterns.length === 0) {
+            container.innerHTML = '아직 학습된 패턴이 없습니다';
+            return;
+        }
+        
+        container.innerHTML = this.uiPatterns.map((pattern, idx) => 
+            '<div style="background: #e9ecef; padding: 8px; border-radius: 4px; margin: 5px 0; font-size: 12px;">' +
+                '<strong>패턴 ' + (idx + 1) + ':</strong> ' + formatTime(pattern.startTime) + ' - ' + formatTime(pattern.endTime) + '<br>' +
+                '<small>길이: ' + Math.floor(pattern.duration) + '초, 신뢰도: ' + Math.floor(pattern.confidence * 100) + '%</small>' +
+            '</div>'
+        ).join('');
+    }
+    
+    updateResults() {
+        document.getElementById('smartResults').style.display = 'block';
+        document.getElementById('smartTotalUI').textContent = this.uiPatterns.length;
+        
+        // 15초 이상 UI로 핸드 경계 예측
+        const longUIPatterns = this.uiPatterns.filter(p => p.duration >= 15);
+        document.getElementById('smartPredictedHands').textContent = longUIPatterns.length;
+    }
+    
+    resetGrid() {
+        for (let i = 0; i < 9; i++) {
+            const cell = document.getElementById('smart-cell-' + i);
+            const score = document.getElementById('smart-score-' + i);
+            if (cell) {
+                cell.style.borderColor = 'transparent';
+                cell.style.backgroundColor = '#f8f9fa';
+            }
+            if (score) score.textContent = '0%';
+        }
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+// 스마트 감지 토글
+function toggleSmartDetection() {
+    if (!smartUIDetector) return;
+    
+    const button = document.getElementById('smartDetectBtn');
+    
+    if (!smartUIDetector.isDetecting) {
+        smartUIDetector.startDetection();
+        button.innerHTML = '🛑 UI 감지 종료';
+        button.className = 'btn btn-warning btn-lg';
+    } else {
+        smartUIDetector.stopDetection();
+        button.innerHTML = '🔍 UI 감지 시작';
+        button.className = 'btn btn-danger btn-lg';
+    }
+}
+
+// 스마트 상태 업데이트
+function updateSmartStatus(message) {
+    const status = document.getElementById('smartStatus');
+    if (status) {
+        status.innerHTML = '<i class="fas fa-info-circle me-2"></i>' + message;
+    }
+}
+
+// 스마트 결과 내보내기
+function exportSmartResults() {
+    if (!smartUIDetector || smartUIDetector.uiPatterns.length === 0) {
+        alert('학습된 UI 패턴이 없습니다.');
+        return;
+    }
+    
+    const results = {
+        analysis_type: 'smart_ui_detection',
+        video_duration: document.getElementById('smartVideoPlayer').duration,
+        ui_patterns: smartUIDetector.uiPatterns,
+        predicted_hands: smartUIDetector.uiPatterns.filter(p => p.duration >= 15).map(p => ({
+            estimated_start: Math.max(0, p.startTime - 15),
+            estimated_end: p.endTime + 15,
+            confidence: p.confidence,
+            source_ui: p
+        })),
+        created_at: new Date().toISOString()
+    };
+    
+    const dataStr = JSON.stringify(results, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+    
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', 'smart_ui_analysis.json');
+    linkElement.click();
+    
+    updateSmartStatus('✅ 스마트 분석 결과가 다운로드되었습니다.');
+}
+
+// 스마트 UI 리셋
+function resetSmartUI() {
+    if (confirm('스마트 분석을 처음부터 다시 시작하시겠습니까?')) {
+        resetUI();
+    }
+}
+
+// 시간 포맷 함수 추가
+function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return mins + ':' + secs.toString().padStart(2, '0');
+}
+
+</script>
+{% endblock %}

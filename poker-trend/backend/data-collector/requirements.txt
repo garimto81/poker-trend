@@ -1,0 +1,26 @@
+# YouTube 포커 트렌드 분석 시스템 의존성
+
+# Google APIs
+google-api-python-client==2.108.0
+google-auth-httplib2==0.1.1
+google-auth-oauthlib==1.1.0
+google-generativeai==0.3.2
+
+# HTTP 및 요청 처리
+requests==2.31.0
+urllib3==2.1.0
+
+# 데이터 처리
+pandas==2.1.4
+numpy==1.26.2
+
+# 날짜/시간 처리
+python-dateutil==2.8.2
+pytz==2023.3
+
+# 로깅 및 유틸리티
+python-dotenv==1.0.0
+
+# HTTP 클라이언트
+httpx==0.25.2
+aiohttp==3.9.1

@@ -1,0 +1,511 @@
+{
+  "analysis_result": {
+    "analysis_type": "dual_metrics_daily",
+    "period": "2025-08-06 vs 2025-08-07",
+    "online_players": {
+      "metrics": {
+        "total": {
+          "yesterday": 193949,
+          "today": 193949,
+          "change": 0,
+          "change_pct": 0.0
+        },
+        "average": {
+          "yesterday": 4617.833333333333,
+          "today": 4617.833333333333,
+          "change": 0.0,
+          "change_pct": 0.0
+        }
+      },
+      "growth_grade": "➡️ 안정",
+      "market_size": "medium",
+      "trend": "sideways"
+    },
+    "cash_players": {
+      "metrics": {
+        "total": {
+          "yesterday": 18065,
+          "today": 18065,
+          "change": 0,
+          "change_pct": 0.0
+        },
+        "average": {
+          "yesterday": 430.1190476190476,
+          "today": 430.1190476190476,
+          "change": 0.0,
+          "change_pct": 0.0
+        }
+      },
+      "cash_ratio": {
+        "yesterday": 9.314304275866336,
+        "today": 9.314304275866336,
+        "change": 0.0,
+        "quality": "critical"
+      },
+      "growth_grade": "➡️ 안정",
+      "revenue_potential": "매우 낮음"
+    },
+    "correlation": {
+      "growth_multiplier": 0,
+      "pattern": "balanced",
+      "interpretation": "균형적 성장",
+      "health_index": 34.314304275866334,
+      "sync_level": "매우 동조"
+    },
+    "market_share": {
+      "dual_shares": [
+        {
+          "site_name": "IDNPoker",
+          "online_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "cash_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "composite_share": 0.0,
+          "composite_change": 0.0,
+          "trend": "━ 불변"
+        },
+        {
+          "site_name": "Blockchain Poker",
+          "online_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "cash_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "composite_share": 0.0,
+          "composite_change": 0.0,
+          "trend": "━ 불변"
+        },
+        {
+          "site_name": "9stacks",
+          "online_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "cash_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "composite_share": 0.0,
+          "composite_change": 0.0,
+          "trend": "━ 불변"
+        },
+        {
+          "site_name": "888poker.ca",
+          "online_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "cash_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "composite_share": 0.0,
+          "composite_change": 0.0,
+          "trend": "━ 불변"
+        },
+        {
+          "site_name": "PokerDangal",
+          "online_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "cash_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "composite_share": 0.0,
+          "composite_change": 0.0,
+          "trend": "━ 불변"
+        }
+      ],
+      "top3_concentration": {
+        "online": 0.0,
+        "cash": 0.0,
+        "composite": 0.0
+      },
+      "market_leaders": {
+        "online": {
+          "site_name": "IDNPoker",
+          "online_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "cash_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "composite_share": 0.0,
+          "composite_change": 0.0,
+          "trend": "━ 불변"
+        },
+        "cash": {
+          "site_name": "IDNPoker",
+          "online_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "cash_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "composite_share": 0.0,
+          "composite_change": 0.0,
+          "trend": "━ 불변"
+        },
+        "composite": {
+          "site_name": "IDNPoker",
+          "online_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "cash_share": {
+            "yesterday": 0.0,
+            "today": 0.0,
+            "change": 0.0
+          },
+          "composite_share": 0.0,
+          "composite_change": 0.0,
+          "trend": "━ 불변"
+        }
+      },
+      "movers": {
+        "online_gainers": [],
+        "cash_gainers": [],
+        "online_losers": [],
+        "cash_losers": []
+      }
+    },
+    "comprehensive_score": {
+      "total_score": 150,
+      "online_score": 76,
+      "cash_score": 74,
+      "grade": "A",
+      "interpretation": "우수한 종합 성과",
+      "score_details": {
+        "online_growth": 25,
+        "market_size": 6,
+        "cash_growth": 25,
+        "cash_ratio": 4,
+        "online_correlation": 25,
+        "cash_correlation": 25,
+        "online_market": 20,
+        "cash_market": 20
+      },
+      "balance_ratio": 0.9736842105263158
+    },
+    "insights": {
+      "online_insights": [
+        "📉 총 온라인 플레이어 0.0% 감소, 시장 위축"
+      ],
+      "cash_insights": [],
+      "correlation_insights": [
+        "🔄 균형적 성장"
+      ],
+      "market_insights": [
+        "👑 IDNPoker이 종합 점유율 0.0% 차지"
+      ],
+      "strategic_insights": [
+        "⚖️ 온라인과 캐시 성과가 균형적으로 발전 중",
+        "🏆 우수한 종합 성과 (종합점수: 150/200)"
+      ]
+    },
+    "timestamp": "2025-08-07T15:40:48.344829"
+  },
+  "slack_blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "🎯 이중 지표 종합 분석 리포트",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*종합 평가: 150/200점 🥇*\n우수한 종합 성과"
+      },
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*분석 기간*\n2025-08-06 vs 2025-08-07"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*등급*\nA등급"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*⚖️ 균형 지수*\n온라인 76/100 | 캐시 74/100\n⚖️ 완벽한 균형 상태"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*🌐 총 온라인 플레이어*"
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*플레이어 수*\n193,949 → 193,949"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*변화율*\n➡️ +0.0% (+0명)"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*시장 규모*\n중형 (10만+)"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*성장 등급*\n➡️ 안정"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*💰 캐시 플레이어*"
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*플레이어 수*\n18,065 → 18,065"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*변화율*\n➡️ +0.0% (+0명)"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*캐시 비율*\n9.3% 🔴\n(+0.0%p)"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*수익 잠재력*\n매우 낮음"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*🔄 상관관계 분석*"
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*패턴*\n균형적 성장"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*성장 배수*\n캐시가 온라인 대비 0.0배"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*건전성 지수*\n34.3/100"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*동조 수준*\n매우 동조"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*📊 시장 점유율 변화*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "👑 *종합 리더: IDNPoker*\n종합 점유율: 0.0% (변화: +0.00%p)"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Top 3 점유율 변화*\n🥇 IDNPoker\n   • 온라인: 0.0% (+0.00%p)\n   • 캐시: 0.0% (+0.00%p)\n🥈 Blockchain Poker\n   • 온라인: 0.0% (+0.00%p)\n   • 캐시: 0.0% (+0.00%p)\n🥉 9stacks\n   • 온라인: 0.0% (+0.00%p)\n   • 캐시: 0.0% (+0.00%p)"
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*Top 3 집중도 (온라인)*\n0.0%"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*Top 3 집중도 (캐시)*\n0.0%"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*💡 핵심 인사이트*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*[온라인]*\n• 📉 총 온라인 플레이어 0.0% 감소, 시장 위축\n*[상관관계]*\n• 🔄 균형적 성장\n*[전략]*\n• ⚖️ 온라인과 캐시 성과가 균형적으로 발전 중"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*📊 성과 평가 상세*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*온라인 부문 (76/100)*"
+      },
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "성장: 25/40"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "규모: 6/10"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "상관: 25/25"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "시장: 20/25"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*캐시 부문 (74/100)*"
+      },
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "성장: 25/40"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "비율: 4/10"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "상관: 25/25"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "시장: 20/25"
+        }
+      ]
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "🎯 이중 지표 분석 | ⏰ 2025-08-07 15:40"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_score": 150,
+    "grade": "A",
+    "online_score": 76,
+    "cash_score": 74,
+    "balance_ratio": 0.9736842105263158,
+    "online_players": 193949,
+    "cash_players": 18065,
+    "timestamp": "2025-08-07T15:40:48.376895"
+  }
+}

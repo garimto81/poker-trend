@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube 포커 트렌드 분석 시스템</title>
+    <meta name="description" content="AI 기반 YouTube 포커 트렌드 실시간 분석 및 자동 리포팅 시스템">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="YouTube 포커 트렌드 분석 시스템">
+    <meta property="og:description" content="일간/주간/월간 포커 트렌드 자동 분석 및 Slack 리포팅">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://garimto81.github.io/poker-trend/">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-bg-dark: rgba(31, 41, 55, 0.95);
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            --card-bg: rgba(31, 41, 55, 0.95);
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --border: #374151;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e293b 100%);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 2rem;
+            text-align: center;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1280px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon.blue {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .stat-icon.green {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .stat-icon.purple {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+        }
+
+        .stat-icon.pink {
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            color: white;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Timeline Section */
+        .timeline {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .timeline-container {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid var(--card-bg);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-time {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .tech-badge {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .tech-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .tech-badge i {
+            font-size: 1.25rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-link span {
+                display: none;
+            }
+
+            .timeline-line {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                padding-left: 50px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Live Status Indicator */
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">🎰</span>
+                <span>Poker Trend</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">
+                    <i class="fas fa-star"></i>
+                    <span>기능</span>
+                </a>
+                <a href="#schedule" class="nav-link">
+                    <i class="fas fa-clock"></i>
+                    <span>스케줄</span>
+                </a>
+                <a href="#tech" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    <span>기술</span>
+                </a>
+                <a href="https://github.com/garimto81/poker-trend" class="nav-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="live-indicator floating">
+            <span class="live-dot"></span>
+            시스템 정상 작동 중
+        </div>
+        <h1>YouTube 포커 트렌드<br>통합 분석 시스템</h1>
+        <p class="hero-subtitle">
+            일간, 주간, 월간 YouTube 포커 트렌드를 AI로 분석하고<br>
+            Slack으로 자동 리포팅하는 완전 자동화 시스템
+        </p>
+    </section>
+
+    <!-- Stats Grid -->
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon blue">
+                <i class="fas fa-video"></i>
+            </div>
+            <div class="stat-value">40+</div>
+            <div class="stat-label">일일 분석 영상</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon green">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="stat-value">8개</div>
+            <div class="stat-label">추적 키워드</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon purple">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="stat-value">100%</div>
+            <div class="stat-label">자동화율</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon pink">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-value">3단계</div>
+            <div class="stat-label">리포팅 레벨</div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">핵심 기능</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">Gemini AI 심층 분석</h3>
+                </div>
+                <p class="feature-description">
+                    Google Gemini AI가 수집된 데이터를 분석하여 트렌드 패턴을 파악하고 미래를 예측합니다.
+                </p>
+                <ul class="feature-list">
+                    <li>현재 트렌드 패턴 인식</li>
+                    <li>1주-1개월 미래 예측</li>
+                    <li>실행 가능한 전략 제안</li>
+                    <li>한국어 자동 번역</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="feature-title">체계적 데이터 수집</h3>
+                </div>
+                <p class="feature-description">
+                    YouTube Data API v3를 활용하여 8개 핵심 키워드의 상위 콘텐츠를 실시간 추적합니다.
+                </p>
+                <ul class="feature-list">
+                    <li>키워드당 TOP 5 영상</li>
+                    <li>조회수, 좋아요, 댓글 분석</li>
+                    <li>채널별 통계 집계</li>
+                    <li>시간대별 패턴 분석</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fab fa-slack"></i>
+                    </div>
+                    <h3 class="feature-title">Slack 자동 리포팅</h3>
+                </div>
+                <p class="feature-description">
+                    분석 결과를 깔끔하게 정리하여 지정된 시간에 Slack 채널로 자동 전송합니다.
+                </p>
+                <ul class="feature-list">
+                    <li>하이퍼링크 포함 리포트</li>
+                    <li>이모지로 가독성 향상</li>
+                    <li>AI 인사이트 포함</li>
+                    <li>실패 시 자동 알림</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="feature-title">GitHub Actions 자동화</h3>
+                </div>
+                <p class="feature-description">
+                    서버 없이 GitHub Actions로 완전 자동화된 워크플로우를 운영합니다.
+                </p>
+                <ul class="feature-list">
+                    <li>서버리스 아키텍처</li>
+                    <li>무료 티어 활용</li>
+                    <li>자동 스케줄링</li>
+                    <li>수동 실행 지원</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="feature-title">스마트 번역 시스템</h3>
+                </div>
+                <p class="feature-description">
+                    영어 콘텐츠를 자연스러운 한국어로 번역하여 국내 사용자에게 최적화된 정보를 제공합니다.
+                </p>
+                <ul class="feature-list">
+                    <li>단일 번역 보장</li>
+                    <li>문맥 기반 번역</li>
+                    <li>실패 시 원본 보존</li>
+                    <li>특수문자 자동 정리</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="feature-title">3단계 리포팅</h3>
+                </div>
+                <p class="feature-description">
+                    일간, 주간, 월간 각각 다른 관점으로 트렌드를 분석하여 종합적인 인사이트를 제공합니다.
+                </p>
+                <ul class="feature-list">
+                    <li>일간: 즉각적 트렌드</li>
+                    <li>주간: 성장률 분석</li>
+                    <li>월간: 장기 예측</li>
+                    <li>맞춤형 분석 깊이</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Timeline -->
+    <section class="timeline" id="schedule">
+        <h2 class="section-title">자동 실행 스케줄</h2>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">평일 10:00</div>
+                    <div class="timeline-title">일간 리포트</div>
+                    <div class="timeline-description">
+                        화요일~금요일 오전 10시에 최근 24시간 트렌드 분석
+                    </div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div style="width: 45%;"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div style="width: 45%;"></div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-time">월요일 11:00</div>
+                    <div class="timeline-title">주간 리포트</div>
+                    <div class="timeline-description">
+                        매주 월요일 오전 11시에 지난 7일간 트렌드 종합 분석
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">첫째주 월요일 14:00</div>
+                    <div class="timeline-title">월간 리포트</div>
+                    <div class="timeline-description">
+                        매월 첫째주 월요일 오후 2시에 지난 30일 트렌드 심층 분석
+                    </div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div style="width: 45%;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="tech-stack" id="tech">
+        <h2 class="section-title">기술 스택</h2>
+        <div class="tech-grid">
+            <div class="tech-badge">
+                <i class="fab fa-python" style="color: #3776ab;"></i>
+                <span>Python 3.11</span>
+            </div>
+            <div class="tech-badge">
+                <i class="fab fa-google" style="color: #4285f4;"></i>
+                <span>Gemini AI</span>
+            </div>
+            <div class="tech-badge">
+                <i class="fab fa-youtube" style="color: #ff0000;"></i>
+                <span>YouTube API v3</span>
+            </div>
+            <div class="tech-badge">
+                <i class="fab fa-slack" style="color: #4a154b;"></i>
+                <span>Slack Webhook</span>
+            </div>
+            <div class="tech-badge">
+                <i class="fab fa-github" style="color: #181717;"></i>
+                <span>GitHub Actions</span>
+            </div>
+            <div class="tech-badge">
+                <i class="fab fa-react" style="color: #61dafb;"></i>
+                <span>React</span>
+            </div>
+            <div class="tech-badge">
+                <i class="fab fa-node-js" style="color: #339933;"></i>
+                <span>Node.js</span>
+            </div>
+            <div class="tech-badge">
+                <i class="fab fa-docker" style="color: #2496ed;"></i>
+                <span>Docker</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2 class="section-title">시작하기</h2>
+        <p class="hero-subtitle" style="margin-bottom: 2rem;">
+            GitHub에서 코드를 확인하고 직접 구축해보세요
+        </p>
+        <div class="cta-buttons">
+            <a href="https://github.com/garimto81/poker-trend" class="btn btn-primary" target="_blank">
+                <i class="fab fa-github"></i>
+                GitHub 저장소
+            </a>
+            <a href="https://github.com/garimto81/poker-trend/blob/master/README.md" class="btn btn-secondary" target="_blank">
+                <i class="fas fa-book"></i>
+                설치 가이드
+            </a>
+            <a href="https://github.com/garimto81/poker-trend/blob/master/docs/PR_SUMMARY.md" class="btn btn-secondary" target="_blank">
+                <i class="fas fa-code-branch"></i>
+                최신 업데이트
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Poker Trend Analysis System. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://github.com/garimto81" class="footer-link" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="#" class="footer-link">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+                <a href="https://github.com/garimto81/poker-trend/blob/master/LICENSE" class="footer-link" target="_blank">
+                    <i class="fas fa-balance-scale"></i> MIT License
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        // Check saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.stat-card, .feature-card, .timeline-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add current time for live indicator
+        function updateLiveStatus() {
+            const now = new Date();
+            const hours = now.getHours();
+            const day = now.getDay();
+            
+            // Check if within operating hours (weekdays 9-18 KST)
+            const isOperating = day >= 1 && day <= 5 && hours >= 9 && hours <= 18;
+            
+            const indicator = document.querySelector('.live-indicator');
+            if (indicator) {
+                if (isOperating) {
+                    indicator.innerHTML = '<span class="live-dot"></span>시스템 정상 작동 중';
+                    indicator.style.background = 'var(--success)';
+                } else {
+                    indicator.innerHTML = '<span class="live-dot"></span>대기 모드';
+                    indicator.style.background = 'var(--warning)';
+                }
+            }
+        }
+
+        updateLiveStatus();
+        setInterval(updateLiveStatus, 60000); // Update every minute
+    </script>
+</body>
+</html>
