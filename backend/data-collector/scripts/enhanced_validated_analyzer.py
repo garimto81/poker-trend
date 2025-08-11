@@ -363,8 +363,14 @@ class EnhancedValidatedAnalyzer:
     
     def create_slack_report_enhanced(self, videos, ai_insights, validation_stats):
         """강화된 검증 통계 포함 Slack 리포트"""
-        top_videos = sorted(videos, key=lambda x: x.get('view_count', 0), reverse=True)[:5]
+        # 월간 리포트는 TOP 15
+        top_videos = sorted(videos, key=lambda x: x.get('view_count', 0), reverse=True)[:15]
         total_views = sum(v.get('view_count', 0) for v in videos)
+        
+        # 리포트 타입 및 기간 확인
+        report_type = os.getenv('REPORT_TYPE', 'monthly')
+        data_start = os.getenv('DATA_PERIOD_START', '')
+        data_end = os.getenv('DATA_PERIOD_END', '')
         
         # 언어별 통계
         language_stats = {}
@@ -377,19 +383,26 @@ class EnhancedValidatedAnalyzer:
         # 성공률 계산
         success_rate = round(validation_stats['valid']/validation_stats['total_checked']*100, 1)
         
+        # 리포트 타입에 따른 헤더 설정
+        header_text = {
+            'daily': '📅 일간 포커 트렌드 분석 (Daily Report)',
+            'weekly': '📅 주간 포커 트렌드 분석 (Weekly Report)',
+            'monthly': '📅 월간 포커 트렌드 분석 (Monthly Report)'
+        }.get(report_type, '📅 월간 포커 트렌드 분석 (Monthly Report)')
+        
         blocks = [
             {
                 "type": "header",
                 "text": {
                     "type": "plain_text",
-                    "text": "🎰 Enhanced Validated Poker Analysis"
+                    "text": header_text
                 }
             },
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}\n📊 {len(videos)} verified videos | {total_views:,} views\n🌍 Languages: {lang_summary}\n✅ Validation: {validation_stats['valid']}/{validation_stats['total_checked']} ({success_rate}%)"
+                    "text": f"📅 분석 기간: {data_start if data_start else '지난달'} {('~ ' + data_end) if data_end and data_start != data_end else ''}\n⏰ 실행 시간: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n📊 {len(videos)} verified videos | {total_views:,} views\n🌍 Languages: {lang_summary}\n✅ Validation: {validation_stats['valid']}/{validation_stats['total_checked']} ({success_rate}%)"
                 }
             },
             {

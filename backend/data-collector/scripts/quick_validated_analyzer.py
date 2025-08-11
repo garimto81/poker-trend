@@ -342,6 +342,11 @@ class QuickValidatedAnalyzer:
         top_videos = sorted(videos, key=lambda x: x.get('view_count', 0), reverse=True)[:5]
         total_views = sum(v.get('view_count', 0) for v in videos)
         
+        # 리포트 타입 및 기간 확인
+        report_type = os.getenv('REPORT_TYPE', 'daily')
+        data_start = os.getenv('DATA_PERIOD_START', '')
+        data_end = os.getenv('DATA_PERIOD_END', '')
+        
         # 언어별 통계
         language_stats = {}
         for video in top_videos:
@@ -351,19 +356,26 @@ class QuickValidatedAnalyzer:
         lang_summary = ", ".join([f"{lang}({count})" for lang, count in language_stats.items()])
         success_rate = round(validation_stats['valid']/max(validation_stats['total_checked'], 1)*100, 1)
         
+        # 리포트 타입에 따른 헤더 설정
+        header_text = {
+            'daily': '📅 일간 포커 트렌드 분석 (Daily Report)',
+            'weekly': '📅 주간 포커 트렌드 분석 (Weekly Report)',
+            'monthly': '📅 월간 포커 트렌드 분석 (Monthly Report)'
+        }.get(report_type, '🎰 Quick Validated Poker Analysis')
+        
         blocks = [
             {
                 "type": "header",
                 "text": {
                     "type": "plain_text",
-                    "text": "🎰 Quick Validated Poker Analysis (Original Language)"
+                    "text": header_text
                 }
             },
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}\n📊 {len(videos)} validated videos | {total_views:,} views\n🌍 Languages: {lang_summary}\n⚡ Quick validation: {success_rate}% success rate"
+                    "text": f"📅 분석 기간: {data_start if data_start else '어제'} {('~ ' + data_end) if data_end and data_start != data_end else ''}\n⏰ 실행 시간: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n📊 {len(videos)} validated videos | {total_views:,} views\n🌍 Languages: {lang_summary}\n⚡ Quick validation: {success_rate}% success rate"
                 }
             },
             {

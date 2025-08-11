@@ -141,6 +141,8 @@ jobs:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         REPORT_TYPE: ${{ needs.schedule-determination.outputs.report_type }}
+        DATA_PERIOD_START: ${{ needs.schedule-determination.outputs.data_start }}
+        DATA_PERIOD_END: ${{ needs.schedule-determination.outputs.data_end }}
       run: |
         echo "📰 PokerNews 분석 시작"
         
@@ -183,6 +185,8 @@ jobs:
         YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         REPORT_TYPE: ${{ needs.schedule-determination.outputs.report_type }}
+        DATA_PERIOD_START: ${{ needs.schedule-determination.outputs.data_start }}
+        DATA_PERIOD_END: ${{ needs.schedule-determination.outputs.data_end }}
         # PYTHONPATH 설정으로 import 문제 해결
         PYTHONPATH: ${{ github.workspace }}/backend/data-collector
       run: |
@@ -239,6 +243,8 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         REPORT_TYPE: ${{ needs.schedule-determination.outputs.report_type }}
+        DATA_PERIOD_START: ${{ needs.schedule-determination.outputs.data_start }}
+        DATA_PERIOD_END: ${{ needs.schedule-determination.outputs.data_end }}
       run: |
         echo "📊 Platform 분석 시작"
         
