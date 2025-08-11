@@ -14,7 +14,7 @@ import os
 import json
 import logging
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 import google.generativeai as genai
@@ -179,6 +179,21 @@ class ValidatedAnalyzerWithTranslation:
             'invalid_reasons': {}
         }
         
+        # 리포트 타입에 따른 날짜 설정
+        report_type = os.getenv('REPORT_TYPE', 'weekly')
+        data_start = os.getenv('DATA_PERIOD_START', '')
+        
+        # publishedAfter 날짜 계산 (ISO 8601 형식)
+        if data_start:
+            published_after = f"{data_start}T00:00:00Z"
+        else:
+            # 기본값: 7일 전
+            from datetime import datetime, timedelta
+            week_ago = datetime.now() - timedelta(days=7)
+            published_after = week_ago.strftime('%Y-%m-%dT00:00:00Z')
+        
+        logger.info(f"Searching videos published after: {published_after} (Report type: {report_type})")
+        
         for keyword in self.keywords:
             try:
                 # 더 많은 결과를 요청하여 유효하지 않은 영상 대비
@@ -188,7 +203,7 @@ class ValidatedAnalyzerWithTranslation:
                     type='video',
                     maxResults=max_results,
                     order='viewCount',
-                    publishedAfter='2025-08-04T00:00:00Z'
+                    publishedAfter=published_after
                 )
                 
                 response = request.execute()
