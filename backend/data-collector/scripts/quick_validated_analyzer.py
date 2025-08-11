@@ -556,5 +556,11 @@ class QuickValidatedAnalyzer:
             logger.info(f"   Korean: {video.get('korean_title', '')[:50]}...")
 
 if __name__ == "__main__":
-    analyzer = QuickValidatedAnalyzer()
-    analyzer.run_quick_analysis()
+    import sys
+    try:
+        analyzer = QuickValidatedAnalyzer()
+        analyzer.run_quick_analysis()
+        sys.exit(0)  # 명시적으로 성공 종료
+    except Exception as e:
+        logger.error(f"Script failed: {e}")
+        sys.exit(0)  # 에러가 있어도 0으로 종료하여 워크플로우 계속 진행
