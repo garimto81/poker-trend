@@ -1,13 +1,13 @@
 {
-  "startTime": "2025-08-08T06:14:55.246Z",
-  "sessionId": "poker-e2e-1754633695247",
+  "startTime": "2025-08-08T09:06:25.482Z",
+  "sessionId": "poker-e2e-1754643985483",
   "environment": {
     "nodeVersion": "v22.17.1",
     "platform": "win32",
     "arch": "x64"
   },
-  "endTime": "2025-08-08T06:15:05.386Z",
-  "duration": "10초",
-  "completedAt": "2025. 8. 8. 오후 3:15:05",
+  "endTime": "2025-08-08T09:06:27.077Z",
+  "duration": "2초",
+  "completedAt": "2025. 8. 8. 오후 6:06:27",
   "status": "completed"
 }
