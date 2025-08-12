@@ -1,0 +1,70 @@
+{
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "📊 월간 플랫폼 분석 보고서"
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "*2025년 7월 30일 - 8월 10일* | 월간 종합 분석"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*🚀 월간 TOP 성장 플랫폼*\n📈 *iPoker.it*: +71.2% (2,582명)\n📈 *iPoker EU*: +52.5% (2,660명)\n📈 *Ray.fi*: +74.4% (캐시 546명)"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*⚠️ 월간 TOP 하락 플랫폼*\n📉 *GGNetwork*: -44.5% (275,661 → 153,008)\n📉 *Chico Poker*: -47.0% (1,797 → 953)\n📉 *PokerMatch*: -44.4% (554 → 308)"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*📊 월간 시장 요약*\n• 전체 시장 변화: -43.9%\n• 시장 집중도: HHI 7966 (매우 집중)\n• 활성 플랫폼 수: 37개"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*💡 핵심 인사이트*\n• 전체 시장 큰 폭 하락 (-43.9%)\n• GGNetwork 절대 수치 감소에도 점유율 증가 (65% → 89%)\n• 소규모 플랫폼들의 급격한 위축\n• 시장 양극화 심화 (HHI 지수 상승)"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*📈 캐시 게임 시장 특이사항*\n• WSOP MI: +244.7% (393명)\n• BetMGM MI: +140.7% (402명)\n• 미국 시장 캐시 게임 성장세"
+      }
+    }
+  ]
+}

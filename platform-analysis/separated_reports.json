@@ -1,0 +1,106 @@
+{
+  "daily": {
+    "type": "daily",
+    "date": "2025-08-10",
+    "chart": "daily_separated_chart.png",
+    "online": {
+      "total": 171706,
+      "leader": "GGNetwork (89.1%)",
+      "top_3": [
+        [
+          "GGNetwork",
+          153008,
+          89.1
+        ],
+        [
+          "IDNPoker",
+          5528,
+          3.2
+        ],
+        [
+          "WPT Global",
+          5237,
+          3.1
+        ]
+      ]
+    },
+    "cash": {
+      "total": 16921,
+      "leader": "GGNetwork (61.5%)",
+      "top_3": [
+        [
+          "GGNetwork",
+          10404,
+          61.5
+        ],
+        [
+          "WPT Global",
+          3019,
+          17.8
+        ],
+        [
+          "IDNPoker",
+          1400,
+          8.3
+        ]
+      ]
+    }
+  },
+  "weekly": {
+    "type": "weekly",
+    "period": "2025-08-04 ~ 2025-08-10",
+    "chart": "weekly_separated_chart.png",
+    "online": {
+      "start": 189421,
+      "end": 171706,
+      "change": -9.4,
+      "biggest_drop": {
+        "name": "IDNPoker",
+        "change": -43.8
+      }
+    },
+    "cash": {
+      "start": 18234,
+      "end": 16921,
+      "change": -7.2,
+      "biggest_drop": {
+        "name": "Chico",
+        "change": -37.6
+      }
+    }
+  },
+  "monthly": {
+    "type": "monthly",
+    "period": "2025-07-30 ~ 2025-08-10",
+    "chart": "monthly_separated_chart.png",
+    "online": {
+      "start": 306234,
+      "end": 171706,
+      "change": -43.9,
+      "leader_evolution": "GGNetwork 65.0% → 89.1%",
+      "top_gainer": {
+        "name": "iPoker.it",
+        "change": 71.2
+      },
+      "top_loser": {
+        "name": "GGNetwork",
+        "change": -44.5
+      }
+    },
+    "cash": {
+      "start": 28456,
+      "end": 16921,
+      "change": -40.5,
+      "leader_evolution": "GGNetwork 58.2% → 61.5%",
+      "top_gainer": {
+        "name": "WSOP MI",
+        "change": 244.7
+      },
+      "top_loser": {
+        "name": "GGPoker ON",
+        "change": -54.7
+      }
+    }
+  },
+  "generated_at": "2025-08-12 12:00:06"
+}

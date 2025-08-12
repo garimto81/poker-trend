@@ -1,0 +1,39 @@
+{
+  "weekly": {
+    "type": "weekly",
+    "period": "2025-08-04 ~ 2025-08-10",
+    "chart": "weekly_stacked_area.png",
+    "online": {
+      "start": 189421,
+      "end": 168706,
+      "change": "-10.9%",
+      "leader": "GGNetwork",
+      "leader_share_end": "89.1%"
+    },
+    "cash": {
+      "start": 18234,
+      "end": 16921,
+      "change": "-7.2%",
+      "leader": "GGNetwork",
+      "leader_share_end": "61.5%"
+    }
+  },
+  "monthly": {
+    "type": "monthly",
+    "period": "2025-07-30 ~ 2025-08-10",
+    "chart": "monthly_stacked_area.png",
+    "online": {
+      "start": 306234,
+      "end": 168706,
+      "change": "-44.9%",
+      "leader_evolution": "GGNetwork: 65.0% → 89.1%"
+    },
+    "cash": {
+      "start": 28456,
+      "end": 16921,
+      "change": "-40.5%",
+      "leader_evolution": "GGNetwork: 58.2% → 61.5%"
+    }
+  },
+  "generated_at": "2025-08-12 12:29:20"
+}

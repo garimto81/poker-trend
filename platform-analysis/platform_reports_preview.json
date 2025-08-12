@@ -1,0 +1,124 @@
+{
+  "daily": {
+    "type": "daily",
+    "date": "2025-08-10",
+    "chart": "daily_chart.png",
+    "summary": {
+      "total_online": 171706,
+      "total_cash": 16921,
+      "leader": "GGNetwork (89.1%)",
+      "top_5": [
+        "GGNetwork: 153,008 / 10,404",
+        "IDNPoker: 5,528 / 1,400",
+        "WPT Global: 5,237 / 3,019",
+        "Pokerdom: 2,693 / 555",
+        "Chico: 953 / 179"
+      ]
+    },
+    "slack_blocks": [
+      {
+        "type": "header",
+        "text": {
+          "type": "plain_text",
+          "text": "📊 일간 플랫폼 분석"
+        }
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "*2025-08-10*\n\n*총 온라인:* 171,706명\n*총 캐시:* 16,921명"
+        }
+      },
+      {
+        "type": "image",
+        "title": {
+          "type": "plain_text",
+          "text": "Platform Distribution"
+        },
+        "image_url": "CHART_URL_PLACEHOLDER",
+        "alt_text": "Daily platform distribution chart"
+      }
+    ]
+  },
+  "weekly": {
+    "type": "weekly",
+    "period": "2025-08-04 ~ 2025-08-10",
+    "chart": "weekly_chart.png",
+    "summary": {
+      "online_change": "-9.4%",
+      "cash_change": "-7.2%",
+      "start": {
+        "online": 189421,
+        "cash": 18234
+      },
+      "end": {
+        "online": 171706,
+        "cash": 16921
+      }
+    },
+    "slack_blocks": [
+      {
+        "type": "header",
+        "text": {
+          "type": "plain_text",
+          "text": "📈 주간 플랫폼 분석"
+        }
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "*2025-08-04 ~ 2025-08-10*\n\n*온라인 변화:* 189,421 → 171,706 (-9.4%)\n*캐시 변화:* 18,234 → 16,921 (-7.2%)"
+        }
+      },
+      {
+        "type": "image",
+        "title": {
+          "type": "plain_text",
+          "text": "Weekly Trend"
+        },
+        "image_url": "CHART_URL_PLACEHOLDER",
+        "alt_text": "Weekly trend chart"
+      }
+    ]
+  },
+  "monthly": {
+    "type": "monthly",
+    "period": "2025-07-30 ~ 2025-08-10",
+    "chart": "monthly_chart.png",
+    "summary": {
+      "online_change": "-43.9%",
+      "cash_change": "-40.5%",
+      "market_leader": "GGNetwork 65% → 89.1%",
+      "top_gainer": "iPoker.it (+71.2%)",
+      "top_loser": "Chico (-47.0%)"
+    },
+    "slack_blocks": [
+      {
+        "type": "header",
+        "text": {
+          "type": "plain_text",
+          "text": "📊 월간 플랫폼 분석"
+        }
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "*2025-07-30 ~ 2025-08-10*\n\n*온라인:* 306,234 → 171,706 (-43.9%)\n*캐시:* 28,456 → 16,921 (-40.5%)"
+        }
+      },
+      {
+        "type": "image",
+        "title": {
+          "type": "plain_text",
+          "text": "Monthly Analysis"
+        },
+        "image_url": "CHART_URL_PLACEHOLDER",
+        "alt_text": "Monthly analysis chart"
+      }
+    ]
+  },
+  "generated_at": "2025-08-12 11:52:08"
+}
