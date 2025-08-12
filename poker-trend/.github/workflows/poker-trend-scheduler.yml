@@ -129,21 +129,12 @@ jobs:
           echo "⏰ 스케줄: $SCHEDULE_DESC"
           echo "🕐 실행 시간 (KST): $(TZ='Asia/Seoul' date)"
           
-          # 리포트 타입에 따라 다른 분석기 실행
-          case $REPORT_TYPE in
-            "monthly")
-              echo "🗓️ 월간 분석 실행 중..."
-              python enhanced_validated_analyzer.py
-              ;;
-            "weekly") 
-              echo "📅 주간 분석 실행 중..."
-              python validated_analyzer_with_translation.py
-              ;;
-            "daily"|*)
-              echo "📋 일간 분석 실행 중..."
-              python quick_validated_analyzer.py
-              ;;
-          esac
+          # 환경변수 설정
+          export REPORT_TYPE=$REPORT_TYPE
+          
+          # 플랫폼 실시간 분석기 실행 (Firebase 데이터 기반)
+          echo "🔄 플랫폼 실시간 분석 실행 중..."
+          python platform_live_analyzer.py
           
       - name: 분석 결과 아티팩트 업로드
         uses: actions/upload-artifact@v4
