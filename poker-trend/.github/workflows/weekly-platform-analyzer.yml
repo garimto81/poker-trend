@@ -1,0 +1,45 @@
+name: 주간 포커 플랫폼 분석
+
+on:
+  schedule:
+    # 매주 월요일 오전 11시 30분 (한국시간) = UTC 2:30
+    - cron: '30 2 * * 1'
+  
+  workflow_dispatch:
+
+jobs:
+  weekly-analysis:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 체크아웃
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Python 설정
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: 의존성 설치
+      run: |
+        pip install -r backend/requirements.txt
+    
+    - name: 주간 플랫폼 트렌드 분석 실행
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      run: |
+        cd backend
+        python -c "
+        import asyncio
+        from platform_trend_analyzer import PlatformTrendAnalyzer
+        
+        async def main():
+            analyzer = PlatformTrendAnalyzer()
+            await analyzer.analyze_trends('weekly')
+        
+        asyncio.run(main())
+        "
